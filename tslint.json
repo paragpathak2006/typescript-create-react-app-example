@@ -12,6 +12,8 @@
     ]
   },
   "rules": {
+    "member-ordering": [true, {"order": "fields-first"}],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
     "interface-name": [true, "always-prefix"],
     "no-empty-interface": false,
     "ordered-imports": false,
