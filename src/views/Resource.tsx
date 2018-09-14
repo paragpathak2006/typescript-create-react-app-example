@@ -5,11 +5,29 @@ import {ITopicsRoutePramas} from './Topics';
 import {ITopicRoutePramas} from './Topic';
 import ITopic from '../stores/models/ITopic';
 import IResource from '../stores/models/IResource';
+import MetaAction from '../stores/meta/MetaAction';
+import IAction from '../stores/IAction';
+import IStore from '../stores/IStore';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
 
 interface IState {}
 interface IProps {}
+interface IStateToProps {}
+interface IDispatchToProps {
+    dispatch: (action: IAction<any>) => void;
+}
 
-export default class Resource extends React.Component<IProps & RouteComponentProps<ITopicsRoutePramas & ITopicRoutePramas>, IState> {
+const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
+    dispatch,
+});
+
+class Resource extends React.Component<IStateToProps & IDispatchToProps & IProps & RouteComponentProps<ITopicsRoutePramas & ITopicRoutePramas>, IState> {
+
+    public componentDidMount(): void {
+        this.props.dispatch(MetaAction.setMeta({title: 'Resource View'}));
+    }
 
     public render(): JSX.Element {
         const {match} = this.props;
@@ -37,3 +55,5 @@ export default class Resource extends React.Component<IProps & RouteComponentPro
     }
 
 }
+
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Resource);

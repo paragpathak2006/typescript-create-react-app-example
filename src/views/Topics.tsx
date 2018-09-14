@@ -3,6 +3,11 @@ import {topicsJson} from '../stores/dynamicRoutes';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Topic from './Topic';
 import ITopic from '../stores/models/ITopic';
+import MetaAction from '../stores/meta/MetaAction';
+import IAction from '../stores/IAction';
+import IStore from '../stores/IStore';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
 
 export interface ITopicsRoutePramas {
     topicId: string;
@@ -10,8 +15,21 @@ export interface ITopicsRoutePramas {
 
 interface IState {}
 interface IProps {}
+interface IStateToProps {}
+interface IDispatchToProps {
+    dispatch: (action: IAction<any>) => void;
+}
 
-export default class Topics extends React.Component<IProps & RouteComponentProps<void>, IState> {
+const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
+    dispatch,
+});
+
+class Topics extends React.Component<IStateToProps & IDispatchToProps & IProps & RouteComponentProps<void>, IState> {
+
+    public componentDidMount(): void {
+        this.props.dispatch(MetaAction.setMeta({title: 'Topics View'}));
+    }
 
     public render(): JSX.Element {
         const {match} = this.props;
@@ -38,3 +56,5 @@ export default class Topics extends React.Component<IProps & RouteComponentProps
     }
 
 }
+
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Topics);
