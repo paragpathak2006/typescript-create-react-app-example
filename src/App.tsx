@@ -1,25 +1,39 @@
 import * as React from 'react';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+
 import './App.css';
+import Home from './views/Home';
+import Topics from './views/Topics';
 
-import logo from './logo.svg';
 
-export default class App extends React.Component {
+
+interface IState {}
+interface IProps {}
+
+export default class App extends React.Component<IProps, IState> {
 
     public render(): JSX.Element {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img
-                        src={logo}
-                        className="App-logo"
-                        alt="logo"
+            <Router>
+                <div style={{width: 1000, margin: '0 auto'}}>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/topics">Topics</Link></li>
+                    </ul>
+
+                    <hr />
+
+                    <Route
+                        exact={true}
+                        path="/"
+                        component={Home}
                     />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.tsx</code> and save to reload.
-                </p>
-            </div>
+                    <Route
+                        path="/topics"
+                        component={Topics}
+                    />
+                </div>
+            </Router>
         );
     }
 
