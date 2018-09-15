@@ -9,6 +9,7 @@ import IAction from '../stores/IAction';
 import IStore from '../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
+import IResource from '../stores/models/IResource';
 
 export interface ITopicRoutePramas {
     subId: string;
@@ -44,9 +45,9 @@ class Topic extends React.Component<IStateToProps & IDispatchToProps & IProps & 
                         <p>{topic.description}</p>
 
                         <ul>
-                            {topic.resources.map((sub: any) => (
-                                <li key={sub.id}>
-                                    <Link to={`${match.url}/${sub.id}`}>{sub.name}</Link>
+                            {topic.resources.map((model: IResource) => (
+                                <li key={model.id}>
+                                    <Link to={`${match.url}/${model.id}`}>{model.name}</Link>
                                 </li>
                             ))}
                         </ul>

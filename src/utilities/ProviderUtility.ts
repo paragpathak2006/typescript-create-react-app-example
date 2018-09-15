@@ -7,7 +7,7 @@ import rootReducer from '../stores/rootReducer';
 
 export default class ProviderUtility {
 
-    public static createProviderStore(initialState: any = {}, history: History, isServerSide: boolean = false): IStore {
+    public static createProviderStore(initialState: Partial<IStore> = {}, history: History, isServerSide: boolean = false): IStore {
 
         const store = createStore(
             connectRouter(history)(rootReducer),
