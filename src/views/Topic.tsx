@@ -4,6 +4,12 @@ import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Resource from './Resource';
 import {ITopicsRoutePramas} from './Topics';
 import ITopic from '../stores/models/ITopic';
+import MetaAction from '../stores/meta/MetaAction';
+import IAction from '../stores/IAction';
+import IStore from '../stores/IStore';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import IResource from '../stores/models/IResource';
 
 export interface ITopicRoutePramas {
     subId: string;
@@ -11,8 +17,21 @@ export interface ITopicRoutePramas {
 
 interface IState {}
 interface IProps {}
+interface IStateToProps {}
+interface IDispatchToProps {
+    dispatch: (action: IAction<any>) => void;
+}
 
-export default class Topic extends React.Component<IProps & RouteComponentProps<ITopicsRoutePramas>, IState> {
+const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
+    dispatch,
+});
+
+class Topic extends React.Component<IStateToProps & IDispatchToProps & IProps & RouteComponentProps<ITopicsRoutePramas>, IState> {
+
+    public componentDidMount(): void {
+        this.props.dispatch(MetaAction.setMeta({title: 'Topic View'}));
+    }
 
     public render(): JSX.Element {
         const {match} = this.props;
@@ -26,9 +45,9 @@ export default class Topic extends React.Component<IProps & RouteComponentProps<
                         <p>{topic.description}</p>
 
                         <ul>
-                            {topic.resources.map((sub: any) => (
-                                <li key={sub.id}>
-                                    <Link to={`${match.url}/${sub.id}`}>{sub.name}</Link>
+                            {topic.resources.map((model: IResource) => (
+                                <li key={model.id}>
+                                    <Link to={`${match.url}/${model.id}`}>{model.name}</Link>
                                 </li>
                             ))}
                         </ul>
@@ -49,3 +68,5 @@ export default class Topic extends React.Component<IProps & RouteComponentProps<
     }
 
 }
+
+export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Topic);

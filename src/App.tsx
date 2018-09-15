@@ -1,20 +1,21 @@
 import * as React from 'react';
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
-
-import './App.css';
-import Home from './views/Home';
+import {History} from 'history';
+import {ConnectedRouter} from 'connected-react-router';
+import {Route, Switch} from 'react-router';
+import {Link} from 'react-router-dom';
 import Topics from './views/Topics';
-
-
+import Home from './views/Home';
 
 interface IState {}
-interface IProps {}
+interface IProps {
+    history: History;
+}
 
 export default class App extends React.Component<IProps, IState> {
 
     public render(): JSX.Element {
         return (
-            <Router>
+            <ConnectedRouter history={this.props.history}>
                 <div style={{width: 1000, margin: '0 auto'}}>
                     <ul>
                         <li><Link to="/">Home</Link></li>
@@ -23,18 +24,21 @@ export default class App extends React.Component<IProps, IState> {
 
                     <hr />
 
-                    <Route
-                        exact={true}
-                        path="/"
-                        component={Home}
-                    />
-                    <Route
-                        path="/topics"
-                        component={Topics}
-                    />
+                    <Switch>
+                        <Route
+                            exact={true}
+                            path="/"
+                            component={Home}
+                        />
+                        <Route
+                            path="/topics"
+                            component={Topics}
+                        />
+                    </Switch>
                 </div>
-            </Router>
+            </ConnectedRouter>
         );
     }
 
 }
+
