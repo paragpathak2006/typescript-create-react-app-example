@@ -1,7 +1,6 @@
 import {AppContainer} from 'react-hot-loader';
-import {applyMiddleware, compose, createStore} from 'redux';
-import {createBrowserHistory} from 'history';
-import {connectRouter, routerMiddleware} from 'connected-react-router';
+import {createBrowserHistory, History} from 'history';
+import {connectRouter} from 'connected-react-router';
 import {Provider} from 'react-redux';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -9,18 +8,15 @@ import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './stores/rootReducer';
 import App from './App';
 import './index.css';
+import IStore from './stores/IStore';
+import ProviderUtility from './utilities/ProviderUtility';
 
-const history = createBrowserHistory();
+const initialState: Partial<IStore> = {
+};
 
-const composeEnhancer: typeof compose = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
-    connectRouter(history)(rootReducer),
-    composeEnhancer(
-        applyMiddleware(
-            routerMiddleware(history),
-        ),
-    ),
-);
+const history: History = createBrowserHistory();
+const store: IStore = ProviderUtility.createProviderStore(initialState, history);
+const rootEl: HTMLElement | null = document.getElementById('root');
 
 const render = () => {
     ReactDOM.render(
@@ -29,7 +25,7 @@ const render = () => {
                 <App history={history} />
             </Provider>
         </AppContainer>,
-        document.getElementById('root') as HTMLElement,
+        rootEl
     );
     registerServiceWorker();
 };
