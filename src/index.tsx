@@ -1,15 +1,16 @@
-import {AppContainer} from 'react-hot-loader';
-import {createBrowserHistory, History} from 'history';
-import {connectRouter} from 'connected-react-router';
-import {Provider} from 'react-redux';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import rootReducer from './stores/rootReducer';
-import App from './App';
-import './index.css';
 import IStore from './stores/IStore';
 import ProviderUtility from './utilities/ProviderUtility';
+import registerServiceWorker from './registerServiceWorker';
+import rootReducer from './stores/rootReducer';
+import {AppContainer} from 'react-hot-loader';
+import {connectRouter} from 'connected-react-router';
+import {createBrowserHistory, History} from 'history';
+import {Provider} from 'react-redux';
+import App from './App';
+
+import './index.css';
 
 const initialState: Partial<IStore> = {
 };
