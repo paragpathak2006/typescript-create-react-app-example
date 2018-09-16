@@ -1,3 +1,4 @@
+import 'fetch-everywhere';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import IStore from './stores/IStore';

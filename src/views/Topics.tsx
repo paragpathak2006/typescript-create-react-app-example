@@ -2,7 +2,7 @@ import * as React from 'react';
 import {topicsJson} from '../stores/dynamicRoutes';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Topic from './Topic';
-import ITopic from '../stores/models/ITopic';
+import ITopic from '../stores/topics/models/ITopic';
 import MetaAction from '../stores/meta/MetaAction';
 import IAction from '../stores/IAction';
 import IStore from '../stores/IStore';
