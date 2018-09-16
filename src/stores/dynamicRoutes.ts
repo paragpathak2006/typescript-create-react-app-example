@@ -1,4 +1,4 @@
-import ITopic from './models/ITopic';
+import ITopic from './topics/models/ITopic';
 
 export const topicsJson: ITopic[] = [
     {
