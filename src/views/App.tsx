@@ -3,8 +3,8 @@ import {History} from 'history';
 import {ConnectedRouter} from 'connected-react-router';
 import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
-import Topics from './topics/Topics';
-import Home from './home/Home';
+import TopicsAsync from './topics/TopicsAsync';
+import HomeAsync from './home/HomeAsync';
 
 import './App.scss';
 
@@ -30,11 +30,11 @@ export default class App extends React.Component<IProps, IState> {
                         <Route
                             exact={true}
                             path="/"
-                            component={Home}
+                            component={HomeAsync}
                         />
                         <Route
                             path="/topics"
-                            component={Topics}
+                            component={TopicsAsync}
                         />
                     </Switch>
                 </div>

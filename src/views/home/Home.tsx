@@ -6,7 +6,7 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
 interface IState {}
-interface IProps {}
+export interface IProps {}
 interface IStateToProps {}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
