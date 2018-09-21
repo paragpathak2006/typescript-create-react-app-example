@@ -3,8 +3,8 @@ import {History} from 'history';
 import {ConnectedRouter} from 'connected-react-router';
 import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
-import Topics from './views/Topics';
-import Home from './views/Home';
+import Topics from './topics/Topics';
+import Home from './home/Home';
 
 import './App.scss';
 

@@ -9,7 +9,7 @@ import {AppContainer} from 'react-hot-loader';
 import {connectRouter} from 'connected-react-router';
 import {createBrowserHistory, History} from 'history';
 import {Provider} from 'react-redux';
-import App from './App';
+import App from './views/App';
 
 import './index.scss';
 
@@ -37,7 +37,7 @@ render();
 // Hot reloading
 if (module.hot) {
     // Reload components
-    module.hot.accept('./App', () => {
+    module.hot.accept('./views/App', () => {
         render();
     });
 

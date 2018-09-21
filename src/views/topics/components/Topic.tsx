@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {topicsJson} from '../stores/dynamicRoutes';
+import {topicsJson} from '../../../stores/dynamicRoutes';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Resource from './Resource';
-import {ITopicsRoutePramas} from './Topics';
-import ITopic from '../stores/topics/models/ITopic';
-import MetaAction from '../stores/meta/MetaAction';
-import IAction from '../stores/IAction';
-import IStore from '../stores/IStore';
+import ITopic from '../../../stores/topics/models/ITopic';
+import MetaAction from '../../../stores/meta/MetaAction';
+import IAction from '../../../stores/IAction';
+import IStore from '../../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import IResource from '../stores/topics/models/IResource';
+import IResource from '../../../stores/topics/models/IResource';
+import {ITopicsRoutePramas} from '../Topics';
 
 export interface ITopicRoutePramas {
     subId: string;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import MetaAction from '../stores/meta/MetaAction';
-import IAction from '../stores/IAction';
-import IStore from '../stores/IStore';
+import MetaAction from '../../stores/meta/MetaAction';
+import IAction from '../../stores/IAction';
+import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
