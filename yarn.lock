@@ -4391,7 +4391,7 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
 
-lodash.clonedeep@^4.3.2:
+lodash.clonedeep@^4.3.2, lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
@@ -5847,6 +5847,12 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-app-rewire-css-modules@codebandits/react-app-rewire-css-modules:
+  version "1.0.0"
+  resolved "https://codeload.github.com/codebandits/react-app-rewire-css-modules/tar.gz/956a2330c2eb70cb5bc0795c0e83604e271d4a03"
+  dependencies:
+    lodash.clonedeep "^4.5.0"
 
 react-app-rewired@1.6.2:
   version "1.6.2"
