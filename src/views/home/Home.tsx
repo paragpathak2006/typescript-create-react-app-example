@@ -4,6 +4,7 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
+import styles from './home.module.scss'
 
 interface IState {}
 export interface IProps {}
@@ -25,7 +26,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     public render(): JSX.Element {
         return (
-            <h1>Home.</h1>
+            <h1 className={styles.header}>Home.</h1>
         );
     }
 

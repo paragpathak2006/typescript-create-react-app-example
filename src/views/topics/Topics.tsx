@@ -9,6 +9,8 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import styles from './topics.module.scss';
+
 export interface ITopicsRoutePramas {
     topicId: string;
 }
@@ -35,7 +37,7 @@ class Topics extends React.Component<IStateToProps & IDispatchToProps & IProps &
         const {match} = this.props;
 
         return (
-            <div>
+            <div className={styles.wrapper}>
                 <h1>Topics</h1>
                 <ul>
                     {topicsJson.map((model: ITopic) => (

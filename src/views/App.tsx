@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import TopicsAsync from './topics/TopicsAsync';
 import HomeAsync from './home/HomeAsync';
 
-import './App.scss';
+import styles from './app.module.scss';
 
 interface IState {}
 interface IProps {
@@ -18,7 +18,7 @@ export default class App extends React.Component<IProps, IState> {
     public render(): JSX.Element {
         return (
             <ConnectedRouter history={this.props.history}>
-                <div className="App">
+                <div className={styles.wrapper}>
                     <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/topics">Topics</Link></li>
