@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {topicsJson} from '../../stores/dynamicRoutes';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Topic from './components/Topic';
 import ITopic from '../../stores/topics/models/ITopic';
@@ -17,12 +16,16 @@ export interface ITopicsRoutePramas {
 
 interface IState {}
 export interface IProps {}
-interface IStateToProps {}
+interface IStateToProps {
+    readonly topics: ITopic[];
+}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapStateToProps = (state: IStore): IStateToProps => ({
+    topics: state.contentReducer.topics,
+});
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,
 });
@@ -34,13 +37,13 @@ class Topics extends React.Component<IStateToProps & IDispatchToProps & IProps &
     }
 
     public render(): JSX.Element {
-        const {match} = this.props;
+        const {topics, match} = this.props;
 
         return (
             <div className={styles.wrapper}>
                 <h1>Topics</h1>
                 <ul>
-                    {topicsJson.map((model: ITopic) => (
+                    {topics.map((model: ITopic) => (
                         <li key={model.id}>
                             <Link to={`${match.url}/${model.id}`}>{model.name}</Link>
                         </li>
