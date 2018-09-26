@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
 import TopicsAsync from './topics/TopicsAsync';
 import HomeAsync from './home/HomeAsync';
+import NotFoundAsync from './not-found/NotFoundAsync';
 
 import styles from './app.module.scss';
 
@@ -36,6 +37,7 @@ export default class App extends React.Component<IProps, IState> {
                             path="/topics"
                             component={TopicsAsync}
                         />
+                        <Route component={NotFoundAsync} />
                     </Switch>
                 </div>
             </ConnectedRouter>
