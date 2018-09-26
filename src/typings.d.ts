@@ -14,9 +14,13 @@ declare module "*.json" {
 declare module '*.css';
 declare module '*.scss';
 
-declare module 'config' {
-    export var isProduction: boolean;
-    export var endpointUrl: {
-        topics: string;
-    }
+declare module 'environment' {
+    const value: {
+        isProduction: boolean;
+        endpointUrl: {
+            topics: string;
+        }
+    };
+
+    export default value;
 }
