@@ -1,3 +1,5 @@
+import axios, {AxiosResponse } from 'axios';
+
 export enum RequestMethod {
     Get = 'GET',
     Post = 'POST',
@@ -9,10 +11,9 @@ export enum RequestMethod {
 }
 
 // http://httpstat.us
-// https://davidwalsh.name/fetch
 export default class HttpUtility {
 
-    public async get(endpoint: string): Promise<any> {
+    public async get(endpoint: string): Promise<AxiosResponse<any>> {
         const request = new Request(endpoint, {
             method: RequestMethod.Get,
         });
@@ -20,7 +21,8 @@ export default class HttpUtility {
         return this._fetch(request);
     }
 
-    public async post(endpoint: string): Promise<any> {
+    // TODO: finish setting up
+    public async post(endpoint: string): Promise<AxiosResponse<any>> {
         const request = new Request(endpoint, {
             method: RequestMethod.Post,
         });
@@ -28,7 +30,8 @@ export default class HttpUtility {
         return this._fetch(request);
     }
 
-    public async put(endpoint: string): Promise<any> {
+    // TODO: finish setting up
+    public async put(endpoint: string): Promise<AxiosResponse<any>> {
         const request = new Request(endpoint, {
             method: RequestMethod.Put,
         });
@@ -36,7 +39,8 @@ export default class HttpUtility {
         return this._fetch(request);
     }
 
-    public async delete(endpoint: string): Promise<any> {
+    // TODO: finish setting up
+    public async delete(endpoint: string): Promise<AxiosResponse<any>> {
         const request = new Request(endpoint, {
             method: RequestMethod.Delete,
         });
@@ -44,11 +48,13 @@ export default class HttpUtility {
         return this._fetch(request);
     }
 
-    private async _fetch(request: Request, init?: RequestInit): Promise<Response> {
+    private async _fetch(request: Request, init?: any): Promise<AxiosResponse<any>> {
         try {
-            const response: Response = await fetch(request, init);
-
-            return response.json();
+            return await axios({
+                data: init,
+                method: request.method,
+                url: request.url,
+            });
         } catch (error) {
             console.log(`error`, error);
 

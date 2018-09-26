@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {topicsJson} from '../../../stores/dynamicRoutes';
 import {RouteComponentProps} from 'react-router-dom';
 import {ITopicRoutePramas} from './Topic';
 import ITopic from '../../../stores/topics/models/ITopic';
@@ -13,12 +12,16 @@ import {ITopicsRoutePramas} from '../Topics';
 
 interface IState {}
 interface IProps {}
-interface IStateToProps {}
+interface IStateToProps {
+    readonly topics: ITopic[];
+}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapStateToProps = (state: IStore): IStateToProps => ({
+    topics: state.contentReducer.topics,
+});
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,
 });
@@ -30,8 +33,8 @@ class Resource extends React.Component<IStateToProps & IDispatchToProps & IProps
     }
 
     public render(): JSX.Element {
-        const {match} = this.props;
-        const topic: ITopic | undefined = topicsJson.find((model: ITopic) => model.id === match.params.topicId);
+        const {topics, match} = this.props;
+        const topic: ITopic | undefined = topics.find((model: ITopic) => model.id === match.params.topicId);
         let resource: IResource | undefined | null = null;
 
         if (topic) {
