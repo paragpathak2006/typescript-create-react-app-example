@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import TopicsAsync from './topics/TopicsAsync';
 import HomeAsync from './home/HomeAsync';
 import NotFoundAsync from './not-found/NotFoundAsync';
+import RouteEnum from '../constants/RouteEnum';
 
 import styles from './app.module.scss';
 
@@ -21,8 +22,8 @@ export default class App extends React.Component<IProps, IState> {
             <ConnectedRouter history={this.props.history}>
                 <div className={styles.wrapper}>
                     <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/topics">Topics</Link></li>
+                        <li><Link to={RouteEnum.Home}>Home</Link></li>
+                        <li><Link to={RouteEnum.Topics}>Topics</Link></li>
                     </ul>
 
                     <hr />
@@ -30,11 +31,11 @@ export default class App extends React.Component<IProps, IState> {
                     <Switch>
                         <Route
                             exact={true}
-                            path="/"
+                            path={RouteEnum.Home}
                             component={HomeAsync}
                         />
                         <Route
-                            path="/topics"
+                            path={RouteEnum.Topics}
                             component={TopicsAsync}
                         />
                         <Route component={NotFoundAsync} />
