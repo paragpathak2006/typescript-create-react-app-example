@@ -13,3 +13,10 @@ declare module "*.json" {
 
 declare module '*.css';
 declare module '*.scss';
+
+declare module 'config' {
+    export var isProduction: boolean;
+    export var endpointUrl: {
+        topics: string;
+    }
+}
