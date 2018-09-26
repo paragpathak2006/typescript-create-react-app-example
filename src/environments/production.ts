@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     endpointUrl: {
         topics: '/data/content.json',
     },
