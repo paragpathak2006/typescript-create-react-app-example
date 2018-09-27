@@ -1,0 +1,72 @@
+$MODAL_TOP_BOTTOM_PADDING: 15px;
+$CONTENT_PADDING: 15px;
+
+.modal {
+    -webkit-overflow-scrolling: touch;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    outline: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1050;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modal-dialog {
+    //position: relative;
+    margin: $MODAL_TOP_BOTTOM_PADDING;
+    max-width: 700px;
+    width: 70%;
+}
+
+.modal-content {
+    //position: relative;
+    background-clip: padding-box;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    margin-bottom: $MODAL_TOP_BOTTOM_PADDING;
+    outline: 0;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1040;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    padding: $CONTENT_PADDING;
+}
+
+.modal-body {
+    //position: relative;
+    padding: $CONTENT_PADDING;
+}
+
+.modal-footer {
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: flex-end;
+    padding: $CONTENT_PADDING;
+}
