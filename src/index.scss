@@ -1,8 +1,9 @@
-$COLOR: lightgreen;
-
-body {
-    margin: 0;
-    padding: 0;
-    background: $COLOR;
-    font-family: sans-serif;
-}
+/*
+  Global
+*/
+@import "~reset-css";
+@import "scss/elements";
+@import "scss/utils";
+@import "scss/btn";
+@import "scss/table";
+@import "scss/modal";

@@ -23,7 +23,10 @@ const render = () => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                <App history={history} />
+                <App
+                    history={history}
+                    dispatch={store.dispatch}
+                />
             </Provider>
         </AppContainer>,
         rootEl
