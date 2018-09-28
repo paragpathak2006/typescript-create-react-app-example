@@ -1,0 +1,15 @@
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #43b4d1;
+}
+
+.menu {
+    display: flex;
+
+    & > * {
+        margin-right: 10px;
+    }
+}

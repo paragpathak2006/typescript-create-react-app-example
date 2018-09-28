@@ -26,7 +26,10 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     public render(): JSX.Element {
         return (
-            <h1 className={styles.header}>Home.</h1>
+            <div className={styles.wrapper}>
+                <h1 className={styles.header}>Home Page</h1>
+                <p>This React/TypeScript code is the awesome part of this repo. Not the HTML or CSS.</p>
+            </div>
         );
     }
 

@@ -10,6 +10,8 @@ import {connect} from 'react-redux';
 import IResource from '../../../stores/topics/models/IResource';
 import {ITopicsRoutePramas} from '../Topics';
 
+import styles from './topics.module.scss';
+
 export interface ITopicRoutePramas {
     subId: string;
 }
@@ -43,19 +45,17 @@ class Topic extends React.Component<IStateToProps & IDispatchToProps & IProps & 
         return (
             <>
                 {topic &&
-                    <div>
+                    <div className={styles.wrapper}>
                         <h2>{topic.name}</h2>
                         <p>{topic.description}</p>
 
-                        <ul>
+                        <ul className={styles.links}>
                             {topic.resources.map((model: IResource) => (
                                 <li key={model.id}>
                                     <Link to={`${match.url}/${model.id}`}>{model.name}</Link>
                                 </li>
                             ))}
                         </ul>
-
-                        <hr />
 
                         <Route
                             path={`${match.path}/:subId`}

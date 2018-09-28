@@ -10,6 +10,8 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {ITopicsRoutePramas} from '../Topics';
 
+import styles from './resource.module.scss';
+
 interface IState {}
 interface IProps {}
 interface IStateToProps {
@@ -44,7 +46,7 @@ class Resource extends React.Component<IStateToProps & IDispatchToProps & IProps
         return (
             <>
                 {resource &&
-                    <div>
+                    <div className={styles.wrapper}>
                         <h3>{resource.name}</h3>
                         <p>{resource.description}</p>
                         <a href={resource.url}>More info.</a>
