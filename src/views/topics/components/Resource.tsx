@@ -1,3 +1,5 @@
+import styles from './resource.module.scss';
+
 import * as React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import {ITopicRoutePramas} from './Topic';
@@ -9,8 +11,6 @@ import IStore from '../../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {ITopicsRoutePramas} from '../Topics';
-
-import styles from './resource.module.scss';
 
 interface IState {}
 interface IProps {}

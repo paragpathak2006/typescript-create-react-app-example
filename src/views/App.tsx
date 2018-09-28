@@ -1,3 +1,5 @@
+import styles from './app.module.scss';
+
 import * as React from 'react';
 import {History} from 'history';
 import {ConnectedRouter} from 'connected-react-router';
@@ -6,8 +8,6 @@ import TopicsAsync from './topics/TopicsAsync';
 import HomeAsync from './home/HomeAsync';
 import NotFoundAsync from './not-found/NotFoundAsync';
 import RouteEnum from '../constants/RouteEnum';
-
-import styles from './app.module.scss';
 import ModalHub from './modals/ModalHub';
 import IAction from '../stores/IAction';
 import {Dispatch} from 'redux';

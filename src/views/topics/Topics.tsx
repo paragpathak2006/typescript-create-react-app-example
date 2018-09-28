@@ -1,3 +1,5 @@
+import styles from './topics.module.scss';
+
 import * as React from 'react';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Topic from './components/Topic';
@@ -7,8 +9,6 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-
-import styles from './topics.module.scss';
 
 export interface ITopicsRoutePramas {
     topicId: string;

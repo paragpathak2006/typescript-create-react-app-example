@@ -1,3 +1,5 @@
+import styles from './header.module.scss';
+
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
@@ -7,8 +9,6 @@ import {Link} from 'react-router-dom';
 import RouteEnum from '../../../constants/RouteEnum';
 import GenericModal from '../../modals/GenericModal';
 import ModalAction from '../../../stores/modal/ModalAction';
-
-import styles from './header.module.scss';
 
 interface IState {}
 interface IProps {}

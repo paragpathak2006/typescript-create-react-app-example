@@ -1,3 +1,5 @@
+import styles from './topics.module.scss';
+
 import * as React from 'react';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Resource from './Resource';
@@ -9,8 +11,6 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import IResource from '../../../stores/topics/models/IResource';
 import {ITopicsRoutePramas} from '../Topics';
-
-import styles from './topics.module.scss';
 
 export interface ITopicRoutePramas {
     subId: string;

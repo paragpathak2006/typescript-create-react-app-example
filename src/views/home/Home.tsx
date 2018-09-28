@@ -1,10 +1,11 @@
+import styles from './home.module.scss'
+
 import * as React from 'react';
 import MetaAction from '../../stores/meta/MetaAction';
 import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import styles from './home.module.scss'
 
 interface IState {}
 export interface IProps {}
