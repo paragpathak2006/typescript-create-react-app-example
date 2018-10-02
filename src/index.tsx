@@ -1,3 +1,5 @@
+import './index.scss';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import IStore from './stores/IStore';
@@ -9,8 +11,6 @@ import {connectRouter} from 'connected-react-router';
 import {createBrowserHistory, History} from 'history';
 import {Provider} from 'react-redux';
 import App from './views/App';
-
-import './index.scss';
 
 const initialState: Partial<IStore> = {
 };

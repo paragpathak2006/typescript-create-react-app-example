@@ -29,7 +29,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         return (
             <div className={styles.wrapper}>
                 <h1 className={styles.header}>Home Page</h1>
-                <p>This React/TypeScript code is the awesome part of this repo. Not the HTML or CSS.</p>
+                <p>The React/TypeScript code is the awesome part of this code. Not the HTML/CSS.</p>
             </div>
         );
     }
