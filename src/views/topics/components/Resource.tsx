@@ -45,16 +45,16 @@ class Resource extends React.Component<IStateToProps & IDispatchToProps & IProps
 
         return (
             <>
-                {resource &&
+                {resource && (
                     <div className={styles.wrapper}>
                         <h3>{resource.name}</h3>
                         <p>{resource.description}</p>
                         <a href={resource.url}>More info.</a>
                     </div>
-                }
-                {!resource &&
+                )}
+                {!resource && (
                     <span>Content not found</span>
-                }
+                )}
             </>
         );
     }

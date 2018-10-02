@@ -46,20 +46,20 @@ class GenericModal extends React.Component<PropsUnion, IState> {
                         {this.props.message}
                     </div>
                     <div className="modal-footer">
-                        {this.props.rejectLabel &&
-                        <button
-                            onClick={this.props.onReject ? this._onRejectHandler : this._onClosetHandler}
-                        >
-                            {this.props.rejectLabel}
-                        </button>
-                        }
-                        {this.props.acceptLabel &&
-                        <button
-                            onClick={this.props.onAccept ? this._onAcceptHandler : this._onClosetHandler}
-                        >
-                            {this.props.acceptLabel}
-                        </button>
-                        }
+                        {this.props.rejectLabel && (
+                            <button
+                                onClick={this.props.onReject ? this._onRejectHandler : this._onClosetHandler}
+                            >
+                                {this.props.rejectLabel}
+                            </button>
+                        )}
+                        {this.props.acceptLabel && (
+                            <button
+                                onClick={this.props.onAccept ? this._onAcceptHandler : this._onClosetHandler}
+                            >
+                                {this.props.acceptLabel}
+                            </button>
+                        )}
                     </div>
                 </section>
             </BaseModal>

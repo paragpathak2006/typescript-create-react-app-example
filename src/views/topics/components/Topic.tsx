@@ -44,7 +44,7 @@ class Topic extends React.Component<IStateToProps & IDispatchToProps & IProps & 
 
         return (
             <>
-                {topic &&
+                {topic && (
                     <div className={styles.wrapper}>
                         <h2>{topic.name}</h2>
                         <p>{topic.description}</p>
@@ -62,10 +62,10 @@ class Topic extends React.Component<IStateToProps & IDispatchToProps & IProps & 
                             component={Resource}
                         />
                     </div>
-                }
-                {!topic &&
+                )}
+                {!topic && (
                     <span>Content not found</span>
-                }
+                )}
             </>
         );
     }
