@@ -1,4 +1,4 @@
-import styles from './home.module.scss'
+import styles from './Home.module.scss'
 
 import * as React from 'react';
 import MetaAction from '../../stores/meta/MetaAction';

@@ -1,4 +1,4 @@
-import styles from './app.module.scss';
+import styles from './App.module.scss';
 
 import * as React from 'react';
 import {History} from 'history';

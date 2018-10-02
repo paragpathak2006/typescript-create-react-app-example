@@ -1,4 +1,4 @@
-import styles from './topics.module.scss';
+import styles from './Topic.module.scss';
 
 import * as React from 'react';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';

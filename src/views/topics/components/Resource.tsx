@@ -1,4 +1,4 @@
-import styles from './resource.module.scss';
+import styles from './Resource.module.scss';
 
 import * as React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
