@@ -4,8 +4,8 @@ import {Dispatch} from 'redux';
 import IStore from '../../stores/IStore';
 import IAction from '../../stores/IAction';
 
-interface IState {}
 interface IProps {}
+interface IState {}
 interface IStateToProps {
     readonly currentModal: JSX.Element;
 }

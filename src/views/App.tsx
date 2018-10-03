@@ -13,11 +13,11 @@ import IAction from '../stores/IAction';
 import {Dispatch} from 'redux';
 import Header from './components/header/Header';
 
-interface IState {}
 interface IProps {
     history: History;
     dispatch: Dispatch<IAction<any>>;
 }
+interface IState {}
 
 export default class App extends React.Component<IProps, IState> {
 

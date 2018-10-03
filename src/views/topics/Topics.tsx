@@ -14,8 +14,8 @@ export interface ITopicsRoutePramas {
     topicId: string;
 }
 
-interface IState {}
 export interface IProps {}
+interface IState {}
 interface IStateToProps {
     readonly topics: ITopic[];
 }

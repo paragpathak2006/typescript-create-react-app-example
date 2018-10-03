@@ -6,7 +6,6 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import ModalAction from '../../stores/modal/ModalAction';
 
-interface IState {}
 export interface IProps<T> {
     isRequired?: boolean;
     message: string;
@@ -16,6 +15,7 @@ export interface IProps<T> {
     onAccept?: (props: IProps<T>) => void;
     onReject?: (props: IProps<T>) => void;
 }
+interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;

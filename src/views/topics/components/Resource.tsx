@@ -12,8 +12,8 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {ITopicsRoutePramas} from '../Topics';
 
-interface IState {}
 interface IProps {}
+interface IState {}
 interface IStateToProps {
     readonly topics: ITopic[];
 }

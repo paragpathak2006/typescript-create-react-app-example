@@ -5,8 +5,8 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import MetaAction from '../../stores/meta/MetaAction';
 
-interface IState {}
 export interface IProps {}
+interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-interface IState {}
 interface IProps {}
+interface IState {}
 
 export default class AsyncLoader extends React.Component<IProps & LoadableExport.LoadingComponentProps, IState> {
 

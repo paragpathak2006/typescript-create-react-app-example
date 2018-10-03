@@ -10,8 +10,8 @@ import RouteEnum from '../../../constants/RouteEnum';
 import GenericModal from '../../modals/GenericModal';
 import ModalAction from '../../../stores/modal/ModalAction';
 
-interface IState {}
 interface IProps {}
+interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;

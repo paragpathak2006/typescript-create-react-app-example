@@ -6,10 +6,10 @@ import IStore from '../../stores/IStore';
 import KeyboardKeyEnum from '../../constants/KeyboardKeyEnum';
 import ModalAction from '../../stores/modal/ModalAction';
 
-interface IState {}
 interface IProps {
     isRequired?: boolean;
 }
+interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;

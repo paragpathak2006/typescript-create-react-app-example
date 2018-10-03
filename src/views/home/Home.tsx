@@ -7,8 +7,8 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-interface IState {}
 export interface IProps {}
+interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
