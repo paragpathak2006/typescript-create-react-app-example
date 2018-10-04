@@ -1,5 +1,5 @@
 {
-  "name": "beer-tv.web",
+  "name": "typescript-create-react-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,8 +20,9 @@
   },
   "scripts": {
     "clean": "rimraf 'build/**/*'",
-    "start": "npm run clean && NODE_ENV=staging react-app-rewired start --scripts-version react-scripts-ts",
-    "build": "npm run clean && NODE_ENV=production react-app-rewired build --scripts-version react-scripts-ts",
+    "start": "npm run clean && cross-env NODE_ENV=staging react-app-rewired start --scripts-version react-scripts-ts",
+    "staging": "npm run clean && cross-env NODE_ENV=staging react-app-rewired build --scripts-version react-scripts-ts",
+    "production": "npm run clean && cross-env NODE_ENV=production react-app-rewired build --scripts-version react-scripts-ts",
     "test": "react-app-rewired test --scripts-version react-scripts-ts --env=jsdom",
     "eject": "react-scripts-ts eject",
     "analyze": "npm run build && source-map-explorer build/static/js/main.*"
@@ -38,6 +39,7 @@
     "@types/uuid": "3.4.4",
     "@types/webpack": "4.4.12",
     "@types/webpack-env": "1.13.6",
+    "cross-env": "5.2.0",
     "node-sass": "4.9.3",
     "react-app-rewire-css-modules": "codebandits/react-app-rewire-css-modules",
     "react-app-rewired": "1.6.2",
