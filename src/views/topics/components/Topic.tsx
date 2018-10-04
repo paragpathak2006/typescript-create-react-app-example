@@ -3,13 +3,13 @@ import styles from './Topic.module.scss';
 import * as React from 'react';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Resource from './Resource';
-import ITopic from '../../../stores/topics/models/ITopic';
+import ITopic from '../../../stores/content/models/ITopic';
 import MetaAction from '../../../stores/meta/MetaAction';
 import IAction from '../../../stores/IAction';
 import IStore from '../../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import IResource from '../../../stores/topics/models/IResource';
+import IResource from '../../../stores/content/models/IResource';
 import {ITopicsRoutePramas} from '../Topics';
 
 export interface ITopicRoutePramas {

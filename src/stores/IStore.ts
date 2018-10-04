@@ -1,7 +1,7 @@
 import {RouterState} from 'connected-react-router';
 import IMetaReducerState from './meta/IMetaReducerState';
 import {Store} from 'redux';
-import IContentReducerState from './topics/models/IContentReducerState';
+import IContentReducerState from './content/models/IContentReducerState';
 import IErrorReducerState from './errors/models/IErrorReducerState';
 import IModalReducerState from './modal/IModalReducerState';
 

@@ -3,7 +3,7 @@ import styles from './Topics.module.scss';
 import * as React from 'react';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Topic from './components/Topic';
-import ITopic from '../../stores/topics/models/ITopic';
+import ITopic from '../../stores/content/models/ITopic';
 import MetaAction from '../../stores/meta/MetaAction';
 import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
