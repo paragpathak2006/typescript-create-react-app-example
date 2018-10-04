@@ -22,7 +22,7 @@ interface IDispatchToProps {
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
-    topics: state.topicReducer.topics,
+    topics: state.contentReducer.topics,
 });
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,

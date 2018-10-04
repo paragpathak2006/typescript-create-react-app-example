@@ -1,5 +1,5 @@
 import ITopic from './ITopic';
 
-export default interface ITopicReducerState {
+export default interface IContentReducerState {
     readonly topics: ITopic[];
 }
