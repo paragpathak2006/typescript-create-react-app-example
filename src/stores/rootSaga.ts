@@ -1,9 +1,9 @@
 import {all, fork, ForkEffect} from 'redux-saga/effects';
-import ContentSaga from './topics/ContentSaga';
+import TopicSaga from './topics/TopicSaga';
 
 export default function* rootSaga() {
     const filteredSagas: ForkEffect[] = [
-        fork(ContentSaga.loadContent),
+        fork(TopicSaga.loadTopics),
     ];
 
     yield all(filteredSagas);
