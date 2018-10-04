@@ -1,14 +1,14 @@
 import IAction from '../IAction';
 import ITopic from './models/ITopic';
 
-export default class TopicAction {
+export default class ContentAction {
 
-    public static readonly LOAD_TOPICS_SUCCESSFUL: string = 'TopicAction.LOAD_TOPICS_SUCCESSFUL';
+    public static readonly LOAD_CONTENT_SUCCESSFUL: string = 'ContentAction.LOAD_CONTENT_SUCCESSFUL';
 
     public static loadTopicsSuccessful(models: ITopic[]): IAction<ITopic[]> {
         return {
             payload: models,
-            type: TopicAction.LOAD_TOPICS_SUCCESSFUL,
+            type: ContentAction.LOAD_CONTENT_SUCCESSFUL,
         };
     }
 

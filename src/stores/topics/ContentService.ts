@@ -3,14 +3,14 @@ import ITopic from './models/ITopic';
 import {AxiosResponse} from 'axios';
 import environment from 'environment';
 
-export default class TopicService {
+export default class ContentService {
 
     private static _http: HttpUtility = new HttpUtility();
 
-    public static async loadTopics(): Promise<ITopic[]> {
+    public static async loadContent(): Promise<ITopic[]> {
         const endpoint: string = environment.endpointUrl.topics;
-        const response: AxiosResponse = await TopicService._http.get(endpoint);
-        
+        const response: AxiosResponse = await ContentService._http.get(endpoint);
+
         return response.data;
     }
 
