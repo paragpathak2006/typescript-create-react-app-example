@@ -3,7 +3,7 @@ import styles from './App.module.scss';
 import * as React from 'react';
 import {History} from 'history';
 import {ConnectedRouter} from 'connected-react-router';
-import {Route, Switch} from 'react-router';
+import {Route, Switch} from 'react-router-dom';
 import TopicsAsync from './topics/TopicsAsync';
 import HomeAsync from './home/HomeAsync';
 import NotFoundAsync from './not-found/NotFoundAsync';
