@@ -1,4 +1,4 @@
-TODO: get server side rendering setup.
+Checkout [typescript-hapi-react-hot-loader-example](https://github.com/codeBelt/typescript-hapi-react-hot-loader-example) to see a custom webpack/react starter that does server side rendering.
 
 ----
 
