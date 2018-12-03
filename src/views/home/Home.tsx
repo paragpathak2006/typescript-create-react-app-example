@@ -1,6 +1,6 @@
 import styles from './Home.module.scss'
 
-import * as React from 'react';
+import React from 'react';
 import MetaAction from '../../stores/meta/MetaAction';
 import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
@@ -36,4 +36,4 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

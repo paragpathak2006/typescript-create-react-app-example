@@ -1,6 +1,6 @@
 import styles from './Resource.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 import {RouteComponentProps} from 'react-router-dom';
 import {ITopicRoutePramas} from './Topic';
 import ITopic from '../../../stores/content/models/ITopic';
@@ -21,7 +21,7 @@ interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({
+const mapStateToProps = (state: IStore) => ({
     topics: state.contentReducer.topics,
 });
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
@@ -61,4 +61,4 @@ class Resource extends React.Component<IStateToProps & IDispatchToProps & IProps
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Resource);
+export default connect(mapStateToProps, mapDispatchToProps)(Resource);

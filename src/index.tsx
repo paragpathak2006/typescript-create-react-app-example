@@ -1,13 +1,11 @@
 import './index.scss';
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import IStore from './stores/IStore';
 import ProviderUtility from './utilities/ProviderUtility';
-import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './stores/rootReducer';
 import {AppContainer} from 'react-hot-loader';
-import {connectRouter} from 'connected-react-router';
 import {createBrowserHistory, History} from 'history';
 import {Provider} from 'react-redux';
 import App from './views/App';
@@ -31,7 +29,6 @@ const render = () => {
         </AppContainer>,
         rootEl
     );
-    registerServiceWorker();
 };
 
 render();
@@ -45,6 +42,6 @@ if (module.hot) {
 
     // Reload reducers
     module.hot.accept('./stores/rootReducer', () => {
-        store.replaceReducer(connectRouter(history)(rootReducer));
+        store.replaceReducer(rootReducer(history));
     });
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import IStore from '../../stores/IStore';
@@ -24,4 +24,4 @@ class ModalHub extends React.Component<IStateToProps & IDispatchToProps & IProps
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(ModalHub);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalHub);

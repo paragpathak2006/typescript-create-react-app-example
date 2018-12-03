@@ -1,9 +1,9 @@
-import * as Loadable from 'react-loadable';
-import OptionsWithoutRender = LoadableExport.OptionsWithoutRender;
+import Loadable from 'react-loadable';
 import AsyncLoader from '../components/AsyncLoader';
-import {IProps} from './NotFound';
+// import OptionsWithoutRender = LoadableExport.OptionsWithoutRender;
+// import {IProps} from './NotFound';
 
-const loadableOptions: OptionsWithoutRender<IProps> = {
+const loadableOptions/*: OptionsWithoutRender<IProps>*/ = {
     loader: () => import(/* webpackChunkName: "NotFound" */ './NotFound'),
     loading: AsyncLoader,
 };

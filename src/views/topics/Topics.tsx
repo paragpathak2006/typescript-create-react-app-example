@@ -1,6 +1,6 @@
 import styles from './Topics.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 import {Link, Route, RouteComponentProps} from 'react-router-dom';
 import Topic from './components/Topic';
 import ITopic from '../../stores/content/models/ITopic';
@@ -62,4 +62,4 @@ class Topics extends React.Component<IStateToProps & IDispatchToProps & IProps &
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Topics);
+export default connect(mapStateToProps, mapDispatchToProps)(Topics);

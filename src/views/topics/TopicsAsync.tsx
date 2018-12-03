@@ -1,9 +1,9 @@
-import * as Loadable from 'react-loadable';
-import OptionsWithoutRender = LoadableExport.OptionsWithoutRender;
+import Loadable from 'react-loadable';
 import AsyncLoader from '../components/AsyncLoader';
-import {IProps} from './Topics';
+// import OptionsWithoutRender = LoadableExport.OptionsWithoutRender;
+// import {IProps} from './Topics';
 
-const loadableOptions: OptionsWithoutRender<IProps> = {
+const loadableOptions/*: OptionsWithoutRender<IProps>*/ = {
     loader: () => import(/* webpackChunkName: "Topics" */ './Topics'),
     loading: AsyncLoader,
 };

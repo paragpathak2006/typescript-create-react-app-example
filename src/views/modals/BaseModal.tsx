@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import IAction from '../../stores/IAction';
@@ -28,18 +28,15 @@ class BaseModal extends React.Component<PropsUnion, IState> {
         isRequired: false,
     };
 
-    private _onKeyDownModalHandler: (event: KeyboardEvent) => void = this._onKeyDownModal.bind(this);
-    private _onClickOverlayHandler: (event: React.MouseEvent<HTMLElement>) => void = this._onClickOverlay.bind(this);
-
     public componentDidMount(): void {
         if (!this.props.isRequired) {
-            global.window.addEventListener('keydown', this._onKeyDownModalHandler);
+            window.addEventListener('keydown', this._onKeyDownModal);
         }
     }
 
     public componentWillUnmount(): void {
         if (!this.props.isRequired) {
-            global.window.removeEventListener('keydown', this._onKeyDownModalHandler);
+            window.removeEventListener('keydown', this._onKeyDownModal);
         }
     }
 
@@ -61,7 +58,7 @@ class BaseModal extends React.Component<PropsUnion, IState> {
                 </div>
                 <div
                     className="modal-backdrop"
-                    onClick={this._onClickOverlayHandler}
+                    onClick={this._onClickOverlay}
                 />
             </div>
         );
@@ -90,5 +87,5 @@ class BaseModal extends React.Component<PropsUnion, IState> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(BaseModal);
+export default connect(mapStateToProps, mapDispatchToProps)(BaseModal);
 
