@@ -1,4 +1,4 @@
-import ContentAction from './ContentAction';
+import ContentAction, {ContentActionUnion} from './ContentAction';
 import IAction from '../IAction';
 import IContentReducerState from './models/IContentReducerState';
 import ITopic from './models/ITopic';
@@ -9,20 +9,16 @@ export default class ContentReducer {
         topics: [],
     };
 
-    public static reducer(state: IContentReducerState = ContentReducer._initialState, action: IAction<any>): IContentReducerState {
+    public static reducer(state: IContentReducerState = ContentReducer._initialState, action: IAction<ContentActionUnion>): IContentReducerState {
         switch (action.type) {
             case ContentAction.LOAD_CONTENT_SUCCESSFUL:
-                return ContentReducer._loadContentSuccessful(state, action);
+                return {
+                    ...state,
+                    topics: action.payload as ITopic[],
+                };
             default:
                 return state;
         }
-    }
-
-    private static _loadContentSuccessful(state: IContentReducerState, action: IAction<ITopic[]>): IContentReducerState {
-        return {
-            ...state,
-            topics: action.payload,
-        };
     }
 
 }
