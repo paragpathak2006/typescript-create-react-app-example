@@ -6,8 +6,8 @@ export default class MetaAction {
     public static readonly SET_META: string = 'MetaAction.SET_META';
 
     public static setMeta(meta: ITitleDescription): IAction<ITitleDescription> {
-        if (global.document) {
-            global.document.title = meta.title;
+        if (document) {
+            document.title = meta.title;
         }
 
         return {

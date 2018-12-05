@@ -1,6 +1,6 @@
 import styles from './App.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 import {History} from 'history';
 import {ConnectedRouter} from 'connected-react-router';
 import {Route, Switch} from 'react-router-dom';

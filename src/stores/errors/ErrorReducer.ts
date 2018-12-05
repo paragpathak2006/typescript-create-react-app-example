@@ -1,4 +1,4 @@
-import * as uuid from 'uuid/v4';
+import uuid from 'uuid/v4';
 import ErrorAction from './ErrorAction';
 import IAction from '../IAction';
 import IErrorReducerState from './models/IErrorReducerState';

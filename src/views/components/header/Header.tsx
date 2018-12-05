@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 
-import * as React from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import IAction from '../../../stores/IAction';
@@ -24,14 +24,6 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
 
 class Header extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
 
-    public static defaultProps: Partial<IProps> = {
-    };
-
-    public state: IState = {
-    };
-
-    private _addModalHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._addModal.bind(this);
-
     public render(): JSX.Element {
         return (
             <>
@@ -40,14 +32,14 @@ class Header extends React.Component<IStateToProps & IDispatchToProps & IProps, 
                         <li><Link to={RouteEnum.Home}>Home</Link></li>
                         <li><Link to={RouteEnum.Topics}>Topics</Link></li>
                     </ul>
-                    <button className="btn" onClick={this._addModalHandler}>Show Modal</button>
+                    <button className="btn" onClick={this._addModal}>Show Modal</button>
                 </div>
                 <hr />
             </>
         );
     }
 
-    private async _addModal(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
+    private _addModal = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         const modal: JSX.Element = (
             <GenericModal
                 isRequired={true}
@@ -62,4 +54,4 @@ class Header extends React.Component<IStateToProps & IDispatchToProps & IProps, 
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps>(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

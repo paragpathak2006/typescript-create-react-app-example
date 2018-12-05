@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import BaseModal from './BaseModal';
 import {connect} from 'react-redux';
 import IAction from '../../stores/IAction';
@@ -34,10 +34,6 @@ class GenericModal extends React.Component<PropsUnion, IState> {
         modalData: null,
     };
 
-    private _onRejectHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onReject.bind(this);
-    private _onAcceptHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onAccept.bind(this);
-    private _onClosetHandler: (event: React.MouseEvent<HTMLButtonElement>) => void = this._onClose.bind(this);
-
     public render(): JSX.Element {
         return (
             <BaseModal isRequired={this.props.isRequired}>
@@ -48,14 +44,14 @@ class GenericModal extends React.Component<PropsUnion, IState> {
                     <div className="modal-footer">
                         {this.props.rejectLabel && (
                             <button
-                                onClick={this.props.onReject ? this._onRejectHandler : this._onClosetHandler}
+                                onClick={this.props.onReject ? this._onReject : this._onClose}
                             >
                                 {this.props.rejectLabel}
                             </button>
                         )}
                         {this.props.acceptLabel && (
                             <button
-                                onClick={this.props.onAccept ? this._onAcceptHandler : this._onClosetHandler}
+                                onClick={this.props.onAccept ? this._onAccept : this._onClose}
                             >
                                 {this.props.acceptLabel}
                             </button>
@@ -80,4 +76,4 @@ class GenericModal extends React.Component<PropsUnion, IState> {
 
 }
 
-export default connect<IStateToProps, IDispatchToProps, IProps<any>>(mapStateToProps, mapDispatchToProps)(GenericModal);
+export default connect(mapStateToProps, mapDispatchToProps)(GenericModal);
