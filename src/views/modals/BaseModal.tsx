@@ -64,13 +64,13 @@ class BaseModal extends React.Component<PropsUnion, IState> {
         );
     }
 
-    private _onClickOverlay(event: React.MouseEvent<HTMLElement>): void {
+    private _onClickOverlay = (event: React.MouseEvent<HTMLElement>): void => {
         if (!this.props.isRequired) {
             this.props.dispatch(ModalAction.closeModal());
         }
     }
 
-    private _onKeyDownModal(event: KeyboardEvent): void {
+    private _onKeyDownModal = (event: KeyboardEvent): void => {
         if (event.key === KeyboardKeyEnum.ESCAPE) {
             event.preventDefault();
 

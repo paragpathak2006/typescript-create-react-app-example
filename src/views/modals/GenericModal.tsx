@@ -62,15 +62,15 @@ class GenericModal extends React.Component<PropsUnion, IState> {
         );
     }
 
-    private _onReject(): void {
+    private _onReject = (): void => {
         this.props.onReject(this.props);
     }
 
-    private _onAccept(): void {
+    private _onAccept = (): void => {
         this.props.onAccept(this.props);
     }
 
-    private _onClose(): void {
+    private _onClose = (): void => {
         this.props.dispatch(ModalAction.closeModal());
     }
 
