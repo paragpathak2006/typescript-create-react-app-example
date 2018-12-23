@@ -6,6 +6,7 @@ import IStore from '../../../stores/IStore';
 import ICategoryMenu from '../../../selectors/home/models/ICategoryMenu';
 import {getCategoryMenu} from '../../../selectors/home/HomeSelector';
 import SwapiAction from '../../../stores/swapi/SwapiAction';
+import classNames from 'classnames';
 
 interface IState {}
 interface IProps {}
@@ -33,21 +34,28 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
         return (
             <div className="pure-menu pure-menu-horizontal">
                 <ul className="pure-menu-list">
-                    {this.props.menuItems.map((item: ICategoryMenu) =>
-                        <li
-                            key={item.id}
-                            className="pure-menu-item"
-                        >
-                            <button
-                                className="pure-menu-link"
-                                type="button"
-                                onClick={this._onClickMenu}
-                                data-category-id={item.id}
+                    {this.props.menuItems.map((item: ICategoryMenu) => {
+                        const cssClasses: string = classNames({
+                            'pure-button': true,
+                            'pure-button-active': item.isActive,
+                        });
+
+                        return (
+                            <li
+                                key={item.id}
+                                className="pure-menu-item"
                             >
-                                {item.label}
-                            </button>
-                        </li>
-                    )}
+                                <button
+                                    className={cssClasses}
+                                    type="button"
+                                    onClick={this._onClickMenu}
+                                    data-category-id={item.id}
+                                >
+                                    {item.label}
+                                </button>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         );
@@ -57,7 +65,7 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
         const categoryId: string = event.currentTarget.getAttribute('data-category-id');
 
         this.props.dispatch(SwapiAction.setCategory(categoryId));
-    }
+    };
 
 }
 

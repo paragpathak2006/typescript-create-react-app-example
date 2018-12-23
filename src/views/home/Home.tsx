@@ -30,7 +30,9 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         return (
            <div className="homeLayout">
                <article className="homeLayout-content">
-                   main containt
+                   <div>
+
+                   </div>
                </article>
                <aside className="homeLayout-links">
                    <CategoryMenu />
