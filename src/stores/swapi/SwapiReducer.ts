@@ -5,6 +5,7 @@ import SwapiAction, {SwapiActionUnion} from './SwapiAction';
 
 export default class SwapiReducer {
     private static readonly _initialState: ISwapiReducerState = {
+        currentCategory: '',
         isLoadingCategories: false,
         categories: null,
     };
@@ -21,6 +22,11 @@ export default class SwapiReducer {
                     ...state,
                     isLoadingCategories: true,
                     categories: action.payload as CategoriesResponseModel,
+                };
+            case SwapiAction.SET_CATEGORY:
+                return {
+                    ...state,
+                    currentCategory: action.payload as string,
                 };
             default:
                 return state;

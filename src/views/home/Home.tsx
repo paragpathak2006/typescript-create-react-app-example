@@ -5,6 +5,7 @@ import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import SwapiAction from '../../stores/swapi/SwapiAction';
+import CategoryMenu from './components/CategoryMenu';
 
 export interface IProps {}
 interface IState {}
@@ -29,10 +30,10 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         return (
            <div className="homeLayout">
                <article className="homeLayout-content">
-                  main containt
+                   main containt
                </article>
                <aside className="homeLayout-links">
-                   Related Links
+                   <CategoryMenu />
                </aside>
                <aside className="homeLayout-info">
                    Ads
