@@ -1,0 +1,19 @@
+/* Aspect ratio container for things like SVG that need them forced to be flexible */
+@mixin aspectRatioContainer($width: 1, $height: 1) {
+    display: block;
+    padding-bottom: ($height / $width) * 100%;
+    position: relative;
+
+    .inner {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+
+        > svg {
+            display: block;
+        }
+    }
+}

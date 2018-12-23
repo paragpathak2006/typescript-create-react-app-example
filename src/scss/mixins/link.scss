@@ -1,0 +1,16 @@
+@import '../_vars';
+
+@mixin link {
+    color: $COLOR_UI_LINK;
+    cursor: pointer;
+    font-weight: $FONT_WEIGHT_LIGHT;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &:active,
+    &:focus {
+        color: darken($COLOR_UI_LINK, 10);
+    }
+}

@@ -6,6 +6,7 @@
     "axios": "0.18.0",
     "connected-react-router": "6.0.0",
     "history": "4.7.2",
+    "purecss": "1.0.0",
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "react-hot-loader": "4.6.3",

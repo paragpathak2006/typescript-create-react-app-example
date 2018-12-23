@@ -1,0 +1,17 @@
+@mixin listV($hasDelimeter: false) {
+    > * {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        + * {
+            margin-top: 8px;
+        }
+    }
+
+    @if ($hasDelimeter) {
+        > * {
+            border-bottom: 1px solid #d2d6de;
+        }
+    }
+}

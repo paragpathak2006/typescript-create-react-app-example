@@ -1,0 +1,28 @@
+@import './breakpoint';
+
+@mixin media($isReversed: false) {
+    @include breakpoint(SM_INVERSE) {
+        > *:first-child {
+            margin-bottom: 20px;
+        }
+    }
+    @include breakpoint(SM) {
+        align-items: center;
+        display: flex;
+
+        > *:first-child + * {
+            margin-left: 20px;
+        }
+
+        @if ($isReversed) {
+            > *:first-child {
+                margin-left: 20px;
+                order: 2;
+            }
+
+            > *:first-child + * {
+                margin-left: 0;
+            }
+        }
+    }
+}

@@ -1,5 +1,3 @@
-import styles from './Home.module.scss'
-
 import React from 'react';
 import MetaAction from '../../stores/meta/MetaAction';
 import IAction from '../../stores/IAction';
@@ -27,10 +25,20 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     public render(): JSX.Element {
         return (
-            <div className={styles.wrapper}>
-                <h1 className={styles.header}>Home Page</h1>
-                <p>The React/TypeScript code is the awesome part of this code. Not the HTML/CSS.</p>
-            </div>
+           <div className="homeLayout">
+               <article className="homeLayout-content">
+                  main containt
+               </article>
+               <aside className="homeLayout-links">
+                   Related Links
+               </aside>
+               <aside className="homeLayout-info">
+                   Ads
+               </aside>
+               <footer className="homeLayout-footer">
+                   Footer
+               </footer>
+           </div>
         );
     }
 

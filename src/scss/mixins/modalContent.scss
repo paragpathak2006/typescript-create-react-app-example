@@ -1,0 +1,69 @@
+@import './breakpoint';
+@import '../_easing';
+
+@mixin modalContent {
+    .modal-content {
+        animation: modalDropIn 300ms $EASE_OUT_CUBIC forwards;
+        background-color: #fefefe;
+        border: 1px solid #888888;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+        margin: auto auto 5px;
+        max-width: 600px;
+        min-height: 250px;
+        opacity: 0;
+        overflow: hidden;
+        padding: 20px;
+        position: relative;
+        transform: translateY(-5px);
+        width: calc(100% - 10px);
+        z-index: 3;
+    }
+
+    .modal-content_md {
+        max-width: $MD;
+    }
+
+    .modal-content_full {
+        max-width: $SITE_MAX_WIDTH;
+    }
+
+    .modal-body {
+        flex: 1 0 auto;
+        min-height: 160px;
+        padding: 2px 16px;
+
+        & p strong {
+            font-weight: $FONT_WEIGHT_BOLD;
+        }
+
+        @include breakpoint(SM_INVERSE) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding: 0 16px;
+
+        & > * {
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    @keyframes modalDropIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

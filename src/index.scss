@@ -1,12 +1,14 @@
 /*
-  Global
+  Globals
 */
 @import "~reset-css/sass/reset";
+@import "~purecss";
 @import "scss/elements";
 @import "scss/utils";
-@import "scss/btn";
-@import "scss/table";
 @import "scss/modal";
+
+@import "scss/homeLayout";
+
 
 body {
     background-color: lightgreen;

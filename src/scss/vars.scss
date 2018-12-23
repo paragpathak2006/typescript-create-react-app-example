@@ -1,0 +1,24 @@
+$FONT: "Segoe UI", -apple-system, BlinkMacSystemFont, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+$FONT_SIZE: 1rem !default;
+$BASE_FONT_SIZE: 16 !default;
+$FONT_WEIGHT_LIGHT: 300 !default;
+$FONT_WEIGHT_REGULAR: 400 !default;
+$FONT_WEIGHT_BOLD: 700 !default;
+
+$SITE_MAX_WIDTH: 80.625rem !default;
+$SIDE_PADDING: 20px !default;
+
+$XXS: 25rem !default; // 400px
+$XS: 32.5rem !default; // 480px
+$SM: 48rem !default; // 768px
+$MD: 60rem !default; // 960px
+$LG: 73.13rem !default; // 1170px
+$XL: $SITE_MAX_WIDTH !default; // 1290px
+$BREAKPOINT_SUBTRACTOR: calc(1rem / #{$BASE_FONT_SIZE}) !default;
+$MEDIA_QUERIES: true !default;
+
+$COLOR_TEXT: #474747;
+$COLOR_BRAND: #007B89;
+$COLOR_BRAND_DARK: #334546;
+
+$Z_INDEX_MODAL: 5;

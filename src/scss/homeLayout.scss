@@ -1,0 +1,49 @@
+@import "vars";
+@import "mixins/breakpoint";
+
+.homeLayout {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas:
+        "links"
+        "content"
+        "info"
+        "footer";
+
+    @include breakpoint(SM) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "links links links"
+            "content content info"
+            "footer footer info";
+    }
+
+    @include breakpoint(LG) {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            "links content content info"
+            "footer footer footer footer";
+    }
+}
+
+.homeLayout > * {
+    border: 2px solid green;
+    background-color: #ffec99;
+    padding: 10px;
+}
+
+.homeLayout-links {
+    grid-area: links;
+}
+
+.homeLayout-content {
+    grid-area: content;
+}
+
+.homeLayout-info {
+    grid-area: info;
+}
+
+.homeLayout-footer {
+    grid-area: footer;
+}

@@ -1,0 +1,49 @@
+@import "../vars";
+
+@mixin breakpoint($POINT) {
+    @if $MEDIA_QUERIES {
+        @if $POINT == XS {
+            @media (min-width: $XS) {
+                @content;
+            }
+        } @else if $POINT == XS_INVERSE {
+            @media (max-width: ($XS - $BREAKPOINT_SUBTRACTOR)) {
+                @content;
+            }
+        } @else if $POINT == SM {
+            @media (min-width: $SM) {
+                @content;
+            }
+        } @else if $POINT == SM_INVERSE {
+            @media (max-width: ($SM - $BREAKPOINT_SUBTRACTOR)) {
+                @content;
+            }
+        } @else if $POINT == MD {
+            @media (min-width: $MD) {
+                @content;
+            }
+        } @else if $POINT == MD_INVERSE {
+            @media (max-width: ($MD - $BREAKPOINT_SUBTRACTOR)) {
+                @content;
+            }
+        } @else if $POINT == LG {
+            @media (min-width: $LG) {
+                @content;
+            }
+        } @else if $POINT == LG_INVERSE {
+            @media (max-width: ($LG - $BREAKPOINT_SUBTRACTOR)) {
+                @content;
+            }
+        } @else if $POINT == XL {
+            @media (min-width: $XL) {
+                @content;
+            }
+        } @else if $POINT == XL_INVERSE {
+            @media (max-width: ($XL - $BREAKPOINT_SUBTRACTOR)) {
+                @content;
+            }
+        }
+    } @else {
+        @content;
+    }
+}
