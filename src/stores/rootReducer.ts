@@ -6,6 +6,7 @@ import ErrorReducer from './errors/ErrorReducer';
 import ModalReducer from './modal/ModalReducer';
 import IStore from './IStore';
 import {History} from 'history';
+import SwapiReducer from './swapi/SwapiReducer';
 
 export default (history: History): Reducer<IStore> => {
     const reducerMap: ReducersMapObject = {
@@ -14,6 +15,7 @@ export default (history: History): Reducer<IStore> => {
         metaReducer: MetaReducer.reducer,
         modalReducer: ModalReducer.reducer,
         router: connectRouter(history) as any,
+        swapiReducer: SwapiReducer.reducer,
     };
 
     return combineReducers(reducerMap);

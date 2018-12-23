@@ -9138,6 +9138,11 @@ sisteransi@^0.1.1:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-0.1.1.tgz#5431447d5f7d1675aac667ccd0b865a4994cb3ce"
   integrity sha512-PmGOd02bM9YO5ifxpw36nrNMBTptEtfRl4qUYl9SndkolplkrZZOW7PGHjrZL53QvMVj9nQ+TKqUnRsw4tJa4g==
 
+sjs-base-model@1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/sjs-base-model/-/sjs-base-model-1.5.2.tgz#ad8fe8f3ebdbf2be913264aad1d477894ef3f613"
+  integrity sha512-TSXGi542lADViB1PPts13xvzxkiiXcHKdPXCkM0P6V3tOqWftLl+HVhf+MJBnJPR6b6ecAjJ2QRr8AxzlsaGuQ==
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"

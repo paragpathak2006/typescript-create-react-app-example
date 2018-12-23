@@ -4,6 +4,7 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
+import SwapiAction from '../../stores/swapi/SwapiAction';
 
 export interface IProps {}
 interface IState {}
@@ -21,6 +22,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: 'Home View'}));
+        this.props.dispatch(SwapiAction.loadCategories());
     }
 
     public render(): JSX.Element {
