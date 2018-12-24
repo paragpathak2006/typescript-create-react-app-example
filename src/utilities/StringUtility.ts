@@ -1,4 +1,15 @@
 export default class StringUtility {
+
+    /**
+     * Takes the last number value from the url
+     * Sample url: "https://swapi.co/api/vehicles/4/"
+     *
+     * @param url
+     */
+    public static getIdFromUrl(url: string): string {
+        return url.split('/').filter(Boolean).pop();
+    }
+
     /**
      * Converts a string to a sentence case string.
      *

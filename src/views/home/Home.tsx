@@ -31,7 +31,15 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
            <div className="homeLayout">
                <article className="homeLayout-content">
                    <div>
-
+                       characters
+                       planets
+                       starships
+                       vehicles
+                       species
+                       films
+                       residents
+                       people
+                       pilots
                    </div>
                </article>
                <aside className="homeLayout-links">

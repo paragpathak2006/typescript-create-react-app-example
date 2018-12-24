@@ -3,6 +3,7 @@ import IStore from '../../stores/IStore';
 import CategoriesResponseModel from '../../stores/swapi/models/CategoriesResponseModel';
 import ICategoryMenu from './models/ICategoryMenu';
 import StringUtility from '../../utilities/StringUtility';
+import SwapiEnum from '../../constants/SwapiEnum';
 
 export class HomeSelector {
 
@@ -17,7 +18,7 @@ export class HomeSelector {
                 return {
                     isActive: key === currentCategory,
                     label: StringUtility.toTitleCase(key),
-                    id: key,
+                    id: key as SwapiEnum,
                 };
             });
     }

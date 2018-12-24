@@ -14,4 +14,10 @@ export default class SwapiService {
         return response.data;
     }
 
+    public static async load<T>(endpoint: string): Promise<T> {
+        const response: AxiosResponse = await SwapiService._http.get(endpoint);
+
+        return response.data;
+    }
+
 }
