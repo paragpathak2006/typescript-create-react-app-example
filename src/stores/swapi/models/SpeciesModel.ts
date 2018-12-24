@@ -1,6 +1,6 @@
 import {BaseModel} from 'sjs-base-model';
-import StringUtility from '../../../utilities/StringUtility';
-    
+import SwapiUtility from '../../../utilities/SwapiUtility';
+
 /*
     // Returned Api Data Sample
     {
@@ -45,7 +45,7 @@ export default class SpeciesModel extends BaseModel {
     public update(data: Partial<SpeciesModel>): void {
         super.update(data);
 
-        this.id = StringUtility.getIdFromUrl(this.url);
+        this.id = SwapiUtility.getIdFromUrl(this.url);
     }
     
 }

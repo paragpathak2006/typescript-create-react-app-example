@@ -25,7 +25,7 @@ export default class SwapiSaga {
         const endpoint: string = store.swapiReducer.categories[categoryId];
 
         try {
-            const responseModel: any = yield call(SwapiService.load, endpoint);
+            const responseModel: any = yield call(SwapiService.loadCategory, endpoint, categoryId);
 
             yield put(SwapiAction.loadCategorySuccess(responseModel, categoryId));
         } catch (error) {
