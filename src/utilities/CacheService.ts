@@ -32,7 +32,7 @@ export default class CacheService {
 
     public async get(key: string): Promise<ICache> {
         try {
-            const {value, expiration}: Partial<ICache> = await localforage.getItem(key) || ({} as any);
+            const {value, expiration}: ICache = await this._getItem(key);
             const hasTimestampExpired: boolean = this._hasTimestampExpired(expiration);
 
             return {
@@ -49,7 +49,7 @@ export default class CacheService {
         try {
             const todayInMilliseconds: number = this._todayInMilliseconds();
 
-            return localforage.setItem(key, {value, expiration: todayInMilliseconds});
+            return this._setItem(key, {value, expiration: todayInMilliseconds});
         } catch (error) {
             return this._onError(error);
         }
@@ -57,7 +57,7 @@ export default class CacheService {
 
     public async remove(key: string): Promise<void> {
         try {
-            await localforage.removeItem(key);
+            return this._removeItem(key);
         } catch (error) {
             return this._onError(error);
         }
@@ -65,7 +65,7 @@ export default class CacheService {
 
     public async hasTimestampExpiredFor(key: string): Promise<boolean> {
         try {
-            const {expiration}: ICache = await localforage.getItem(key) || ({} as any);
+            const {expiration}: ICache = await this._getItem(key);
 
             return this._hasTimestampExpired(expiration);
         } catch (error) {
@@ -85,6 +85,18 @@ export default class CacheService {
         }
 
         return false;
+    }
+
+    private async _getItem(key: string): Promise<ICache> {
+        return localforage.getItem(key) || ({} as any);
+    }
+
+    private async _setItem(key: string, value: ICache): Promise<ICache> {
+        return localforage.setItem(key, value);
+    }
+
+    private async _removeItem(key: string): Promise<void> {
+        return localforage.removeItem(key);
     }
 
     private _todayInMilliseconds(): number {
