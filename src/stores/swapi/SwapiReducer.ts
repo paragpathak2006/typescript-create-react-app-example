@@ -1,20 +1,21 @@
 import ISwapiReducerState from './models/ISwapiReducerState';
 import IAction from '../IAction';
-import CategoriesResponseModel from './models/CategoriesResponseModel';
+import ICategoriesResponse from './models/ICategoriesResponse';
 import SwapiAction, {SwapiActionUnion} from './SwapiAction';
 import SwapiEnum from '../../constants/SwapiEnum';
+import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 
 export default class SwapiReducer {
     private static readonly _initialState: ISwapiReducerState = {
         currentCategory: null,
         isLoadingCategories: false,
         categories: null,
-        [SwapiEnum.People]: [],
-        [SwapiEnum.Planets]: [],
-        [SwapiEnum.Starships]: [],
-        [SwapiEnum.Vehicles]: [],
-        [SwapiEnum.Species]: [],
-        [SwapiEnum.Films]: [],
+        [SwapiEnum.People]: null,
+        [SwapiEnum.Planets]: null,
+        [SwapiEnum.Starships]: null,
+        [SwapiEnum.Vehicles]: null,
+        [SwapiEnum.Species]: null,
+        [SwapiEnum.Films]: null,
     };
 
     public static reducer(state: ISwapiReducerState = SwapiReducer._initialState, action: IAction<SwapiActionUnion>): ISwapiReducerState {
@@ -28,7 +29,7 @@ export default class SwapiReducer {
                 return {
                     ...state,
                     isLoadingCategories: true,
-                    categories: action.payload as CategoriesResponseModel,
+                    categories: action.payload as ICategoriesResponse,
                 };
             case SwapiAction.LOAD_CATEGORY:
                 return {
@@ -37,11 +38,11 @@ export default class SwapiReducer {
                 };
             case SwapiAction.LOAD_CATEGORY_SUCCESS:
                 const categoryId: SwapiEnum = action.meta;
-                const list: any[] = action.payload as any;// TODO: figure out type
+                const model: CategoryResponseModel<SwapiModelUnion> = action.payload as any;
 
                 return {
                     ...state,
-                    [categoryId]: list,
+                    [categoryId]: model,
                 };
             default:
                 return state;

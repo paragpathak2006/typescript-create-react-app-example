@@ -10,12 +10,16 @@ import CategoryDisplay from './components/CategoryDisplay';
 
 export interface IProps {}
 interface IState {}
-interface IStateToProps {}
+interface IStateToProps {
+    currentCategory: string,
+}
 interface IDispatchToProps {
     dispatch: (action: IAction<any>) => void;
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapStateToProps = (state: IStore): IStateToProps => ({
+    currentCategory: state.swapiReducer.currentCategory,
+});
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,
 });
@@ -29,20 +33,25 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
 
     public render(): JSX.Element {
         return (
-           <div className="homeLayout">
-               <article className="homeLayout-content">
-                   <CategoryDisplay/>
-               </article>
-               <aside className="homeLayout-links">
-                   <CategoryMenu />
-               </aside>
-               <aside className="homeLayout-info">
-                   Ads
-               </aside>
-               <footer className="homeLayout-footer">
-                   Footer
-               </footer>
-           </div>
+            <div className="homeLayout">
+                <article className="homeLayout-content">
+                    {!this.props.currentCategory && (
+                        <div>Select a category</div>
+                    )}
+                    {this.props.currentCategory && (
+                        <CategoryDisplay/>
+                    )}
+                </article>
+                <aside className="homeLayout-links">
+                    <CategoryMenu />
+                </aside>
+                <aside className="homeLayout-info">
+                    Ads
+                </aside>
+                <footer className="homeLayout-footer">
+                    Footer
+                </footer>
+            </div>
         );
     }
 

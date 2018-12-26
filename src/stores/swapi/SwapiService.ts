@@ -1,17 +1,18 @@
 import HttpUtility from '../../utilities/HttpUtility';
 import {AxiosResponse} from 'axios';
 import environment from 'environment';
-import CategoriesResponseModel from './models/CategoriesResponseModel';
+import ICategoriesResponse from './models/ICategoriesResponse';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import {IConstructor} from '../../models/IConstructor';
 import SwapiUtility from '../../utilities/SwapiUtility';
 import SwapiEnum from '../../constants/SwapiEnum';
+import ILoadDetails from './models/ILoadDetails';
 
 export default class SwapiService {
 
     private static _http: HttpUtility = new HttpUtility();
 
-    public static async loadCategories(): Promise<CategoriesResponseModel> {
+    public static async loadCategories(): Promise<ICategoriesResponse> {
         const endpoint: string = environment.endpointUrl.categories;
         const response: AxiosResponse = await SwapiService._http.get(endpoint);
 
@@ -24,6 +25,15 @@ export default class SwapiService {
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(categoryId);
 
         return new CategoryResponseModel(response.data, Model);
+    }
+
+    public static async loadDetails(detailsInfo: ILoadDetails): Promise<SwapiModelUnion> {
+        const endpoint: string = `${environment.endpointUrl[detailsInfo.categoryId]}${detailsInfo.itemId}/`;
+        const response: AxiosResponse = await SwapiService._http.get(endpoint);
+
+        const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(detailsInfo.categoryId);
+
+        return new Model(response.data);
     }
 
 }

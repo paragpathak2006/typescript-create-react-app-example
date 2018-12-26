@@ -1,6 +1,6 @@
 import {createSelector, Selector} from 'reselect';
 import IStore from '../../stores/IStore';
-import CategoriesResponseModel from '../../stores/swapi/models/CategoriesResponseModel';
+import ICategoriesResponse from '../../stores/swapi/models/ICategoriesResponse';
 import ICategoryMenu from './models/ICategoryMenu';
 import StringUtility from '../../utilities/StringUtility';
 import SwapiEnum from '../../constants/SwapiEnum';
@@ -15,7 +15,7 @@ import ICategoryListItem from './models/ICategoryListItem';
 
 export class HomeSelector {
 
-    public static getCategoryMenu(categories: CategoriesResponseModel | null, currentCategory: string): ICategoryMenu[] {
+    public static getCategoryMenu(categories: ICategoriesResponse | null, currentCategory: string): ICategoryMenu[] {
         if (categories === null) {
             return [];
         }
@@ -34,7 +34,7 @@ export class HomeSelector {
     public static getCategoryDisplayList(
         currentCategory: string,
         swapiModelMap: {[swapiEnum: string]: CategoryResponseModel<SwapiModelUnion>} ,
-    ): any[] {
+    ): ICategoryListItem[] {
         const categoryResponseModel: CategoryResponseModel<SwapiModelUnion> = swapiModelMap[currentCategory];
 
         if (!categoryResponseModel || !categoryResponseModel.results) {
@@ -43,7 +43,9 @@ export class HomeSelector {
 
         return categoryResponseModel.results.map((model: SwapiModelUnion): ICategoryListItem => {
             return {
+                id: model.id,
                 label: model.name,
+                category: currentCategory,
                 imageUrl: `/images/${currentCategory}/${model.id}.jpg`
             }
         });

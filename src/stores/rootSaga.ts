@@ -7,6 +7,7 @@ export default function* rootSaga() {
     const sagas: ForkEffect[] = [
         fork(ContentSaga.loadContent),
         takeLatest(SwapiAction.LOAD_CATEGORIES, SwapiSaga.loadCategories),
+        takeLatest(SwapiAction.LOAD_DETAILS, SwapiSaga.loadDetails),
         takeEvery(SwapiAction.LOAD_CATEGORY, SwapiSaga.loadCategory),
     ];
 
