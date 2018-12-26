@@ -4,14 +4,10 @@ import ICategoriesResponse from '../../stores/swapi/models/ICategoriesResponse';
 import ICategoryMenu from './models/ICategoryMenu';
 import StringUtility from '../../utilities/StringUtility';
 import SwapiEnum from '../../constants/SwapiEnum';
-import CategoryResponseModel, {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
-import FilmModel from '../../stores/swapi/models/FilmModel';
-import PersonModel from '../../stores/swapi/models/PersonModel';
-import PlanetModel from '../../stores/swapi/models/PlanetModel';
-import SpeciesModel from '../../stores/swapi/models/SpeciesModel';
-import StarshipModel from '../../stores/swapi/models/StarshipModel';
-import VehicleModel from '../../stores/swapi/models/VehicleModel';
+import {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
 import ICategoryListItem from './models/ICategoryListItem';
+import ILoadMoreEntity from '../../stores/swapi/models/ILoadMoreEntity';
+import ICategoryViewData from './models/ICategoryViewData';
 
 export class HomeSelector {
 
@@ -33,24 +29,29 @@ export class HomeSelector {
 
     public static getCategoryDisplayList(
         currentCategory: string,
-        swapiModelMap: {[swapiEnum: string]: CategoryResponseModel<SwapiModelUnion>} ,
-    ): ICategoryListItem[] {
-        const categoryResponseModel: CategoryResponseModel<SwapiModelUnion> = swapiModelMap[currentCategory];
+        swapiModelMap: {[swapiEnum: string]: ILoadMoreEntity} ,
+    ): ICategoryViewData {
+        const model: ILoadMoreEntity = swapiModelMap[currentCategory];
 
-        if (!categoryResponseModel || !categoryResponseModel.results) {
-            return [];
+        if (!model) {
+            return null;
         }
 
-        return categoryResponseModel.results.map((model: SwapiModelUnion): ICategoryListItem => {
-            return {
-                id: model.id,
-                label: model.name,
-                category: currentCategory,
-                imageUrl: `/images/${currentCategory}/${model.id}.jpg`
-            }
-        });
-    }
+        return {
+            displayCount: `${model.entity.length} / ${model.totalCount}`,
+            loadMoreUrl: model.loadMoreUrl,
+            items: model.entity.ids.map((id: string | number): ICategoryListItem => {
+                const item: SwapiModelUnion = model.entity.entities[id];
 
+                return {
+                    id: item.id,
+                    label: item.name,
+                    category: currentCategory,
+                    imageUrl: `/images/${currentCategory}/${item.id}.jpg`
+                }
+            }),
+        }
+    }
 }
 
 export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector(
@@ -59,15 +60,15 @@ export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector
     HomeSelector.getCategoryMenu,
 );
 
-export const getCategoryDisplayList: Selector<IStore, ICategoryListItem[]> = createSelector(
+export const getCategoryDisplayList: Selector<IStore, ICategoryViewData> = createSelector(
     (state: IStore) => state.swapiReducer.currentCategory,
     (state: IStore) => ({
-        [SwapiEnum.Films]: state.swapiReducer[SwapiEnum.Films] as CategoryResponseModel<FilmModel>,
-        [SwapiEnum.People]: state.swapiReducer[SwapiEnum.People] as CategoryResponseModel<PersonModel>,
-        [SwapiEnum.Planets]: state.swapiReducer[SwapiEnum.Planets] as CategoryResponseModel<PlanetModel>,
-        [SwapiEnum.Species]: state.swapiReducer[SwapiEnum.Species] as CategoryResponseModel<SpeciesModel>,
-        [SwapiEnum.Starships]: state.swapiReducer[SwapiEnum.Starships] as CategoryResponseModel<StarshipModel>,
-        [SwapiEnum.Vehicles]: state.swapiReducer[SwapiEnum.Vehicles] as CategoryResponseModel<VehicleModel>,
+        [SwapiEnum.Films]: state.swapiReducer[SwapiEnum.Films] as ILoadMoreEntity,
+        [SwapiEnum.People]: state.swapiReducer[SwapiEnum.People] as ILoadMoreEntity,
+        [SwapiEnum.Planets]: state.swapiReducer[SwapiEnum.Planets] as ILoadMoreEntity,
+        [SwapiEnum.Species]: state.swapiReducer[SwapiEnum.Species] as ILoadMoreEntity,
+        [SwapiEnum.Starships]: state.swapiReducer[SwapiEnum.Starships] as ILoadMoreEntity,
+        [SwapiEnum.Vehicles]: state.swapiReducer[SwapiEnum.Vehicles] as ILoadMoreEntity,
     }),
     HomeSelector.getCategoryDisplayList,
 );

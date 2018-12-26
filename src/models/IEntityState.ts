@@ -5,6 +5,7 @@
  * entities: A dictionary of entities in the collection indexed by the primary id
  */
 export default interface IEntityState <T> {
-    ids: string[] | number[];
+    ids: (string | number)[];
     entities: { [id: string]: T };
+    length: number;
 }

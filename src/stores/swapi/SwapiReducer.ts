@@ -4,6 +4,9 @@ import ICategoriesResponse from './models/ICategoriesResponse';
 import SwapiAction, {SwapiActionUnion} from './SwapiAction';
 import SwapiEnum from '../../constants/SwapiEnum';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
+import EntityUtility from '../../utilities/EntityUtility';
+import IEntityState from '../../models/IEntityState';
+import ILoadMoreEntity from './models/ILoadMoreEntity';
 
 export default class SwapiReducer {
     private static readonly _initialState: ISwapiReducerState = {
@@ -40,9 +43,17 @@ export default class SwapiReducer {
                 const categoryId: SwapiEnum = action.meta;
                 const model: CategoryResponseModel<SwapiModelUnion> = action.payload as any;
 
+                const loadMoreEntity: ILoadMoreEntity = state[categoryId] as ILoadMoreEntity;
+                const currentEntity: IEntityState<SwapiModelUnion> = loadMoreEntity ? loadMoreEntity.entity : null;
+                const entity: IEntityState<SwapiModelUnion> = EntityUtility.add(model.results, 'id', currentEntity);
+
                 return {
                     ...state,
-                    [categoryId]: model,
+                    [categoryId]: {
+                        totalCount: model.count,
+                        loadMoreUrl: model.next,
+                        entity,
+                    },
                 };
             default:
                 return state;
