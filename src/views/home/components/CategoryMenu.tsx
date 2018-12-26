@@ -31,7 +31,6 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
     // https://www.lullabot.com/articles/importing-css-breakpoints-into-javascript
 
     public render(): JSX.Element {
-        console.log(`this.props.menuItems`, this.props.menuItems);
         return (
             <div className="pure-menu pure-menu-horizontal">
                 <ul className="pure-menu-list">

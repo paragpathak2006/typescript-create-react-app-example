@@ -40,6 +40,7 @@ export default class FilmModel extends BaseModel {
      * Client-Side properties
      */
     public id: string = '';
+    public name: string = ''; All other Swapi models have a "name" property. Added to help create display objects.
 
     constructor(data: Partial<FilmModel>) {
         super();
@@ -51,6 +52,7 @@ export default class FilmModel extends BaseModel {
         super.update(data);
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
+        this.name = this.title;
     }
     
 }

@@ -4,13 +4,14 @@ import CategoriesResponseModel from '../../stores/swapi/models/CategoriesRespons
 import ICategoryMenu from './models/ICategoryMenu';
 import StringUtility from '../../utilities/StringUtility';
 import SwapiEnum from '../../constants/SwapiEnum';
-import CategoryResponseModel from '../../stores/swapi/models/CategoryResponseModel';
+import CategoryResponseModel, {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
 import FilmModel from '../../stores/swapi/models/FilmModel';
 import PersonModel from '../../stores/swapi/models/PersonModel';
 import PlanetModel from '../../stores/swapi/models/PlanetModel';
 import SpeciesModel from '../../stores/swapi/models/SpeciesModel';
 import StarshipModel from '../../stores/swapi/models/StarshipModel';
 import VehicleModel from '../../stores/swapi/models/VehicleModel';
+import ICategoryListItem from './models/ICategoryListItem';
 
 export class HomeSelector {
 
@@ -30,26 +31,22 @@ export class HomeSelector {
             });
     }
 
-    public static getCategoryDisplay(
+    public static getCategoryDisplayList(
         currentCategory: string,
-        films: CategoryResponseModel<FilmModel>,
-        people: CategoryResponseModel<PersonModel>,
-        planets: CategoryResponseModel<PlanetModel>,
-        species: CategoryResponseModel<SpeciesModel>,
-        starships: CategoryResponseModel<StarshipModel>,
-        vehicles: CategoryResponseModel<VehicleModel>,
+        swapiModelMap: {[swapiEnum: string]: CategoryResponseModel<SwapiModelUnion>} ,
     ): any[] {
-        // const map: {[swapiEnum: string]: IConstructor<SwapiModelUnion>} = {
-        //     [SwapiEnum.People]: PersonModel,
-        //     [SwapiEnum.Planets]: PlanetModel,
-        //     [SwapiEnum.Starships]: StarshipModel,
-        //     [SwapiEnum.Vehicles]: VehicleModel,
-        //     [SwapiEnum.Species]: SpeciesModel,
-        //     [SwapiEnum.Films]: FilmModel,
-        // };
+        const categoryResponseModel: CategoryResponseModel<SwapiModelUnion> = swapiModelMap[currentCategory];
 
-console.log(`currentCategory`, currentCategory);
-        return [];
+        if (!categoryResponseModel || !categoryResponseModel.results) {
+            return [];
+        }
+
+        return categoryResponseModel.results.map((model: SwapiModelUnion): ICategoryListItem => {
+            return {
+                label: model.name,
+                imageUrl: `/images/${currentCategory}/${model.id}.jpg`
+            }
+        });
     }
 
 }
@@ -60,15 +57,16 @@ export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector
     HomeSelector.getCategoryMenu,
 );
 
-
-export const getCategoryDisplay: Selector<IStore, ICategoryMenu[]> = createSelector(
+export const getCategoryDisplayList: Selector<IStore, ICategoryListItem[]> = createSelector(
     (state: IStore) => state.swapiReducer.currentCategory,
-    (state: IStore) => state.swapiReducer[SwapiEnum.Films] as CategoryResponseModel<FilmModel>,
-    (state: IStore) => state.swapiReducer[SwapiEnum.People] as CategoryResponseModel<PersonModel>,
-    (state: IStore) => state.swapiReducer[SwapiEnum.Planets] as CategoryResponseModel<PlanetModel>,
-    (state: IStore) => state.swapiReducer[SwapiEnum.Species] as CategoryResponseModel<SpeciesModel>,
-    (state: IStore) => state.swapiReducer[SwapiEnum.Starships] as CategoryResponseModel<StarshipModel>,
-    (state: IStore) => state.swapiReducer[SwapiEnum.Vehicles] as CategoryResponseModel<VehicleModel>,
-    HomeSelector.getCategoryDisplay,
+    (state: IStore) => ({
+        [SwapiEnum.Films]: state.swapiReducer[SwapiEnum.Films] as CategoryResponseModel<FilmModel>,
+        [SwapiEnum.People]: state.swapiReducer[SwapiEnum.People] as CategoryResponseModel<PersonModel>,
+        [SwapiEnum.Planets]: state.swapiReducer[SwapiEnum.Planets] as CategoryResponseModel<PlanetModel>,
+        [SwapiEnum.Species]: state.swapiReducer[SwapiEnum.Species] as CategoryResponseModel<SpeciesModel>,
+        [SwapiEnum.Starships]: state.swapiReducer[SwapiEnum.Starships] as CategoryResponseModel<StarshipModel>,
+        [SwapiEnum.Vehicles]: state.swapiReducer[SwapiEnum.Vehicles] as CategoryResponseModel<VehicleModel>,
+    }),
+    HomeSelector.getCategoryDisplayList,
 );
 

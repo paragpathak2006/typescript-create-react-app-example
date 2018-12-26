@@ -33,7 +33,6 @@ export default class SwapiAction {
     }
 
     public static loadCategorySuccess(models: any[], categoryId: SwapiEnum): IAction<any[]> {
-        console.log(`models`, models);
         return {
             type: SwapiAction.LOAD_CATEGORY_SUCCESS,
             payload: models,
