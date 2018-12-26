@@ -18,14 +18,14 @@ export type SwapiModelUnion = FilmModel | PersonModel | PlanetModel | SpeciesMod
       "results": []
     }
  */
-export default class CategoryResponseModel extends BaseModel {
+export default class CategoryResponseModel<T> extends BaseModel {
 
     public readonly count: number = null;
     public readonly next: string = '';
     public readonly previous: string = '';
     public readonly results: SwapiModelUnion[] = [];
 
-    constructor(data: Partial<CategoryResponseModel>, Model: IConstructor<SwapiModelUnion>) {
+    constructor(data: Partial<(CategoryResponseModel<T>)>, Model: IConstructor<T>) {
         super();
 
         this.results = [Model as any];
@@ -33,7 +33,7 @@ export default class CategoryResponseModel extends BaseModel {
         this.update(data);
     }
     
-    public update(data: Partial<CategoryResponseModel>): void {
+    public update(data: Partial<(CategoryResponseModel<T>)>): void {
         super.update(data);
     }
     

@@ -18,7 +18,7 @@ export default class SwapiService {
         return response.data;
     }
 
-    public static async loadCategory(endpoint: string, categoryId: SwapiEnum): Promise<CategoryResponseModel> {
+    public static async loadCategory(endpoint: string, categoryId: SwapiEnum): Promise<CategoryResponseModel<SwapiModelUnion>> {
         const response: AxiosResponse = await SwapiService._http.get(endpoint);
 
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(categoryId);

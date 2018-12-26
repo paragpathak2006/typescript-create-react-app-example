@@ -6,6 +6,7 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import SwapiAction from '../../stores/swapi/SwapiAction';
 import CategoryMenu from './components/CategoryMenu';
+import CategoryDisplay from './components/CategoryDisplay';
 
 export interface IProps {}
 interface IState {}
@@ -30,17 +31,7 @@ class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IS
         return (
            <div className="homeLayout">
                <article className="homeLayout-content">
-                   <div>
-                       characters
-                       planets
-                       starships
-                       vehicles
-                       species
-                       films
-                       residents
-                       people
-                       pilots
-                   </div>
+                   <CategoryDisplay/>
                </article>
                <aside className="homeLayout-links">
                    <CategoryMenu />
