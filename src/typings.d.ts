@@ -9,3 +9,5 @@ declare module 'environment' {
 
     export default value;
 }
+
+declare module 'uuid/v3';

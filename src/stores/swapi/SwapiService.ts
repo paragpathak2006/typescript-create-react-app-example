@@ -20,7 +20,7 @@ export default class SwapiService {
     }
 
     public static async loadCategory(endpoint: string, categoryId: SwapiEnum): Promise<CategoryResponseModel<SwapiModelUnion>> {
-        const response: AxiosResponse = await SwapiService._http.get(endpoint);
+        const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(categoryId);
 
@@ -29,7 +29,7 @@ export default class SwapiService {
 
     public static async loadDetails(detailsInfo: ILoadDetails): Promise<SwapiModelUnion> {
         const endpoint: string = `${environment.endpointUrl[detailsInfo.categoryId]}${detailsInfo.itemId}/`;
-        const response: AxiosResponse = await SwapiService._http.get(endpoint);
+        const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(detailsInfo.categoryId);
 

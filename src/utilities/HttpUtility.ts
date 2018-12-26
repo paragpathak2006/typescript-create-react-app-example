@@ -1,4 +1,7 @@
-import axios, {AxiosResponse } from 'axios';
+import axios, {AxiosResponse} from 'axios';
+import CacheService from './CacheService';
+import uuidV3 from 'uuid/v3';
+import ICache from '../models/ICache';
 
 export enum RequestMethod {
     Get = 'GET',
@@ -13,12 +16,35 @@ export enum RequestMethod {
 // http://httpstat.us
 export default class HttpUtility {
 
+    private _cacheService: CacheService = new CacheService(1, CacheService.MINUTES);
+
     public async get(endpoint: string): Promise<AxiosResponse<any>> {
         const request = new Request(endpoint, {
             method: RequestMethod.Get,
         });
 
         return this._fetch(request);
+    }
+
+    public async cacheGet(endpoint: string): Promise<AxiosResponse<any>> {
+        const cacheKey: string = uuidV3(endpoint, uuidV3.URL);
+        const hasTimestampExpired: boolean = await this._cacheService.hasTimestampExpiredFor(cacheKey);
+
+        if (hasTimestampExpired) {
+            const response: AxiosResponse = await this.get(endpoint);
+
+            await this._cacheService.set(cacheKey, {
+                data: response.data,
+                status: response.status,
+                statusText: 'from local cache',
+                headers: null,
+                config: null,
+            });
+        }
+
+        const cache: ICache = await this._cacheService.get(cacheKey);
+
+        return cache.value;
     }
 
     // TODO: finish setting up
