@@ -16,7 +16,7 @@ export enum RequestMethod {
 // http://httpstat.us
 export default class HttpUtility {
 
-    private _cacheService: CacheService = new CacheService(1, CacheService.MINUTES);
+    private _cacheService: CacheService = new CacheService(1, CacheService.HOURS);
 
     public async get(endpoint: string): Promise<AxiosResponse<any>> {
         const request = new Request(endpoint, {
@@ -32,6 +32,8 @@ export default class HttpUtility {
 
         if (hasTimestampExpired) {
             const response: AxiosResponse = await this.get(endpoint);
+
+            await this._cacheService.remove(cacheKey);
 
             await this._cacheService.set(cacheKey, {
                 data: response.data,

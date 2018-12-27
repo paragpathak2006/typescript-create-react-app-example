@@ -20,7 +20,7 @@ export default class SwapiUtility {
     }
 
     public static getModelForCreation(category: CategoryEnum): IConstructor<SwapiModelUnion> {
-        const map: {[swapiEnum: string]: IConstructor<SwapiModelUnion>} = {
+        const map: {[categoryEnum: string]: IConstructor<SwapiModelUnion>} = {
             [CategoryEnum.People]: PersonModel,
             [CategoryEnum.Planets]: PlanetModel,
             [CategoryEnum.Starships]: StarshipModel,

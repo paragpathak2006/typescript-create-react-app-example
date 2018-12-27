@@ -11,7 +11,7 @@ export default class CacheService {
 
     protected _timestampLimitInSeconds: number = 0;
 
-    constructor(timestampLimitInSeconds: number = 0, unit: string = CacheService.SECONDS) {
+    constructor(timestampLimitInSeconds: number = 0, unit: string = CacheService.SECONDS, namespace: string = 'CacheService.') {
         switch (unit) {
             case CacheService.SECONDS:
                 this._timestampLimitInSeconds = timestampLimitInSeconds;

@@ -22,7 +22,7 @@ export class HomeSelector {
                 return {
                     isActive: key === currentCategory,
                     label: StringUtility.toTitleCase(key),
-                    id: key as CategoryEnum,
+                    category: key as CategoryEnum,
                     apiEndpoint: categories[key],
                 };
             });
@@ -30,7 +30,7 @@ export class HomeSelector {
 
     public static getCategoryDisplayList(
         currentCategory: CategoryEnum,
-        swapiModelMap: {[swapiEnum: string]: ILoadMoreEntity} ,
+        swapiModelMap: {[categoryEnum: string]: ILoadMoreEntity} ,
     ): ICategoryViewData {
         const model: ILoadMoreEntity = swapiModelMap[currentCategory];
 

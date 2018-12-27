@@ -42,14 +42,14 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
 
                         return (
                             <li
-                                key={item.id}
+                                key={item.category}
                                 className="pure-menu-item"
                             >
                                 <button
                                     className={cssClasses}
                                     type="button"
                                     onClick={this._onClickMenu}
-                                    data-category={item.id}
+                                    data-category={item.category}
                                     data-endpoint={item.apiEndpoint}
                                 >
                                     {item.label}
