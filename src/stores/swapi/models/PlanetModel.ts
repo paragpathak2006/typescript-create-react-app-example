@@ -27,7 +27,16 @@ import SwapiUtility from '../../../utilities/SwapiUtility';
 export default class PlanetModel extends BaseModel {
 
     public readonly name: string = '';
+    public readonly rotationPeriod: string = '';
+    public readonly orbitalPeriod: string = '';
+    public readonly diameter: string = '';
+    public readonly climate: string = '';
+    public readonly gravity: string = '';
+    public readonly terrain: string = '';
+    public readonly surfaceWater: string = '';
     public readonly population: string = '';
+    public readonly residents: string[] = [];
+    public readonly films: string[] = [];
     public readonly url: string = '';
 
     /*

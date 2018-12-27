@@ -4,7 +4,7 @@ import SwapiService from './SwapiService';
 import ICategoriesResponse from './models/ICategoriesResponse';
 import SwapiAction from './SwapiAction';
 import IAction from '../IAction';
-import ILoadDetails from './models/ILoadDetails';
+import IDetailsRequest from './models/IDetailsRequest';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import ICategoryRequest from './models/ICategoryRequest';
 
@@ -32,7 +32,7 @@ export default class SwapiSaga {
         }
     }
 
-    public static* loadDetails(action: IAction<ILoadDetails>) {
+    public static* loadDetails(action: IAction<IDetailsRequest>) {
         try {
             const responseModel: SwapiModelUnion = yield call(SwapiService.loadDetails, action.payload);
 

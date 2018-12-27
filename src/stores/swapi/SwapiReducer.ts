@@ -13,6 +13,7 @@ export default class SwapiReducer {
     private static readonly _initialState: ISwapiReducerState = {
         currentCategory: null,
         isLoadingCategories: false,
+        isLoadingCategory: false,
         categories: null,
         [CategoryEnum.People]: null,
         [CategoryEnum.Planets]: null,
@@ -32,12 +33,13 @@ export default class SwapiReducer {
             case SwapiAction.LOAD_CATEGORIES_SUCCESS:
                 return {
                     ...state,
-                    isLoadingCategories: true,
+                    isLoadingCategories: false,
                     categories: action.payload as ICategoriesResponse,
                 };
             case SwapiAction.LOAD_CATEGORY:
                 return {
                     ...state,
+                    isLoadingCategory: true,
                     currentCategory: (action.payload as ICategoryRequest).category,
                 };
             case SwapiAction.LOAD_CATEGORY_SUCCESS:
@@ -50,11 +52,21 @@ export default class SwapiReducer {
 
                 return {
                     ...state,
+                    isLoadingCategory: false,
                     [category]: {
                         totalCount: model.count,
                         loadMoreUrl: model.next,
                         entity,
                     },
+                };
+            // case SwapiAction.LOAD_DETAILS:
+            //     return {
+            //         ...state,
+            //     };
+            case SwapiAction.LOAD_DETAILS_SUCCESS:
+                console.log(``, action.payload as SwapiModelUnion);
+                return {
+                    ...state,
                 };
             default:
                 return state;

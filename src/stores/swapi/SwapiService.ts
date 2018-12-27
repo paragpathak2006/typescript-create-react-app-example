@@ -6,7 +6,7 @@ import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseM
 import {IConstructor} from '../../models/IConstructor';
 import SwapiUtility from '../../utilities/SwapiUtility';
 import CategoryEnum from '../../constants/CategoryEnum';
-import ILoadDetails from './models/ILoadDetails';
+import IDetailsRequest from './models/IDetailsRequest';
 
 export default class SwapiService {
 
@@ -27,7 +27,7 @@ export default class SwapiService {
         return new CategoryResponseModel(response.data, Model);
     }
 
-    public static async loadDetails(detailsInfo: ILoadDetails): Promise<SwapiModelUnion> {
+    public static async loadDetails(detailsInfo: IDetailsRequest): Promise<SwapiModelUnion> {
         const endpoint: string = `${environment.endpointUrl[detailsInfo.category]}${detailsInfo.itemId}/`;
         const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 

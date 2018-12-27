@@ -8,5 +8,6 @@ export default interface ISwapiReducerState {
     readonly [categoryEnum: string]: ILoadMoreEntity | OthersUnion;
     readonly currentCategory: CategoryEnum;
     readonly isLoadingCategories: boolean;
+    readonly isLoadingCategory: boolean;
     readonly categories: ICategoriesResponse | null;
 }

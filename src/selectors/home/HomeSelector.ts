@@ -30,9 +30,9 @@ export class HomeSelector {
 
     public static getCategoryDisplayList(
         currentCategory: CategoryEnum,
-        swapiModelMap: {[categoryEnum: string]: ILoadMoreEntity} ,
+        categoryEntityMap: {[categoryEnum: string]: ILoadMoreEntity} ,
     ): ICategoryViewData {
-        const model: ILoadMoreEntity = swapiModelMap[currentCategory];
+        const model: ILoadMoreEntity = categoryEntityMap[currentCategory];
 
         if (!model) {
             return null;

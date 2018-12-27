@@ -2,6 +2,7 @@ import axios, {AxiosResponse} from 'axios';
 import CacheService from './CacheService';
 import uuidV3 from 'uuid/v3';
 import ICache from '../models/ICache';
+import PropertyNormalizerUtility from './PropertyNormalizerUtility';
 
 export enum RequestMethod {
     Get = 'GET',
@@ -78,11 +79,16 @@ export default class HttpUtility {
 
     private async _fetch(request: Request, init?: any): Promise<AxiosResponse<any>> {
         try {
-            return await axios({
+            const axiosResponse: AxiosResponse = await axios({
                 data: init,
                 method: request.method,
                 url: request.url,
             });
+
+            return {
+                ...axiosResponse,
+                data: PropertyNormalizerUtility.normalize(axiosResponse.data),
+            }
         } catch (error) {
             console.log(`error`, error);
 

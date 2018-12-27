@@ -15,21 +15,15 @@ import SwapiUtility from '../../../utilities/SwapiUtility';
       "homeworld": "https://swapi.co/api/planets/1/",
       "films": [
         "https://swapi.co/api/films/2/",
-        "https://swapi.co/api/films/6/",
-        "https://swapi.co/api/films/3/",
-        "https://swapi.co/api/films/1/",
-        "https://swapi.co/api/films/7/"
       ],
       "species": [
         "https://swapi.co/api/species/1/"
       ],
       "vehicles": [
         "https://swapi.co/api/vehicles/14/",
-        "https://swapi.co/api/vehicles/30/"
       ],
       "starships": [
         "https://swapi.co/api/starships/12/",
-        "https://swapi.co/api/starships/22/"
       ],
       "created": "2014-12-09T13:50:51.644000Z",
       "edited": "2014-12-20T21:17:56.891000Z",
@@ -39,7 +33,18 @@ import SwapiUtility from '../../../utilities/SwapiUtility';
 export default class PersonModel extends BaseModel {
 
     public readonly name: string = '';
+    public readonly height: string = '';
+    public readonly mass: string = '';
+    public readonly hairColor: string = '';
+    public readonly skinColor: string = '';
+    public readonly eyeColor: string = '';
+    public readonly birthYear: string = '';
+    public readonly gender: string = '';
+    public readonly homeworld: string = '';
     public readonly films: string[] = [];
+    public readonly species: string[] = [];
+    public readonly vehicles: string[] = [];
+    public readonly starships: string[] = [];
     public readonly url: string = '';
 
     /*

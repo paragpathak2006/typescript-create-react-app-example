@@ -1,11 +1,11 @@
 import IAction from '../IAction';
 import ICategoriesResponse from './models/ICategoriesResponse';
 import CategoryEnum from '../../constants/CategoryEnum';
-import ILoadDetails from './models/ILoadDetails';
+import IDetailsRequest from './models/IDetailsRequest';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import ICategoryRequest from './models/ICategoryRequest';
 
-export type SwapiActionUnion = void | string | ICategoriesResponse | ICategoryRequest;
+export type SwapiActionUnion = void | string | ICategoriesResponse | ICategoryRequest | SwapiModelUnion;
 
 export default class SwapiAction {
     public static readonly LOAD_CATEGORIES: string = 'SwapiAction.LOAD_CATEGORIES';
@@ -43,7 +43,7 @@ export default class SwapiAction {
         };
     }
 
-    public static loadDetails(itemId: string, category: CategoryEnum): IAction<ILoadDetails> {
+    public static loadDetails(itemId: string, category: CategoryEnum): IAction<IDetailsRequest> {
         return {
             type: SwapiAction.LOAD_DETAILS,
             payload: {
