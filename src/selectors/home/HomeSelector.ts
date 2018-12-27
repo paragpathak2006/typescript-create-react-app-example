@@ -30,8 +30,21 @@ export class HomeSelector {
 
     public static getCategoryDisplayList(
         currentCategory: CategoryEnum,
-        categoryEntityMap: {[categoryEnum: string]: ILoadMoreEntity} ,
+        films: ILoadMoreEntity,
+        people: ILoadMoreEntity,
+        planets: ILoadMoreEntity,
+        species: ILoadMoreEntity,
+        starships: ILoadMoreEntity,
+        vehicles: ILoadMoreEntity,
     ): ICategoryViewData {
+        const categoryEntityMap: {[categoryEnum: string]: ILoadMoreEntity} = {
+            films,
+            people,
+            planets,
+            species,
+            starships,
+            vehicles,
+        };
         const model: ILoadMoreEntity = categoryEntityMap[currentCategory];
 
         if (!model) {
@@ -64,14 +77,12 @@ export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector
 
 export const getCategoryDisplayList: Selector<IStore, ICategoryViewData> = createSelector(
     (state: IStore) => state.swapiReducer.currentCategory,
-    (state: IStore) => ({
-        [CategoryEnum.Films]: state.swapiReducer[CategoryEnum.Films] as ILoadMoreEntity,
-        [CategoryEnum.People]: state.swapiReducer[CategoryEnum.People] as ILoadMoreEntity,
-        [CategoryEnum.Planets]: state.swapiReducer[CategoryEnum.Planets] as ILoadMoreEntity,
-        [CategoryEnum.Species]: state.swapiReducer[CategoryEnum.Species] as ILoadMoreEntity,
-        [CategoryEnum.Starships]: state.swapiReducer[CategoryEnum.Starships] as ILoadMoreEntity,
-        [CategoryEnum.Vehicles]: state.swapiReducer[CategoryEnum.Vehicles] as ILoadMoreEntity,
-    }),
+    (state: IStore) => state.swapiReducer[CategoryEnum.Films] as ILoadMoreEntity,
+    (state: IStore) => state.swapiReducer[CategoryEnum.People] as ILoadMoreEntity,
+    (state: IStore) => state.swapiReducer[CategoryEnum.Planets] as ILoadMoreEntity,
+    (state: IStore) => state.swapiReducer[CategoryEnum.Species] as ILoadMoreEntity,
+    (state: IStore) => state.swapiReducer[CategoryEnum.Starships] as ILoadMoreEntity,
+    (state: IStore) => state.swapiReducer[CategoryEnum.Vehicles] as ILoadMoreEntity,
     HomeSelector.getCategoryDisplayList,
 );
 

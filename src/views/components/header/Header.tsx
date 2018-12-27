@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
     dispatch,
 });
 
-class Header extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+class Header extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public render(): JSX.Element {
         return (

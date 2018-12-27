@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
     dispatch,
 });
 
-class Home extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+class Home extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: 'Home View'}));

@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
     dispatch,
 });
 
-class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+class CategoryMenu extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
 
     // http://zerosixthree.se/detecting-media-queries-with-javascript/
     // https://www.lullabot.com/articles/importing-css-breakpoints-into-javascript

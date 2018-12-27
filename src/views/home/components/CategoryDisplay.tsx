@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps 
     dispatch,
 });
 
-class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+class CategoryDisplay extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
 
     public render(): JSX.Element {
         const {categoryViewData} = this.props;
