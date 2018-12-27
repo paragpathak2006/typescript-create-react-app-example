@@ -63,6 +63,7 @@ class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps &
                                 <button
                                     type="button"
                                     data-load-more-url={categoryViewData.loadMoreUrl}
+                                    data-category-id={categoryViewData.category}
                                     onClick={this._onClickLoadMore}
                                 >
                                     Load More
@@ -76,15 +77,17 @@ class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps &
     }
 
     private _onClickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const categoryId: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const category: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
         const itemId: string = event.currentTarget.getAttribute('data-item-id');
 
-        this.props.dispatch(SwapiAction.loadDetails(itemId, categoryId));
+        this.props.dispatch(SwapiAction.loadDetails(itemId, category));
     }
 
     private _onClickLoadMore = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const itemId: string = event.currentTarget.getAttribute('data-load-more-url');
-        console.log(`itemId`, itemId);
+        const category: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const apiUrl: string = event.currentTarget.getAttribute('data-load-more-url');
+
+        this.props.dispatch(SwapiAction.loadCategory(category, apiUrl));
     }
 
 }

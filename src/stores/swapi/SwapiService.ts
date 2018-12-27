@@ -19,19 +19,19 @@ export default class SwapiService {
         return response.data;
     }
 
-    public static async loadCategory(endpoint: string, categoryId: SwapiEnum): Promise<CategoryResponseModel<SwapiModelUnion>> {
+    public static async loadCategory(endpoint: string, category: SwapiEnum): Promise<CategoryResponseModel<SwapiModelUnion>> {
         const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 
-        const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(categoryId);
+        const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(category);
 
         return new CategoryResponseModel(response.data, Model);
     }
 
     public static async loadDetails(detailsInfo: ILoadDetails): Promise<SwapiModelUnion> {
-        const endpoint: string = `${environment.endpointUrl[detailsInfo.categoryId]}${detailsInfo.itemId}/`;
+        const endpoint: string = `${environment.endpointUrl[detailsInfo.category]}${detailsInfo.itemId}/`;
         const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 
-        const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(detailsInfo.categoryId);
+        const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(detailsInfo.category);
 
         return new Model(response.data);
     }

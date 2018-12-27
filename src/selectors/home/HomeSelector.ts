@@ -23,12 +23,13 @@ export class HomeSelector {
                     isActive: key === currentCategory,
                     label: StringUtility.toTitleCase(key),
                     id: key as SwapiEnum,
+                    apiUrl: categories[key],
                 };
             });
     }
 
     public static getCategoryDisplayList(
-        currentCategory: string,
+        currentCategory: SwapiEnum,
         swapiModelMap: {[swapiEnum: string]: ILoadMoreEntity} ,
     ): ICategoryViewData {
         const model: ILoadMoreEntity = swapiModelMap[currentCategory];
@@ -40,6 +41,7 @@ export class HomeSelector {
         return {
             displayCount: `${model.entity.length} / ${model.totalCount}`,
             loadMoreUrl: model.loadMoreUrl,
+            category: currentCategory,
             items: model.entity.ids.map((id: string | number): ICategoryListItem => {
                 const item: SwapiModelUnion = model.entity.entities[id];
 

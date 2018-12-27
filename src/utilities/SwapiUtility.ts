@@ -19,7 +19,7 @@ export default class SwapiUtility {
         return url.split('/').filter(Boolean).pop();
     }
 
-    public static getModelForCreation(categoryId: SwapiEnum): IConstructor<SwapiModelUnion> {
+    public static getModelForCreation(category: SwapiEnum): IConstructor<SwapiModelUnion> {
         const map: {[swapiEnum: string]: IConstructor<SwapiModelUnion>} = {
             [SwapiEnum.People]: PersonModel,
             [SwapiEnum.Planets]: PlanetModel,
@@ -29,7 +29,7 @@ export default class SwapiUtility {
             [SwapiEnum.Films]: FilmModel,
         };
 
-        return map[categoryId];
+        return map[category];
     }
 
 }

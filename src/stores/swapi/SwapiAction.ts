@@ -27,27 +27,29 @@ export default class SwapiAction {
         };
     }
 
-    public static loadCategory(categoryId: SwapiEnum): IAction<SwapiEnum> {
+    public static loadCategory(category: SwapiEnum, apiUrl: string): IAction<SwapiEnum> {
+        console.log('todo')
         return {
             type: SwapiAction.LOAD_CATEGORY,
-            payload: categoryId,
+            payload: category,
+            meta: apiUrl,
         };
     }
 
-    public static loadCategorySuccess(models: CategoryResponseModel<SwapiModelUnion>, categoryId: SwapiEnum): IAction<CategoryResponseModel<SwapiModelUnion>> {
+    public static loadCategorySuccess(models: CategoryResponseModel<SwapiModelUnion>, category: SwapiEnum): IAction<CategoryResponseModel<SwapiModelUnion>> {
         return {
             type: SwapiAction.LOAD_CATEGORY_SUCCESS,
             payload: models,
-            meta: categoryId,
+            meta: category,
         };
     }
 
-    public static loadDetails(itemId: string, categoryId: SwapiEnum): IAction<ILoadDetails> {
+    public static loadDetails(itemId: string, category: SwapiEnum): IAction<ILoadDetails> {
         return {
             type: SwapiAction.LOAD_DETAILS,
             payload: {
                 itemId,
-                categoryId,
+                category,
             },
         };
     }

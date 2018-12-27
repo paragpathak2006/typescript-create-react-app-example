@@ -88,7 +88,9 @@ export default class CacheService {
     }
 
     private async _getItem(key: string): Promise<ICache> {
-        return localforage.getItem(key) || ({} as any);
+        const data: ICache = await localforage.getItem(key);
+
+        return data || {} as any;
     }
 
     private async _setItem(key: string, value: ICache): Promise<ICache> {

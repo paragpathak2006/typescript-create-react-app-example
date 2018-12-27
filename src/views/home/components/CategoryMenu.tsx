@@ -50,6 +50,7 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
                                     type="button"
                                     onClick={this._onClickMenu}
                                     data-category-id={item.id}
+                                    data-endpoint={item.apiUrl}
                                 >
                                     {item.label}
                                 </button>
@@ -62,9 +63,10 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
     }
 
     private _onClickMenu = (event: React.MouseEvent<HTMLButtonElement>): void => {
-        const categoryId: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const category: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const apiUrl: string = event.currentTarget.getAttribute('data-endpoint');
 
-        this.props.dispatch(SwapiAction.loadCategory(categoryId));
+        this.props.dispatch(SwapiAction.loadCategory(category, apiUrl));
     };
 
 }
