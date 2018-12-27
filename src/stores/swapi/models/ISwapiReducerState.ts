@@ -2,10 +2,13 @@ import ICategoriesResponse from './ICategoriesResponse';
 import CategoryEnum from '../../../constants/CategoryEnum';
 import ILoadMoreEntity from './ILoadMoreEntity';
 
-type OthersUnion = boolean | null | CategoryEnum | ICategoriesResponse | ILoadMoreEntity;
-
 export default interface ISwapiReducerState {
-    readonly [categoryEnum: string]: ILoadMoreEntity | OthersUnion;
+    [CategoryEnum.People]: ILoadMoreEntity;
+    [CategoryEnum.Planets]: ILoadMoreEntity;
+    [CategoryEnum.Starships]: ILoadMoreEntity;
+    [CategoryEnum.Vehicles]: ILoadMoreEntity;
+    [CategoryEnum.Species]: ILoadMoreEntity;
+    [CategoryEnum.Films]: ILoadMoreEntity;
     readonly currentCategory: CategoryEnum;
     readonly isLoadingCategories: boolean;
     readonly isLoadingCategory: boolean;

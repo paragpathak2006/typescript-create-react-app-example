@@ -43,6 +43,7 @@ export default class PlanetModel extends BaseModel {
      * Client-Side properties
      */
     public id: string = '';
+    public people: string[] = []; // Created to be consistent with other models and the categories.
 
     constructor(data: Partial<PlanetModel>) {
         super();
@@ -54,6 +55,7 @@ export default class PlanetModel extends BaseModel {
         super.update(data);
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
+        this.people = this.residents;
     }
     
 }

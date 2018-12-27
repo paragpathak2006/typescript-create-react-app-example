@@ -45,6 +45,7 @@ export default class VehicleModel extends BaseModel {
      * Client-Side properties
      */
     public id: string = '';
+    public people: string[] = []; // Created to be consistent with other models and the categories.
 
     constructor(data: Partial<VehicleModel>) {
         super();
@@ -56,6 +57,7 @@ export default class VehicleModel extends BaseModel {
         super.update(data);
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
+        this.people = this.pilots;
     }
     
 }

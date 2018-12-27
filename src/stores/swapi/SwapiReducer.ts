@@ -46,7 +46,7 @@ export default class SwapiReducer {
                 const category: CategoryEnum = action.meta;
                 const model: CategoryResponseModel<SwapiModelUnion> = action.payload as any;
 
-                const loadMoreEntity: ILoadMoreEntity = state[category] as ILoadMoreEntity;
+                const loadMoreEntity: ILoadMoreEntity = state[category];
                 const currentEntity: IEntityState<SwapiModelUnion> = loadMoreEntity ? loadMoreEntity.entity : null;
                 const entity: IEntityState<SwapiModelUnion> = EntityUtility.add(model.results, 'id', currentEntity);
 

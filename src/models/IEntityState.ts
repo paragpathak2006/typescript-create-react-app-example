@@ -3,6 +3,7 @@
  *
  * ids: An array of all the primary ids in the collection
  * entities: A dictionary of entities in the collection indexed by the primary id
+ * length: The total count of all items
  */
 export default interface IEntityState <T> {
     ids: (string | number)[];

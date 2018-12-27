@@ -50,6 +50,7 @@ export default class FilmModel extends BaseModel {
      */
     public id: string = '';
     public name: string = ''; // All other Swapi models have a "name" property. Added to help create display objects.
+    public people: string[] = []; // Created to be consistent with other models and the categories.
 
     constructor(data: Partial<FilmModel>) {
         super();
@@ -62,6 +63,7 @@ export default class FilmModel extends BaseModel {
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
         this.name = this.title;
+        this.people = this.characters;
     }
     
 }

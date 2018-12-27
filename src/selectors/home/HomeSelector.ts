@@ -77,12 +77,12 @@ export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector
 
 export const getCategoryDisplayList: Selector<IStore, ICategoryViewData> = createSelector(
     (state: IStore) => state.swapiReducer.currentCategory,
-    (state: IStore) => state.swapiReducer[CategoryEnum.Films] as ILoadMoreEntity,
-    (state: IStore) => state.swapiReducer[CategoryEnum.People] as ILoadMoreEntity,
-    (state: IStore) => state.swapiReducer[CategoryEnum.Planets] as ILoadMoreEntity,
-    (state: IStore) => state.swapiReducer[CategoryEnum.Species] as ILoadMoreEntity,
-    (state: IStore) => state.swapiReducer[CategoryEnum.Starships] as ILoadMoreEntity,
-    (state: IStore) => state.swapiReducer[CategoryEnum.Vehicles] as ILoadMoreEntity,
+    (state: IStore) => state.swapiReducer[CategoryEnum.Films],
+    (state: IStore) => state.swapiReducer[CategoryEnum.People],
+    (state: IStore) => state.swapiReducer[CategoryEnum.Planets],
+    (state: IStore) => state.swapiReducer[CategoryEnum.Species],
+    (state: IStore) => state.swapiReducer[CategoryEnum.Starships],
+    (state: IStore) => state.swapiReducer[CategoryEnum.Vehicles],
     HomeSelector.getCategoryDisplayList,
 );
 
