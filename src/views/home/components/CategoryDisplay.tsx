@@ -47,7 +47,7 @@ class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps &
                                 >
                                     <button
                                         onClick={this._onClickItem}
-                                        data-category-id={item.category}
+                                        data-category={item.category}
                                         data-item-id={item.id}
                                     >
                                         <img src={item.imageUrl} alt={item.label} />
@@ -62,8 +62,8 @@ class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps &
                             {categoryViewData.loadMoreUrl && (
                                 <button
                                     type="button"
-                                    data-load-more-url={categoryViewData.loadMoreUrl}
-                                    data-category-id={categoryViewData.category}
+                                    data-load-more-endpoint={categoryViewData.loadMoreUrl}
+                                    data-category={categoryViewData.category}
                                     onClick={this._onClickLoadMore}
                                 >
                                     Load More
@@ -77,17 +77,20 @@ class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps &
     }
 
     private _onClickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const category: CategoryEnum = event.currentTarget.getAttribute('data-category-id') as CategoryEnum;
+        const category: CategoryEnum = event.currentTarget.getAttribute('data-category') as CategoryEnum;
         const itemId: string = event.currentTarget.getAttribute('data-item-id');
 
         this.props.dispatch(SwapiAction.loadDetails(itemId, category));
     }
 
     private _onClickLoadMore = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const category: CategoryEnum = event.currentTarget.getAttribute('data-category-id') as CategoryEnum;
-        const apiUrl: string = event.currentTarget.getAttribute('data-load-more-url');
+        const category: CategoryEnum = event.currentTarget.getAttribute('data-category') as CategoryEnum;
+        const apiEndpoint: string = event.currentTarget.getAttribute('data-load-more-endpoint');
 
-        this.props.dispatch(SwapiAction.loadCategory(category, apiUrl));
+        this.props.dispatch(SwapiAction.loadCategory({
+            apiEndpoint,
+            category,
+        }));
     }
 
 }

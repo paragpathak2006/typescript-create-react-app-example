@@ -23,7 +23,7 @@ export class HomeSelector {
                     isActive: key === currentCategory,
                     label: StringUtility.toTitleCase(key),
                     id: key as CategoryEnum,
-                    apiUrl: categories[key],
+                    apiEndpoint: categories[key],
                 };
             });
     }

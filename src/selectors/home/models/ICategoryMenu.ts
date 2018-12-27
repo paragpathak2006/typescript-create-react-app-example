@@ -4,5 +4,5 @@ export default interface ICategoryMenu {
     readonly isActive: boolean;
     readonly label: string;
     readonly id: CategoryEnum;
-    readonly apiUrl: string;
+    readonly apiEndpoint: string;
 }

@@ -4,9 +4,9 @@ import SwapiService from './SwapiService';
 import ICategoriesResponse from './models/ICategoriesResponse';
 import SwapiAction from './SwapiAction';
 import IAction from '../IAction';
-import CategoryEnum from '../../constants/CategoryEnum';
 import ILoadDetails from './models/ILoadDetails';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
+import ICategoryRequest from './models/ICategoryRequest';
 
 export default class SwapiSaga {
 
@@ -20,11 +20,11 @@ export default class SwapiSaga {
         }
     }
 
-    public static* loadCategory(action: IAction<CategoryEnum>) {
-        const category: CategoryEnum = action.payload;
+    public static* loadCategory(action: IAction<ICategoryRequest>) {
+        const {category, apiEndpoint} = action.payload;
 
         try {
-            const responseModel: CategoryResponseModel<SwapiModelUnion> = yield call(SwapiService.loadCategory, action.meta, category);
+            const responseModel: CategoryResponseModel<SwapiModelUnion> = yield call(SwapiService.loadCategory, apiEndpoint, category);
 
             yield put(SwapiAction.loadCategorySuccess(responseModel, category));
         } catch (error) {

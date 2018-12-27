@@ -7,6 +7,7 @@ import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseM
 import EntityUtility from '../../utilities/EntityUtility';
 import IEntityState from '../../models/IEntityState';
 import ILoadMoreEntity from './models/ILoadMoreEntity';
+import ICategoryRequest from './models/ICategoryRequest';
 
 export default class SwapiReducer {
     private static readonly _initialState: ISwapiReducerState = {
@@ -37,7 +38,7 @@ export default class SwapiReducer {
             case SwapiAction.LOAD_CATEGORY:
                 return {
                     ...state,
-                    currentCategory: action.payload as CategoryEnum,
+                    currentCategory: (action.payload as ICategoryRequest).category,
                 };
             case SwapiAction.LOAD_CATEGORY_SUCCESS:
                 const category: CategoryEnum = action.meta;

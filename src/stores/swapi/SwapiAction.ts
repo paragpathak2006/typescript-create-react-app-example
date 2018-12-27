@@ -3,8 +3,9 @@ import ICategoriesResponse from './models/ICategoriesResponse';
 import CategoryEnum from '../../constants/CategoryEnum';
 import ILoadDetails from './models/ILoadDetails';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
+import ICategoryRequest from './models/ICategoryRequest';
 
-export type SwapiActionUnion = void | string | ICategoriesResponse;
+export type SwapiActionUnion = void | string | ICategoriesResponse | ICategoryRequest;
 
 export default class SwapiAction {
     public static readonly LOAD_CATEGORIES: string = 'SwapiAction.LOAD_CATEGORIES';
@@ -27,12 +28,10 @@ export default class SwapiAction {
         };
     }
 
-    public static loadCategory(category: CategoryEnum, apiUrl: string): IAction<CategoryEnum> {
-        console.log('todo')
+    public static loadCategory(request: ICategoryRequest): IAction<ICategoryRequest> {
         return {
             type: SwapiAction.LOAD_CATEGORY,
-            payload: category,
-            meta: apiUrl,
+            payload: request,
         };
     }
 
