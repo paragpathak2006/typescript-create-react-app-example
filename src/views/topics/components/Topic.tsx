@@ -13,7 +13,7 @@ import IResource from '../../../stores/content/models/IResource';
 import {ITopicsRoutePramas} from '../Topics';
 
 export interface ITopicRoutePramas {
-    subId: string;
+    readonly subId: string;
 }
 
 interface IProps {}
@@ -22,7 +22,7 @@ interface IStateToProps {
     readonly topics: ITopic[];
 }
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({

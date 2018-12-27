@@ -11,7 +11,7 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
 export interface ITopicsRoutePramas {
-    topicId: string;
+    readonly topicId: string;
 }
 
 export interface IProps {}
@@ -20,7 +20,7 @@ interface IStateToProps {
     readonly topics: ITopic[];
 }
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({

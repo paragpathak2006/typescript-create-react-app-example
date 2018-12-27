@@ -11,10 +11,10 @@ import CategoryDisplay from './components/CategoryDisplay';
 export interface IProps {}
 interface IState {}
 interface IStateToProps {
-    currentCategory: string,
+    readonly currentCategory: string,
 }
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({

@@ -12,10 +12,10 @@ import CategoryEnum from '../../../constants/CategoryEnum';
 interface IState {}
 interface IProps {}
 interface IStateToProps {
-    menuItems: ICategoryMenu[];
+    readonly menuItems: ICategoryMenu[];
 }
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({

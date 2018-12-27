@@ -7,12 +7,12 @@ import KeyboardKeyEnum from '../../constants/KeyboardKeyEnum';
 import ModalAction from '../../stores/modal/ModalAction';
 
 interface IProps {
-    isRequired?: boolean;
+    readonly isRequired?: boolean;
 }
 interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore) => ({});

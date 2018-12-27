@@ -7,18 +7,18 @@ import {Dispatch} from 'redux';
 import ModalAction from '../../stores/modal/ModalAction';
 
 export interface IProps<T> {
-    isRequired?: boolean;
-    message: string;
-    rejectLabel?: string;
-    acceptLabel?: string;
-    modalData?: T;
-    onAccept?: (props: IProps<T>) => void;
-    onReject?: (props: IProps<T>) => void;
+    readonly isRequired?: boolean;
+    readonly message: string;
+    readonly rejectLabel?: string;
+    readonly acceptLabel?: string;
+    readonly modalData?: T;
+    readonly onAccept?: (props: IProps<T>) => void;
+    readonly onReject?: (props: IProps<T>) => void;
 }
 interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore) => ({});

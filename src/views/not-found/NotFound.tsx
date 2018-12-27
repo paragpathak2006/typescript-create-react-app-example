@@ -9,7 +9,7 @@ export interface IProps {}
 interface IState {}
 interface IStateToProps {}
 interface IDispatchToProps {
-    dispatch: (action: IAction<any>) => void;
+    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
