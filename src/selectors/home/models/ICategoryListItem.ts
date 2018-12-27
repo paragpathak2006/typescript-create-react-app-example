@@ -1,8 +1,8 @@
-import SwapiEnum from '../../../constants/SwapiEnum';
+import CategoryEnum from '../../../constants/CategoryEnum';
 
 export default interface ICategoryListItem {
     readonly id: string;
     readonly label: string;
-    readonly category: SwapiEnum;
+    readonly category: CategoryEnum;
     readonly imageUrl: string;
 }

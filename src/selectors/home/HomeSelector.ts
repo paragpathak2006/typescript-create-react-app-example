@@ -3,7 +3,7 @@ import IStore from '../../stores/IStore';
 import ICategoriesResponse from '../../stores/swapi/models/ICategoriesResponse';
 import ICategoryMenu from './models/ICategoryMenu';
 import StringUtility from '../../utilities/StringUtility';
-import SwapiEnum from '../../constants/SwapiEnum';
+import CategoryEnum from '../../constants/CategoryEnum';
 import {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
 import ICategoryListItem from './models/ICategoryListItem';
 import ILoadMoreEntity from '../../stores/swapi/models/ILoadMoreEntity';
@@ -22,14 +22,14 @@ export class HomeSelector {
                 return {
                     isActive: key === currentCategory,
                     label: StringUtility.toTitleCase(key),
-                    id: key as SwapiEnum,
+                    id: key as CategoryEnum,
                     apiUrl: categories[key],
                 };
             });
     }
 
     public static getCategoryDisplayList(
-        currentCategory: SwapiEnum,
+        currentCategory: CategoryEnum,
         swapiModelMap: {[swapiEnum: string]: ILoadMoreEntity} ,
     ): ICategoryViewData {
         const model: ILoadMoreEntity = swapiModelMap[currentCategory];
@@ -65,12 +65,12 @@ export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector
 export const getCategoryDisplayList: Selector<IStore, ICategoryViewData> = createSelector(
     (state: IStore) => state.swapiReducer.currentCategory,
     (state: IStore) => ({
-        [SwapiEnum.Films]: state.swapiReducer[SwapiEnum.Films] as ILoadMoreEntity,
-        [SwapiEnum.People]: state.swapiReducer[SwapiEnum.People] as ILoadMoreEntity,
-        [SwapiEnum.Planets]: state.swapiReducer[SwapiEnum.Planets] as ILoadMoreEntity,
-        [SwapiEnum.Species]: state.swapiReducer[SwapiEnum.Species] as ILoadMoreEntity,
-        [SwapiEnum.Starships]: state.swapiReducer[SwapiEnum.Starships] as ILoadMoreEntity,
-        [SwapiEnum.Vehicles]: state.swapiReducer[SwapiEnum.Vehicles] as ILoadMoreEntity,
+        [CategoryEnum.Films]: state.swapiReducer[CategoryEnum.Films] as ILoadMoreEntity,
+        [CategoryEnum.People]: state.swapiReducer[CategoryEnum.People] as ILoadMoreEntity,
+        [CategoryEnum.Planets]: state.swapiReducer[CategoryEnum.Planets] as ILoadMoreEntity,
+        [CategoryEnum.Species]: state.swapiReducer[CategoryEnum.Species] as ILoadMoreEntity,
+        [CategoryEnum.Starships]: state.swapiReducer[CategoryEnum.Starships] as ILoadMoreEntity,
+        [CategoryEnum.Vehicles]: state.swapiReducer[CategoryEnum.Vehicles] as ILoadMoreEntity,
     }),
     HomeSelector.getCategoryDisplayList,
 );

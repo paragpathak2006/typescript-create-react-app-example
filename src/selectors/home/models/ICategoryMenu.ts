@@ -1,8 +1,8 @@
-import SwapiEnum from '../../../constants/SwapiEnum';
+import CategoryEnum from '../../../constants/CategoryEnum';
 
 export default interface ICategoryMenu {
     readonly isActive: boolean;
     readonly label: string;
-    readonly id: SwapiEnum;
+    readonly id: CategoryEnum;
     readonly apiUrl: string;
 }

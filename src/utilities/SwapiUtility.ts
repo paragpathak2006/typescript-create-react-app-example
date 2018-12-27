@@ -1,4 +1,4 @@
-import SwapiEnum from '../constants/SwapiEnum';
+import CategoryEnum from '../constants/CategoryEnum';
 import {SwapiModelUnion} from '../stores/swapi/models/CategoryResponseModel';
 import {IConstructor} from '../models/IConstructor';
 import PersonModel from '../stores/swapi/models/PersonModel';
@@ -19,14 +19,14 @@ export default class SwapiUtility {
         return url.split('/').filter(Boolean).pop();
     }
 
-    public static getModelForCreation(category: SwapiEnum): IConstructor<SwapiModelUnion> {
+    public static getModelForCreation(category: CategoryEnum): IConstructor<SwapiModelUnion> {
         const map: {[swapiEnum: string]: IConstructor<SwapiModelUnion>} = {
-            [SwapiEnum.People]: PersonModel,
-            [SwapiEnum.Planets]: PlanetModel,
-            [SwapiEnum.Starships]: StarshipModel,
-            [SwapiEnum.Vehicles]: VehicleModel,
-            [SwapiEnum.Species]: SpeciesModel,
-            [SwapiEnum.Films]: FilmModel,
+            [CategoryEnum.People]: PersonModel,
+            [CategoryEnum.Planets]: PlanetModel,
+            [CategoryEnum.Starships]: StarshipModel,
+            [CategoryEnum.Vehicles]: VehicleModel,
+            [CategoryEnum.Species]: SpeciesModel,
+            [CategoryEnum.Films]: FilmModel,
         };
 
         return map[category];

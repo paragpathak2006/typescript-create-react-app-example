@@ -1,9 +1,9 @@
 import ICategoryListItem from './ICategoryListItem';
-import SwapiEnum from '../../../constants/SwapiEnum';
+import CategoryEnum from '../../../constants/CategoryEnum';
 
 export default interface ICategoryViewData {
     readonly displayCount: string;
     readonly loadMoreUrl: string;
-    readonly category: SwapiEnum;
+    readonly category: CategoryEnum;
     readonly items: ICategoryListItem[];
 }

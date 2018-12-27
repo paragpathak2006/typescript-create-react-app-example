@@ -7,7 +7,7 @@ import ICategoryMenu from '../../../selectors/home/models/ICategoryMenu';
 import {getCategoryMenu} from '../../../selectors/home/HomeSelector';
 import SwapiAction from '../../../stores/swapi/SwapiAction';
 import classNames from 'classnames';
-import SwapiEnum from '../../../constants/SwapiEnum';
+import CategoryEnum from '../../../constants/CategoryEnum';
 
 interface IState {}
 interface IProps {}
@@ -63,7 +63,7 @@ class CategoryMenu extends React.Component<IStateToProps & IDispatchToProps & IP
     }
 
     private _onClickMenu = (event: React.MouseEvent<HTMLButtonElement>): void => {
-        const category: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const category: CategoryEnum = event.currentTarget.getAttribute('data-category-id') as CategoryEnum;
         const apiUrl: string = event.currentTarget.getAttribute('data-endpoint');
 
         this.props.dispatch(SwapiAction.loadCategory(category, apiUrl));

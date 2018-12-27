@@ -5,7 +5,7 @@ import ICategoriesResponse from './models/ICategoriesResponse';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import {IConstructor} from '../../models/IConstructor';
 import SwapiUtility from '../../utilities/SwapiUtility';
-import SwapiEnum from '../../constants/SwapiEnum';
+import CategoryEnum from '../../constants/CategoryEnum';
 import ILoadDetails from './models/ILoadDetails';
 
 export default class SwapiService {
@@ -19,7 +19,7 @@ export default class SwapiService {
         return response.data;
     }
 
-    public static async loadCategory(endpoint: string, category: SwapiEnum): Promise<CategoryResponseModel<SwapiModelUnion>> {
+    public static async loadCategory(endpoint: string, category: CategoryEnum): Promise<CategoryResponseModel<SwapiModelUnion>> {
         const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(category);

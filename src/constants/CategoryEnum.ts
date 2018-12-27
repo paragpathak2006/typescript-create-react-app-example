@@ -1,4 +1,4 @@
-enum SwapiEnum {
+enum CategoryEnum {
     Films = 'films',
     People = 'people',
     Planets = 'planets',
@@ -7,4 +7,4 @@ enum SwapiEnum {
     Vehicles = 'vehicles',
 }
 
-export default SwapiEnum;
+export default CategoryEnum;

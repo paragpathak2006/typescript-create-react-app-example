@@ -7,7 +7,7 @@ import IAction from '../../../stores/IAction';
 import IStore from '../../../stores/IStore';
 import ICategoryListItem from '../../../selectors/home/models/ICategoryListItem';
 import {getCategoryDisplayList} from '../../../selectors/home/HomeSelector';
-import SwapiEnum from '../../../constants/SwapiEnum';
+import CategoryEnum from '../../../constants/CategoryEnum';
 import SwapiAction from '../../../stores/swapi/SwapiAction';
 import ICategoryViewData from '../../../selectors/home/models/ICategoryViewData';
 
@@ -77,14 +77,14 @@ class CategoryDisplay extends React.Component<IStateToProps & IDispatchToProps &
     }
 
     private _onClickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const category: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const category: CategoryEnum = event.currentTarget.getAttribute('data-category-id') as CategoryEnum;
         const itemId: string = event.currentTarget.getAttribute('data-item-id');
 
         this.props.dispatch(SwapiAction.loadDetails(itemId, category));
     }
 
     private _onClickLoadMore = (event: React.MouseEvent<HTMLButtonElement>) => {
-        const category: SwapiEnum = event.currentTarget.getAttribute('data-category-id') as SwapiEnum;
+        const category: CategoryEnum = event.currentTarget.getAttribute('data-category-id') as CategoryEnum;
         const apiUrl: string = event.currentTarget.getAttribute('data-load-more-url');
 
         this.props.dispatch(SwapiAction.loadCategory(category, apiUrl));

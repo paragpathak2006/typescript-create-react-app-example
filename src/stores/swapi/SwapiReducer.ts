@@ -2,7 +2,7 @@ import ISwapiReducerState from './models/ISwapiReducerState';
 import IAction from '../IAction';
 import ICategoriesResponse from './models/ICategoriesResponse';
 import SwapiAction, {SwapiActionUnion} from './SwapiAction';
-import SwapiEnum from '../../constants/SwapiEnum';
+import CategoryEnum from '../../constants/CategoryEnum';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import EntityUtility from '../../utilities/EntityUtility';
 import IEntityState from '../../models/IEntityState';
@@ -13,12 +13,12 @@ export default class SwapiReducer {
         currentCategory: null,
         isLoadingCategories: false,
         categories: null,
-        [SwapiEnum.People]: null,
-        [SwapiEnum.Planets]: null,
-        [SwapiEnum.Starships]: null,
-        [SwapiEnum.Vehicles]: null,
-        [SwapiEnum.Species]: null,
-        [SwapiEnum.Films]: null,
+        [CategoryEnum.People]: null,
+        [CategoryEnum.Planets]: null,
+        [CategoryEnum.Starships]: null,
+        [CategoryEnum.Vehicles]: null,
+        [CategoryEnum.Species]: null,
+        [CategoryEnum.Films]: null,
     };
 
     public static reducer(state: ISwapiReducerState = SwapiReducer._initialState, action: IAction<SwapiActionUnion>): ISwapiReducerState {
@@ -37,10 +37,10 @@ export default class SwapiReducer {
             case SwapiAction.LOAD_CATEGORY:
                 return {
                     ...state,
-                    currentCategory: action.payload as SwapiEnum,
+                    currentCategory: action.payload as CategoryEnum,
                 };
             case SwapiAction.LOAD_CATEGORY_SUCCESS:
-                const category: SwapiEnum = action.meta;
+                const category: CategoryEnum = action.meta;
                 const model: CategoryResponseModel<SwapiModelUnion> = action.payload as any;
 
                 const loadMoreEntity: ILoadMoreEntity = state[category] as ILoadMoreEntity;

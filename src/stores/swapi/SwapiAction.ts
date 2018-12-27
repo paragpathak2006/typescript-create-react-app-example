@@ -1,6 +1,6 @@
 import IAction from '../IAction';
 import ICategoriesResponse from './models/ICategoriesResponse';
-import SwapiEnum from '../../constants/SwapiEnum';
+import CategoryEnum from '../../constants/CategoryEnum';
 import ILoadDetails from './models/ILoadDetails';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 
@@ -27,7 +27,7 @@ export default class SwapiAction {
         };
     }
 
-    public static loadCategory(category: SwapiEnum, apiUrl: string): IAction<SwapiEnum> {
+    public static loadCategory(category: CategoryEnum, apiUrl: string): IAction<CategoryEnum> {
         console.log('todo')
         return {
             type: SwapiAction.LOAD_CATEGORY,
@@ -36,7 +36,7 @@ export default class SwapiAction {
         };
     }
 
-    public static loadCategorySuccess(models: CategoryResponseModel<SwapiModelUnion>, category: SwapiEnum): IAction<CategoryResponseModel<SwapiModelUnion>> {
+    public static loadCategorySuccess(models: CategoryResponseModel<SwapiModelUnion>, category: CategoryEnum): IAction<CategoryResponseModel<SwapiModelUnion>> {
         return {
             type: SwapiAction.LOAD_CATEGORY_SUCCESS,
             payload: models,
@@ -44,7 +44,7 @@ export default class SwapiAction {
         };
     }
 
-    public static loadDetails(itemId: string, category: SwapiEnum): IAction<ILoadDetails> {
+    public static loadDetails(itemId: string, category: CategoryEnum): IAction<ILoadDetails> {
         return {
             type: SwapiAction.LOAD_DETAILS,
             payload: {
