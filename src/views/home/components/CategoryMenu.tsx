@@ -19,7 +19,7 @@ interface IDispatchToProps {
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
-    menuItems: getCategoryMenu(state),
+    menuItems: getCategoryMenu(state, state.swapiReducer.currentCategory),
 });
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,

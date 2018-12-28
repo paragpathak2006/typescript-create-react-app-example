@@ -1,4 +1,4 @@
-import {createSelector, Selector} from 'reselect';
+import createCachedSelector, {ParametricSelector} from 're-reselect';
 import IStore from '../../stores/IStore';
 import ICategoriesResponse from '../../stores/swapi/models/ICategoriesResponse';
 import ICategoryMenu from './models/ICategoryMenu';
@@ -11,7 +11,7 @@ import ICategoryViewData from './models/ICategoryViewData';
 
 export class HomeSelector {
 
-    public static getCategoryMenu(categories: ICategoriesResponse | null, currentCategory: string): ICategoryMenu[] {
+    public static getCategoryMenu(currentCategory: string, categories: ICategoriesResponse | null): ICategoryMenu[] {
         if (categories === null) {
             return [];
         }
@@ -69,20 +69,24 @@ export class HomeSelector {
     }
 }
 
-export const getCategoryMenu: Selector<IStore, ICategoryMenu[]> = createSelector(
-    (state: IStore) => state.swapiReducer.categories,
-    (state: IStore) => state.swapiReducer.currentCategory,
+export const getCategoryMenu: ParametricSelector<IStore, CategoryEnum, ICategoryMenu[]> = createCachedSelector(
+    (state: IStore, category: CategoryEnum) => category,
+    (state: IStore, category: CategoryEnum) => state.swapiReducer.categories,
     HomeSelector.getCategoryMenu,
+)(
+    (state: IStore, cacheKey: CategoryEnum) => cacheKey || ''
 );
 
-export const getCategoryDisplayList: Selector<IStore, ICategoryViewData> = createSelector(
-    (state: IStore) => state.swapiReducer.currentCategory,
-    (state: IStore) => state.swapiReducer[CategoryEnum.Films],
-    (state: IStore) => state.swapiReducer[CategoryEnum.People],
-    (state: IStore) => state.swapiReducer[CategoryEnum.Planets],
-    (state: IStore) => state.swapiReducer[CategoryEnum.Species],
-    (state: IStore) => state.swapiReducer[CategoryEnum.Starships],
-    (state: IStore) => state.swapiReducer[CategoryEnum.Vehicles],
+export const getCategoryDisplayList = createCachedSelector(
+    (state: IStore, category: CategoryEnum) => category,
+    (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.Films],
+    (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.People],
+    (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.Planets],
+    (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.Species],
+    (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.Starships],
+    (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.Vehicles],
     HomeSelector.getCategoryDisplayList,
+)(
+    (state: IStore, cacheKey: CategoryEnum) => cacheKey
 );
 

@@ -21,7 +21,7 @@ interface IDispatchToProps {
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
-    categoryViewData: getCategoryDisplayList(state),
+    categoryViewData: getCategoryDisplayList(state, state.swapiReducer.currentCategory),
 });
 const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
     dispatch,
