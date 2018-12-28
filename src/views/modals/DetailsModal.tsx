@@ -5,7 +5,7 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import ModalAction from '../../stores/modal/ModalAction';
 
-export interface IProps<T> extends DispatchProp<IAction<any>> {
+export interface IProps<T> {
     readonly modalData?: T;
 }
 interface IState {}
@@ -13,11 +13,9 @@ interface IStateToProps {}
 
 const mapStateToProps = (state: IStore) => ({});
 
-type PropsUnion = IStateToProps & IProps<any>;
+class DetailsModal extends React.Component<IProps<any> & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
-class DetailsModal extends React.Component<PropsUnion, IState> {
-
-    public static defaultProps: Partial<PropsUnion> = {
+    public static defaultProps: IProps<any> = {
         modalData: null,
     };
 

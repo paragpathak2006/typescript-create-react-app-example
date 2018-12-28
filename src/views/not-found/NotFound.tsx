@@ -4,13 +4,13 @@ import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
 import MetaAction from '../../stores/meta/MetaAction';
 
-export interface IProps extends DispatchProp<IAction<any>> {}
+export interface IProps {}
 interface IState {}
 interface IStateToProps {}
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
 
-class NotFound extends React.Component<IStateToProps & IProps, IState> {
+class NotFound extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: '404 Page Not Found'}));

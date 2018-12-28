@@ -5,19 +5,17 @@ import IStore from '../../stores/IStore';
 import KeyboardKeyEnum from '../../constants/KeyboardKeyEnum';
 import ModalAction from '../../stores/modal/ModalAction';
 
-interface IProps extends DispatchProp<IAction<any>> {
-    readonly isRequired?: boolean;
+interface IProps {
+    readonly isRequired: boolean;
 }
 interface IState {}
 interface IStateToProps {}
 
 const mapStateToProps = (state: IStore) => ({});
 
-type PropsUnion = IStateToProps & IProps;
+class BaseModal extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
-class BaseModal extends React.Component<PropsUnion, IState> {
-
-    public static defaultProps: Partial<PropsUnion> = {
+    public static defaultProps: IProps = {
         isRequired: false,
     };
 

@@ -7,7 +7,7 @@ import SwapiAction from '../../stores/swapi/SwapiAction';
 import CategoryMenu from './components/CategoryMenu';
 import CategoryDisplay from './components/CategoryDisplay';
 
-export interface IProps extends DispatchProp<IAction<any>> {}
+export interface IProps {}
 interface IState {}
 interface IStateToProps {
     readonly currentCategory: string,
@@ -17,7 +17,7 @@ const mapStateToProps = (state: IStore): IStateToProps => ({
     currentCategory: state.swapiReducer.currentCategory,
 });
 
-class Home extends React.PureComponent<IStateToProps & IProps, IState> {
+class Home extends React.PureComponent<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: 'Home View'}));

@@ -3,7 +3,7 @@ import {connect, DispatchProp} from 'react-redux';
 import IStore from '../../stores/IStore';
 import IAction from '../../stores/IAction';
 
-interface IProps extends DispatchProp<IAction<any>> {}
+interface IProps {}
 interface IState {}
 interface IStateToProps {
     readonly currentModal: JSX.Element;
@@ -13,7 +13,7 @@ const mapStateToProps = (state: IStore): IStateToProps => ({
     currentModal: state.modalReducer.currentModal,
 });
 
-class ModalHub extends React.Component<IStateToProps & IProps, IState> {
+class ModalHub extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public render(): JSX.Element {
         return this.props.currentModal;

@@ -9,13 +9,13 @@ import RouteEnum from '../../../constants/RouteEnum';
 import GenericModal from '../../modals/GenericModal';
 import ModalAction from '../../../stores/modal/ModalAction';
 
-interface IProps extends DispatchProp<IAction<any>> {}
+interface IProps {}
 interface IState {}
 interface IStateToProps {}
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
 
-class Header extends React.PureComponent<IStateToProps & IProps, IState> {
+class Header extends React.PureComponent<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public render(): JSX.Element {
         return (

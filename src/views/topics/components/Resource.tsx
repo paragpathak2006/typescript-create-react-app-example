@@ -11,7 +11,7 @@ import IStore from '../../../stores/IStore';
 import {connect, DispatchProp} from 'react-redux';
 import {ITopicsRoutePramas} from '../Topics';
 
-interface IProps extends DispatchProp<IAction<any>> {}
+interface IProps {}
 interface IState {}
 interface IStateToProps {
     readonly topics: ITopic[];
@@ -21,7 +21,7 @@ const mapStateToProps = (state: IStore) => ({
     topics: state.contentReducer.topics,
 });
 
-class Resource extends React.Component<IStateToProps & IProps & RouteComponentProps<ITopicsRoutePramas & ITopicRoutePramas>, IState> {
+class Resource extends React.Component<IProps & IStateToProps & RouteComponentProps<ITopicsRoutePramas & ITopicRoutePramas> & DispatchProp<IAction<any>>, IState> {
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: 'Resource View'}));

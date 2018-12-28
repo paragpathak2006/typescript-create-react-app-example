@@ -12,7 +12,7 @@ import ICategoryViewData from '../../../selectors/home/models/ICategoryViewData'
 import CategoryItem from './CategoryItem';
 
 interface IState {}
-interface IProps extends DispatchProp<IAction<any>> {}
+interface IProps {}
 interface IStateToProps {
     readonly categoryViewData: ICategoryViewData,
     readonly isLoadingCategory: boolean,
@@ -23,7 +23,7 @@ const mapStateToProps = (state: IStore): IStateToProps => ({
     isLoadingCategory: state.swapiReducer.isLoadingCategory,
 });
 
-class CategoryDisplay extends React.PureComponent<IStateToProps & IProps, IState> {
+class CategoryDisplay extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public render(): JSX.Element {
         const {categoryViewData, isLoadingCategory} = this.props;

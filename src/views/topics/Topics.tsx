@@ -13,7 +13,7 @@ export interface ITopicsRoutePramas {
     readonly topicId: string;
 }
 
-export interface IProps extends DispatchProp<IAction<any>> {}
+export interface IProps {}
 interface IState {}
 interface IStateToProps {
     readonly topics: ITopic[];
@@ -23,7 +23,7 @@ const mapStateToProps = (state: IStore): IStateToProps => ({
     topics: state.contentReducer.topics,
 });
 
-class Topics extends React.Component<IStateToProps & IProps & RouteComponentProps<void>, IState> {
+class Topics extends React.Component<IProps & IStateToProps & RouteComponentProps<void> & DispatchProp<IAction<any>>, IState> {
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: 'Topics View'}));

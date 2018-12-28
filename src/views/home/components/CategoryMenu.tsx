@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import CategoryEnum from '../../../constants/CategoryEnum';
 
 interface IState {}
-interface IProps extends DispatchProp<IAction<any>> {}
+interface IProps {}
 interface IStateToProps {
     readonly menuItems: ICategoryMenu[];
 }
@@ -18,7 +18,7 @@ const mapStateToProps = (state: IStore): IStateToProps => ({
     menuItems: getCategoryMenu(state, state.swapiReducer.currentCategory),
 });
 
-class CategoryMenu extends React.PureComponent<IStateToProps & IProps, IState> {
+class CategoryMenu extends React.PureComponent<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     // http://zerosixthree.se/detecting-media-queries-with-javascript/
     // https://www.lullabot.com/articles/importing-css-breakpoints-into-javascript
