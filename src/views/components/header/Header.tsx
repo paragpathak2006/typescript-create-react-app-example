@@ -1,8 +1,7 @@
 import styles from './Header.module.scss';
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
+import {connect, DispatchProp} from 'react-redux';
 import IAction from '../../../stores/IAction';
 import IStore from '../../../stores/IStore';
 import {Link} from 'react-router-dom';
@@ -10,19 +9,13 @@ import RouteEnum from '../../../constants/RouteEnum';
 import GenericModal from '../../modals/GenericModal';
 import ModalAction from '../../../stores/modal/ModalAction';
 
-interface IProps {}
+interface IProps extends DispatchProp<IAction<any>> {}
 interface IState {}
 interface IStateToProps {}
-interface IDispatchToProps {
-    readonly dispatch: (action: IAction<any>) => void;
-}
 
 const mapStateToProps = (state: IStore): IStateToProps => ({});
-const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    dispatch,
-});
 
-class Header extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
+class Header extends React.PureComponent<IStateToProps & IProps, IState> {
 
     public render(): JSX.Element {
         return (
@@ -54,4 +47,4 @@ class Header extends React.PureComponent<IStateToProps & IDispatchToProps & IPro
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

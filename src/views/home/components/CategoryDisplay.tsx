@@ -1,8 +1,7 @@
 import styles from './CategoryDisplay.module.scss';
 
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
+import {connect, DispatchProp} from 'react-redux';
 import IAction from '../../../stores/IAction';
 import IStore from '../../../stores/IStore';
 import ICategoryListItem from '../../../selectors/home/models/ICategoryListItem';
@@ -12,22 +11,16 @@ import SwapiAction from '../../../stores/swapi/SwapiAction';
 import ICategoryViewData from '../../../selectors/home/models/ICategoryViewData';
 
 interface IState {}
-interface IProps {}
+interface IProps extends DispatchProp<IAction<any>> {}
 interface IStateToProps {
     readonly categoryViewData: ICategoryViewData,
-}
-interface IDispatchToProps {
-    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
     categoryViewData: getCategoryDisplayList(state, state.swapiReducer.currentCategory),
 });
-const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    dispatch,
-});
 
-class CategoryDisplay extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
+class CategoryDisplay extends React.PureComponent<IStateToProps & IProps, IState> {
 
     public render(): JSX.Element {
         const {categoryViewData} = this.props;
@@ -95,4 +88,4 @@ class CategoryDisplay extends React.PureComponent<IStateToProps & IDispatchToPro
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryDisplay);
+export default connect(mapStateToProps)(CategoryDisplay);

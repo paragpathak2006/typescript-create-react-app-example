@@ -1,22 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
+import {connect, DispatchProp} from 'react-redux';
 import IStore from '../../stores/IStore';
 import IAction from '../../stores/IAction';
 
-interface IProps {}
+interface IProps extends DispatchProp<IAction<any>> {}
 interface IState {}
 interface IStateToProps {
     readonly currentModal: JSX.Element;
 }
-interface IDispatchToProps {}
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
     currentModal: state.modalReducer.currentModal,
 });
-const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({});
 
-class ModalHub extends React.Component<IStateToProps & IDispatchToProps & IProps, IState> {
+class ModalHub extends React.Component<IStateToProps & IProps, IState> {
 
     public render(): JSX.Element {
         return this.props.currentModal;
@@ -24,4 +21,4 @@ class ModalHub extends React.Component<IStateToProps & IDispatchToProps & IProps
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalHub);
+export default connect(mapStateToProps)(ModalHub);

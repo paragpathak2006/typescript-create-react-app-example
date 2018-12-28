@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
+import {connect, DispatchProp} from 'react-redux';
 import IAction from '../../../stores/IAction';
 import IStore from '../../../stores/IStore';
 import ICategoryMenu from '../../../selectors/home/models/ICategoryMenu';
@@ -10,22 +9,16 @@ import classNames from 'classnames';
 import CategoryEnum from '../../../constants/CategoryEnum';
 
 interface IState {}
-interface IProps {}
+interface IProps extends DispatchProp<IAction<any>> {}
 interface IStateToProps {
     readonly menuItems: ICategoryMenu[];
-}
-interface IDispatchToProps {
-    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
     menuItems: getCategoryMenu(state, state.swapiReducer.currentCategory),
 });
-const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    dispatch,
-});
 
-class CategoryMenu extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
+class CategoryMenu extends React.PureComponent<IStateToProps & IProps, IState> {
 
     // http://zerosixthree.se/detecting-media-queries-with-javascript/
     // https://www.lullabot.com/articles/importing-css-breakpoints-into-javascript
@@ -74,4 +67,4 @@ class CategoryMenu extends React.PureComponent<IStateToProps & IDispatchToProps 
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryMenu);
+export default connect(mapStateToProps)(CategoryMenu);

@@ -2,29 +2,22 @@ import React from 'react';
 import MetaAction from '../../stores/meta/MetaAction';
 import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
-import {Dispatch} from 'redux';
-import {connect} from 'react-redux';
+import {connect, DispatchProp} from 'react-redux';
 import SwapiAction from '../../stores/swapi/SwapiAction';
 import CategoryMenu from './components/CategoryMenu';
 import CategoryDisplay from './components/CategoryDisplay';
 
-export interface IProps {}
+export interface IProps extends DispatchProp<IAction<any>> {}
 interface IState {}
 interface IStateToProps {
     readonly currentCategory: string,
-}
-interface IDispatchToProps {
-    readonly dispatch: (action: IAction<any>) => void;
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
     currentCategory: state.swapiReducer.currentCategory,
 });
-const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    dispatch,
-});
 
-class Home extends React.PureComponent<IStateToProps & IDispatchToProps & IProps, IState> {
+class Home extends React.PureComponent<IStateToProps & IProps, IState> {
 
     public componentDidMount(): void {
         this.props.dispatch(MetaAction.setMeta({title: 'Home View'}));
@@ -57,4 +50,4 @@ class Home extends React.PureComponent<IStateToProps & IDispatchToProps & IProps
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
