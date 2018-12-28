@@ -5,7 +5,7 @@ import IDetailsRequest from './models/IDetailsRequest';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import ICategoryRequest from './models/ICategoryRequest';
 
-export type SwapiActionUnion = void | string | ICategoriesResponse | ICategoryRequest | SwapiModelUnion;
+export type SwapiActionUnion = void | string | ICategoriesResponse | ICategoryRequest | CategoryResponseModel<SwapiModelUnion> | SwapiModelUnion[];
 
 export default class SwapiAction {
     public static readonly LOAD_CATEGORIES: string = 'SwapiAction.LOAD_CATEGORIES';
@@ -35,11 +35,10 @@ export default class SwapiAction {
         };
     }
 
-    public static loadCategorySuccess(models: CategoryResponseModel<SwapiModelUnion>, category: CategoryEnum): IAction<CategoryResponseModel<SwapiModelUnion>> {
+    public static loadCategorySuccess(models: CategoryResponseModel<SwapiModelUnion>): IAction<CategoryResponseModel<SwapiModelUnion>> {
         return {
             type: SwapiAction.LOAD_CATEGORY_SUCCESS,
             payload: models,
-            meta: category,
         };
     }
 

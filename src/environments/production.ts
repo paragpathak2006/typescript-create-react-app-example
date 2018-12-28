@@ -1,4 +1,10 @@
+import CacheService from '../utilities/CacheService';
+
 export default {
+    apiCacheTime: {
+        duration: 7,
+        unit: CacheService.DAYS,
+    },
     endpointUrl: {
         categories: 'https://swapi.co/api/',
         people: 'https://swapi.co/api/people/',

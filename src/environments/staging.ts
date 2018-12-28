@@ -1,6 +1,11 @@
 import environment from './production';
+import CacheService from '../utilities/CacheService';
 
 export default {
+    apiCacheTime: {
+        duration: 1,
+        unit: CacheService.HOURS,
+    },
     endpointUrl: {
         ...environment.endpointUrl,
         // override any endpoints

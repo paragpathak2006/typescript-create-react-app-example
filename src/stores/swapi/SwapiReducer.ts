@@ -6,14 +6,16 @@ import CategoryEnum from '../../constants/CategoryEnum';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import EntityUtility from '../../utilities/EntityUtility';
 import IEntityState from '../../models/IEntityState';
-import ILoadMoreEntity from './models/ILoadMoreEntity';
 import ICategoryRequest from './models/ICategoryRequest';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
 
 export default class SwapiReducer {
     private static readonly _initialState: ISwapiReducerState = {
         currentCategory: null,
         isLoadingCategories: false,
         isLoadingCategory: false,
+        isLoadingDetails: false,
         categories: null,
         [CategoryEnum.People]: null,
         [CategoryEnum.Planets]: null,
@@ -43,30 +45,45 @@ export default class SwapiReducer {
                     currentCategory: (action.payload as ICategoryRequest).category,
                 };
             case SwapiAction.LOAD_CATEGORY_SUCCESS:
-                const category: CategoryEnum = action.meta;
-                const model: CategoryResponseModel<SwapiModelUnion> = action.payload as any;
-
-                const loadMoreEntity: ILoadMoreEntity = state[category];
-                const currentEntity: IEntityState<SwapiModelUnion> = loadMoreEntity ? loadMoreEntity.entity : null;
+                const model: CategoryResponseModel<SwapiModelUnion> = action.payload as CategoryResponseModel<SwapiModelUnion> ;
+                const currentEntity: IEntityState<SwapiModelUnion> = get(state[model.category], 'entity', null);
                 const entity: IEntityState<SwapiModelUnion> = EntityUtility.add(model.results, 'id', currentEntity);
 
                 return {
                     ...state,
                     isLoadingCategory: false,
-                    [category]: {
+                    [model.category]: {
                         totalCount: model.count,
                         loadMoreUrl: model.next,
                         entity,
                     },
                 };
-            // case SwapiAction.LOAD_DETAILS:
-            //     return {
-            //         ...state,
-            //     };
-            case SwapiAction.LOAD_DETAILS_SUCCESS:
-                console.log(``, action.payload as SwapiModelUnion);
+            case SwapiAction.LOAD_DETAILS:
                 return {
                     ...state,
+                    isLoadingDetails: true,
+                };
+            case SwapiAction.LOAD_DETAILS_SUCCESS:
+                const models: SwapiModelUnion[] = action.payload as SwapiModelUnion[];
+                const group: {[categoryEnum: string]: SwapiModelUnion[]} = groupBy(models, 'category');
+
+                const categoryState: Partial<ISwapiReducerState> = Object.entries(group)
+                    .reduce((obj: Partial<ISwapiReducerState>, [category, models]: [any, any]) => {
+                        const currentEntity: IEntityState<SwapiModelUnion> = get(state[category], 'entity', null);
+
+                        return {
+                            ...obj,
+                            [category]: {
+                                ...state[category],
+                                entity: EntityUtility.add(models, 'id', currentEntity),
+                            },
+                        }
+                    }, {});
+
+                return {
+                    ...state,
+                    ...categoryState,
+                    isLoadingDetails: false,
                 };
             default:
                 return state;

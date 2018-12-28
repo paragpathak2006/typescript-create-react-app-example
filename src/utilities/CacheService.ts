@@ -9,24 +9,27 @@ export default class CacheService {
     public static readonly HOURS: string = 'hours';
     public static readonly DAYS: string = 'days';
 
-    protected _timestampLimitInSeconds: number = 0;
+    protected _durationInSeconds: number = 0;
+    protected _namespace: string = '';
 
-    constructor(timestampLimitInSeconds: number = 0, unit: string = CacheService.SECONDS, namespace: string = 'CacheService.') {
+    constructor(durationInSeconds: number = 0, unit: string = CacheService.SECONDS, namespace: string = 'CacheService.') {
+        this._namespace = namespace;
+
         switch (unit) {
             case CacheService.SECONDS:
-                this._timestampLimitInSeconds = timestampLimitInSeconds;
+                this._durationInSeconds = durationInSeconds;
                 break;
             case CacheService.MINUTES:
-                this._timestampLimitInSeconds = timestampLimitInSeconds * 60;
+                this._durationInSeconds = durationInSeconds * 60;
                 break;
             case CacheService.HOURS:
-                this._timestampLimitInSeconds = timestampLimitInSeconds * 3600;
+                this._durationInSeconds = durationInSeconds * 3600;
                 break;
             case CacheService.DAYS:
-                this._timestampLimitInSeconds = timestampLimitInSeconds * 86400;
+                this._durationInSeconds = durationInSeconds * 86400;
                 break;
             default:
-                this._timestampLimitInSeconds = timestampLimitInSeconds;
+                this._durationInSeconds = durationInSeconds;
         }
     }
 
@@ -38,7 +41,7 @@ export default class CacheService {
             return {
                 value,
                 expiration,
-                isExpired: this._timestampLimitInSeconds === 0 || hasTimestampExpired,
+                isExpired: this._durationInSeconds === 0 || hasTimestampExpired,
             };
         } catch (error) {
             return this._onError(error);
@@ -78,7 +81,7 @@ export default class CacheService {
         const todayInMilliseconds: number = this._todayInMilliseconds();
 
         const timestampDifferenceInSeconds: number = differenceInSeconds(todayInMilliseconds, timestampInMilliseconds);
-        const timeRemainingInSeconds: number = this._timestampLimitInSeconds - timestampDifferenceInSeconds;
+        const timeRemainingInSeconds: number = this._durationInSeconds - timestampDifferenceInSeconds;
 
         if (timeRemainingInSeconds <= 0) {
             return true;
@@ -88,17 +91,17 @@ export default class CacheService {
     }
 
     private async _getItem(key: string): Promise<ICache> {
-        const data: ICache = await localforage.getItem(key);
+        const data: ICache = await localforage.getItem(this._namespace + key);
 
         return data || {} as any;
     }
 
     private async _setItem(key: string, value: ICache): Promise<ICache> {
-        return localforage.setItem(key, value);
+        return localforage.setItem(this._namespace + key, value);
     }
 
     private async _removeItem(key: string): Promise<void> {
-        return localforage.removeItem(key);
+        return localforage.removeItem(this._namespace + key);
     }
 
     private _todayInMilliseconds(): number {

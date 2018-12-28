@@ -12,5 +12,6 @@ export default interface ISwapiReducerState {
     readonly currentCategory: CategoryEnum;
     readonly isLoadingCategories: boolean;
     readonly isLoadingCategory: boolean;
+    readonly isLoadingDetails: boolean;
     readonly categories: ICategoriesResponse | null;
 }

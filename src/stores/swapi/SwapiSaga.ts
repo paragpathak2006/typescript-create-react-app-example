@@ -30,7 +30,7 @@ export default class SwapiSaga {
         try {
             const responseModel: CategoryResponseModel<SwapiModelUnion> = yield call(SwapiService.loadCategory, apiEndpoint, category);
 
-            yield put(SwapiAction.loadCategorySuccess(responseModel, category));
+            yield put(SwapiAction.loadCategorySuccess(responseModel));
         } catch (error) {
             yield put(ErrorAction.requestFailure(error, 'SwapiSaga.loadCategory'));
         }

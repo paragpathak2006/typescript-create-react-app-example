@@ -16,8 +16,6 @@ export default class SwapiUtility {
     /**
      * Takes the last number value from the url
      * Sample url: "https://swapi.co/api/vehicles/4/"
-     *
-     * @param url
      */
     public static getIdFromUrl(url: string): string {
         return url.split('/').filter(Boolean).pop();
@@ -25,8 +23,6 @@ export default class SwapiUtility {
 
     /**
      * Returns a model by category passed in.
-     *
-     * @param category
      */
     public static getModelForCreation(category: CategoryEnum): IConstructor<SwapiModelUnion> {
         const map: {[categoryEnum: string]: IConstructor<SwapiModelUnion>} = {
@@ -48,10 +44,6 @@ export default class SwapiUtility {
      * Get all the endpoints for each category on the model.
      * Take those endpoints for each category on the model and create an array of ids.
      * Now filter any ids out that we currently have in the swapiReducer because we don't need to load them again.
-     *
-     * @param itemId
-     * @param category
-     * @param swapiReducer
      */
     public static getCategoryIdsForDetails(model: SwapiModelUnion, swapiReducer: ISwapiReducerState): INeededCategoryIds {
         return Object

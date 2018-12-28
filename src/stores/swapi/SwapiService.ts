@@ -24,7 +24,7 @@ export default class SwapiService {
 
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(category);
 
-        return new CategoryResponseModel(response.data, Model);
+        return new CategoryResponseModel(response.data, Model, category);
     }
 
     public static async loadDetails(detailsInfo: IDetailsRequest): Promise<SwapiModelUnion> {
