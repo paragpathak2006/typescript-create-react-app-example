@@ -14,16 +14,18 @@ interface IState {}
 interface IProps extends DispatchProp<IAction<any>> {}
 interface IStateToProps {
     readonly categoryViewData: ICategoryViewData,
+    readonly isLoadingCategory: boolean,
 }
 
 const mapStateToProps = (state: IStore): IStateToProps => ({
     categoryViewData: getCategoryDisplayList(state, state.swapiReducer.currentCategory),
+    isLoadingCategory: state.swapiReducer.isLoadingCategory,
 });
 
 class CategoryDisplay extends React.PureComponent<IStateToProps & IProps, IState> {
 
     public render(): JSX.Element {
-        const {categoryViewData} = this.props;
+        const {categoryViewData, isLoadingCategory} = this.props;
 
         return (
             <div>
@@ -51,19 +53,22 @@ class CategoryDisplay extends React.PureComponent<IStateToProps & IProps, IState
                                 </li>
                             )}
                         </ul>
-                        <div>
-                            {categoryViewData.loadMoreUrl && (
-                                <button
-                                    type="button"
-                                    data-load-more-endpoint={categoryViewData.loadMoreUrl}
-                                    data-category={categoryViewData.category}
-                                    onClick={this._onClickLoadMore}
-                                >
-                                    Load More
-                                </button>
-                            )}
-                        </div>
+                        {categoryViewData.loadMoreUrl && (
+                            <button
+                                type="button"
+                                data-load-more-endpoint={categoryViewData.loadMoreUrl}
+                                data-category={categoryViewData.category}
+                                onClick={this._onClickLoadMore}
+                            >
+                                Load More
+                            </button>
+                        )}
                     </>
+                )}
+                {isLoadingCategory && (
+                    <div>
+                        Loading...
+                    </div>
                 )}
             </div>
         );
