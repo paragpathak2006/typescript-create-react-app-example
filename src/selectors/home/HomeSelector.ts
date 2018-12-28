@@ -5,7 +5,7 @@ import ICategoryMenu from './models/ICategoryMenu';
 import StringUtility from '../../utilities/StringUtility';
 import CategoryEnum from '../../constants/CategoryEnum';
 import {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
-import ICategoryListItem from './models/ICategoryListItem';
+import ICategoryDisplayItem from './models/ICategoryDisplayItem';
 import ILoadMoreEntity from '../../stores/swapi/models/ILoadMoreEntity';
 import ICategoryViewData from './models/ICategoryViewData';
 
@@ -55,7 +55,7 @@ export class HomeSelector {
             displayCount: `${model.entity.length} / ${model.totalCount}`,
             loadMoreUrl: model.loadMoreUrl,
             category: currentCategory,
-            items: model.entity.ids.map((id: string | number): ICategoryListItem => {
+            items: model.entity.ids.map((id: string | number): ICategoryDisplayItem => {
                 const item: SwapiModelUnion = model.entity.entities[id];
 
                 return {

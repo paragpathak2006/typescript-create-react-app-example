@@ -3,7 +3,7 @@ import CacheService from '../utilities/CacheService';
 
 export default {
     apiCacheTime: {
-        duration: 1,
+        duration: 8,
         unit: CacheService.HOURS,
     },
     endpointUrl: {

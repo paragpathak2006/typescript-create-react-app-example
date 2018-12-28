@@ -4,11 +4,12 @@ import * as React from 'react';
 import {connect, DispatchProp} from 'react-redux';
 import IAction from '../../../stores/IAction';
 import IStore from '../../../stores/IStore';
-import ICategoryListItem from '../../../selectors/home/models/ICategoryListItem';
+import ICategoryDisplayItem from '../../../selectors/home/models/ICategoryDisplayItem';
 import {getCategoryDisplayList} from '../../../selectors/home/HomeSelector';
 import CategoryEnum from '../../../constants/CategoryEnum';
 import SwapiAction from '../../../stores/swapi/SwapiAction';
 import ICategoryViewData from '../../../selectors/home/models/ICategoryViewData';
+import CategoryItem from './CategoryItem';
 
 interface IState {}
 interface IProps extends DispatchProp<IAction<any>> {}
@@ -35,21 +36,15 @@ class CategoryDisplay extends React.PureComponent<IStateToProps & IProps, IState
                             {categoryViewData.displayCount}
                         </div>
                         <ul className={styles.container}>
-                            {categoryViewData.items.map((item: ICategoryListItem) =>
+                            {categoryViewData.items.map((item: ICategoryDisplayItem) =>
                                 <li
                                     key={item.label}
                                     className={styles.item}
+                                    onClick={this._onClickItem}
+                                    data-category={item.category}
+                                    data-item-id={item.id}
                                 >
-                                    <button
-                                        onClick={this._onClickItem}
-                                        data-category={item.category}
-                                        data-item-id={item.id}
-                                    >
-                                        <img src={item.imageUrl} alt={item.label} />
-                                        <div>
-                                            {item.label}
-                                        </div>
-                                    </button>
+                                    <CategoryItem item={item} />
                                 </li>
                             )}
                         </ul>
@@ -74,7 +69,7 @@ class CategoryDisplay extends React.PureComponent<IStateToProps & IProps, IState
         );
     }
 
-    private _onClickItem = (event: React.MouseEvent<HTMLButtonElement>) => {
+    private _onClickItem = (event: React.MouseEvent<HTMLLIElement>) => {
         const category: CategoryEnum = event.currentTarget.getAttribute('data-category') as CategoryEnum;
         const itemId: string = event.currentTarget.getAttribute('data-item-id');
 

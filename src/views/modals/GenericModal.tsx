@@ -1,12 +1,11 @@
 import React from 'react';
 import BaseModal from './BaseModal';
-import {connect} from 'react-redux';
+import {connect, DispatchProp} from 'react-redux';
 import IAction from '../../stores/IAction';
 import IStore from '../../stores/IStore';
-import {Dispatch} from 'redux';
 import ModalAction from '../../stores/modal/ModalAction';
 
-export interface IProps<T> {
+export interface IProps<T> extends DispatchProp<IAction<any>> {
     readonly isRequired?: boolean;
     readonly message: string;
     readonly rejectLabel?: string;
@@ -17,16 +16,10 @@ export interface IProps<T> {
 }
 interface IState {}
 interface IStateToProps {}
-interface IDispatchToProps {
-    readonly dispatch: (action: IAction<any>) => void;
-}
 
 const mapStateToProps = (state: IStore) => ({});
-const mapDispatchToProps = (dispatch: Dispatch<IAction<any>>): IDispatchToProps => ({
-    dispatch,
-});
 
-type PropsUnion = IStateToProps & IDispatchToProps & IProps<any>;
+type PropsUnion = IStateToProps & IProps<any>;
 
 class GenericModal extends React.Component<PropsUnion, IState> {
 
@@ -76,4 +69,4 @@ class GenericModal extends React.Component<PropsUnion, IState> {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GenericModal);
+export default connect(mapStateToProps)(GenericModal);

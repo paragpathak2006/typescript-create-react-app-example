@@ -14,7 +14,7 @@ export default class SwapiService {
 
     public static async loadCategories(): Promise<ICategoriesResponse> {
         const endpoint: string = environment.endpointUrl.categories;
-        const response: AxiosResponse = await SwapiService._http.get(endpoint);
+        const response: AxiosResponse = await SwapiService._http.cacheGet(endpoint);
 
         return response.data;
     }
