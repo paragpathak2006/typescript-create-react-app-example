@@ -1,5 +1,6 @@
 import {BaseModel} from 'sjs-base-model';
 import SwapiUtility from '../../../utilities/SwapiUtility';
+import CategoryEnum from '../../../constants/CategoryEnum';
 
 /*
     // Returned Api Data Sample
@@ -51,6 +52,7 @@ export default class PersonModel extends BaseModel {
      * Client-Side properties
      */
     public id: string = '';
+    public category: CategoryEnum = CategoryEnum.People;
 
     constructor(data: Partial<PersonModel>) {
         super();

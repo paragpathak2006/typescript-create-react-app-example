@@ -53,10 +53,10 @@ export default class SwapiAction {
         };
     }
 
-    public static loadDetailsSuccess(model: SwapiModelUnion): IAction<SwapiModelUnion> {
+    public static loadDetailsSuccess(models: SwapiModelUnion[]): IAction<SwapiModelUnion[]> {
         return {
             type: SwapiAction.LOAD_DETAILS_SUCCESS,
-            payload: model,
+            payload: models,
         };
     }
 }

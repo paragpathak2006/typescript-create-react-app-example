@@ -1,5 +1,6 @@
 import {BaseModel} from 'sjs-base-model';
 import SwapiUtility from '../../../utilities/SwapiUtility';
+import CategoryEnum from '../../../constants/CategoryEnum';
 
 /*
     // Returned Api Data Sample
@@ -50,6 +51,7 @@ export default class StarshipModel extends BaseModel {
      * Client-Side properties
      */
     public id: string = '';
+    public category: CategoryEnum = CategoryEnum.Starships;
     public people: string[] = []; // Created to be consistent with other models and the categories.
 
     constructor(data: Partial<StarshipModel>) {

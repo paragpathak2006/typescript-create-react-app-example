@@ -9,7 +9,8 @@ import SpeciesModel from '../stores/swapi/models/SpeciesModel';
 import FilmModel from '../stores/swapi/models/FilmModel';
 import ISwapiReducerState from '../stores/swapi/models/ISwapiReducerState';
 import get from 'lodash/get';
-import ICategoryIdsRequest from '../stores/swapi/models/ICategoryIdsRequest';
+import INeededCategoryIds from '../stores/swapi/models/INeededCategoryIds';
+import IDetailsRequest from '../stores/swapi/models/IDetailsRequest';
 
 export default class SwapiUtility {
     /**
@@ -52,10 +53,10 @@ export default class SwapiUtility {
      * @param category
      * @param swapiReducer
      */
-    public static getCategoryIdsForDetails(model: SwapiModelUnion, swapiReducer: ISwapiReducerState): ICategoryIdsRequest {
+    public static getCategoryIdsForDetails(model: SwapiModelUnion, swapiReducer: ISwapiReducerState): INeededCategoryIds {
         return Object
             .values(CategoryEnum)
-            .reduce((list: ICategoryIdsRequest, category: CategoryEnum) => {
+            .reduce((list: INeededCategoryIds, category: CategoryEnum) => {
                 const categoryEndpoints: string[] = model[category];
 
                 if (categoryEndpoints && categoryEndpoints.length) {
@@ -68,5 +69,23 @@ export default class SwapiUtility {
 
                 return list;
             }, {});
+    }
+
+    public static getDetailRequests(data: INeededCategoryIds): IDetailsRequest[] {
+        return Object
+            .entries(data)
+            .reduce((list: IDetailsRequest[], [category, ids]: [string, string[]]) => {
+                const categoryList: IDetailsRequest[] = ids.map((id: string): IDetailsRequest => {
+                    return {
+                        category: category as CategoryEnum,
+                        itemId: id,
+                    }
+                });
+
+                return [
+                    ...list,
+                    ...categoryList,
+                ]
+            }, []);
     }
 }

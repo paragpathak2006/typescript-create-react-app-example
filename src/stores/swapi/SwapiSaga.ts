@@ -1,5 +1,5 @@
 import ErrorAction from '../errors/ErrorAction';
-import {call, put} from 'redux-saga/effects';
+import {all, call, put, select} from 'redux-saga/effects';
 import SwapiService from './SwapiService';
 import ICategoriesResponse from './models/ICategoriesResponse';
 import SwapiAction from './SwapiAction';
@@ -7,6 +7,10 @@ import IAction from '../IAction';
 import IDetailsRequest from './models/IDetailsRequest';
 import CategoryResponseModel, {SwapiModelUnion} from './models/CategoryResponseModel';
 import ICategoryRequest from './models/ICategoryRequest';
+import IStore from '../IStore';
+import SwapiUtility from '../../utilities/SwapiUtility';
+import ISwapiReducerState from './models/ISwapiReducerState';
+import INeededCategoryIds from './models/INeededCategoryIds';
 
 export default class SwapiSaga {
 
@@ -32,11 +36,21 @@ export default class SwapiSaga {
         }
     }
 
+    // TODO: clean up
     public static* loadDetails(action: IAction<IDetailsRequest>) {
-        try {
-            const responseModel: SwapiModelUnion = yield call(SwapiService.loadDetails, action.payload);
+        const {itemId, category} = action.payload;
+        const swapiReducer: ISwapiReducerState = yield select(((state: IStore) => state.swapiReducer));
+        const model: SwapiModelUnion = swapiReducer[category].entity.entities[itemId];
 
-            yield put(SwapiAction.loadDetailsSuccess(responseModel));
+        const categoryIdsRequest: INeededCategoryIds = SwapiUtility.getCategoryIdsForDetails(model, swapiReducer);
+        const detailsRequests: IDetailsRequest[] = SwapiUtility.getDetailRequests(categoryIdsRequest);
+
+        try {
+            const models: SwapiModelUnion[] = yield all(
+                detailsRequests.map((detailsRequest: IDetailsRequest) => call(SwapiService.loadDetails, detailsRequest))
+            );
+
+            yield put(SwapiAction.loadDetailsSuccess(models));
         } catch (error) {
             yield put(ErrorAction.requestFailure(error, 'SwapiSaga.loadDetails'));
         }
