@@ -12,6 +12,10 @@ export default class CacheService {
     protected _durationInSeconds: number = 0;
     protected _namespace: string = '';
 
+    public get namespace(): string {
+        return this.namespace;
+    }
+
     constructor(durationInSeconds: number = 0, unit: string = CacheService.SECONDS, namespace: string = 'CacheService.') {
         this._namespace = namespace;
 
@@ -66,6 +70,20 @@ export default class CacheService {
         }
     }
 
+    public async clearAll(): Promise<void> {
+        try {
+            let allKeys: string[] = await this._getKeys();
+
+            allKeys = allKeys.filter((key: string) => key.startsWith(this._namespace));
+
+            await Promise.all(
+                allKeys.map(async (key: string) => this._removeItem(key))
+            );
+        } catch (error) {
+            return this._onError(error);
+        }
+    }
+
     public async hasTimestampExpiredFor(key: string): Promise<boolean> {
         try {
             const {expiration}: ICache = await this._getItem(key);
@@ -90,20 +108,6 @@ export default class CacheService {
         return false;
     }
 
-    private async _getItem(key: string): Promise<ICache> {
-        const data: ICache = await localforage.getItem(this._namespace + key);
-
-        return data || {} as any;
-    }
-
-    private async _setItem(key: string, value: ICache): Promise<ICache> {
-        return localforage.setItem(this._namespace + key, value);
-    }
-
-    private async _removeItem(key: string): Promise<void> {
-        return localforage.removeItem(this._namespace + key);
-    }
-
     private _todayInMilliseconds(): number {
         return new Date().getTime();
     }
@@ -112,6 +116,33 @@ export default class CacheService {
         console.log(error);
 
         return null;
+    }
+
+    private _createCacheKey(key: string): string {
+        return key.startsWith(this._namespace) ? key : `${this._namespace}${key}`;
+    }
+
+    private async _getItem(key: string): Promise<ICache> {
+        const cacheKey: string = this._createCacheKey(key);
+        const data: ICache = await localforage.getItem(cacheKey);
+
+        return data || {} as any;
+    }
+
+    private async _setItem(key: string, value: ICache): Promise<ICache> {
+        const cacheKey: string = this._createCacheKey(key);
+
+        return localforage.setItem(cacheKey, value);
+    }
+
+    private async _removeItem(key: string): Promise<void> {
+        const cacheKey: string = this._createCacheKey(key);
+
+        return localforage.removeItem(cacheKey);
+    }
+
+    private async _getKeys(): Promise<string[]> {
+        return localforage.keys();
     }
 
 }
