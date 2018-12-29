@@ -13,7 +13,7 @@ interface IStateToProps {
     readonly currentCategory: string,
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     currentCategory: state.swapiReducer.currentCategory,
 });
 

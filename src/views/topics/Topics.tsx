@@ -19,7 +19,7 @@ interface IStateToProps {
     readonly topics: ITopic[];
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     topics: state.contentReducer.topics,
 });
 

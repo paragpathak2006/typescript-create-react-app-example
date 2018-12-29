@@ -13,7 +13,7 @@ interface IProps {}
 interface IState {}
 interface IStateToProps {}
 
-const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({});
 
 class Header extends React.PureComponent<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 

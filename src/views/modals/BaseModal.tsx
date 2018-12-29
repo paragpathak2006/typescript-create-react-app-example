@@ -11,7 +11,7 @@ interface IProps {
 interface IState {}
 interface IStateToProps {}
 
-const mapStateToProps = (state: IStore) => ({});
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({});
 
 class BaseModal extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 

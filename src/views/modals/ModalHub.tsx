@@ -9,7 +9,7 @@ interface IStateToProps {
     readonly currentModal: JSX.Element;
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     currentModal: state.modalReducer.currentModal,
 });
 

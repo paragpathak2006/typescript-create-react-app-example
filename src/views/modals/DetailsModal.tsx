@@ -11,7 +11,7 @@ export interface IProps<T> {
 interface IState {}
 interface IStateToProps {}
 
-const mapStateToProps = (state: IStore) => ({});
+const mapStateToProps = (state: IStore, ownProps: IProps<any>): IStateToProps => ({});
 
 class DetailsModal extends React.Component<IProps<any> & IStateToProps & DispatchProp<IAction<any>>, IState> {
 

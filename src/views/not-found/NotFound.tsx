@@ -8,7 +8,7 @@ export interface IProps {}
 interface IState {}
 interface IStateToProps {}
 
-const mapStateToProps = (state: IStore): IStateToProps => ({});
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({});
 
 class NotFound extends React.Component<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 

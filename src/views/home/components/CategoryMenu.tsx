@@ -14,7 +14,7 @@ interface IStateToProps {
     readonly menuItems: ICategoryMenu[];
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     menuItems: getCategoryMenu(state, state.swapiReducer.currentCategory),
 });
 
