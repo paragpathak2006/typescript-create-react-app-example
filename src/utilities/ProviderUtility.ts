@@ -17,7 +17,7 @@ export default class ProviderUtility {
         const sagaMiddleware: SagaMiddleware<any> = createSagaMiddleware();
 
         const middleware: Middleware[] = [
-            environment.isDevelopment ? null : reduxFreeze,
+            environment.isDevelopment ? reduxFreeze : null,
             routerMiddleware(history),
             sagaMiddleware,
         ].filter(Boolean);
