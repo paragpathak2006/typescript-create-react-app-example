@@ -61,7 +61,7 @@ export class HomeSelector {
                 return {
                     id: item.id,
                     label: item.name,
-                    category: currentCategory,
+                    category: item.category,
                     imageUrl: item.imageUrl,
                 }
             }),
