@@ -16,4 +16,5 @@ export default {
         topics: '/data/content.json',
     },
     isProduction: true,
+    isDevelopment: false,
 };

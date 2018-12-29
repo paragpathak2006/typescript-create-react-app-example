@@ -1,6 +1,7 @@
 declare module 'environment' {
     const value: {
         isProduction: boolean;
+        isDevelopment: boolean;
         apiCacheTime: {
             duration: number;
             unit: 'seconds' | 'minutes' | 'hours' | 'days';
@@ -15,3 +16,4 @@ declare module 'environment' {
 }
 
 declare module 'uuid/v3';
+declare module 'redux-freeze';

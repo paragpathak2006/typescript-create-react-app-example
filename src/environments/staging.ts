@@ -11,4 +11,5 @@ export default {
         // override any endpoints
     },
     isProduction: false,
+    isDevelopment: true,
 };
