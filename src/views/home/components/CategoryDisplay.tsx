@@ -10,6 +10,8 @@ import CategoryEnum from '../../../constants/CategoryEnum';
 import SwapiAction from '../../../stores/swapi/SwapiAction';
 import ICategoryViewData from '../../../selectors/home/models/ICategoryViewData';
 import CategoryItem from './CategoryItem';
+import ModalAction from '../../../stores/modal/ModalAction';
+import DetailsModal from '../../modals/DetailsModal';
 
 interface IState {}
 interface IProps {}
@@ -18,7 +20,7 @@ interface IStateToProps {
     readonly isLoadingCategory: boolean,
 }
 
-const mapStateToProps = (state: IStore): IStateToProps => ({
+const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     categoryViewData: getCategoryDisplayList(state, state.swapiReducer.currentCategory),
     isLoadingCategory: state.swapiReducer.isLoadingCategory,
 });
@@ -74,6 +76,15 @@ class CategoryDisplay extends React.Component<IProps & IStateToProps & DispatchP
         const itemId: string = event.currentTarget.getAttribute('data-item-id');
 
         this.props.dispatch(SwapiAction.loadDetails(itemId, category));
+
+        const modal: JSX.Element = (
+            <DetailsModal
+                category={category}
+                itemId={itemId}
+            />
+        );
+
+        this.props.dispatch(ModalAction.addModal(modal));
     }
 
     private _onClickLoadMore = (event: React.MouseEvent<HTMLButtonElement>) => {
