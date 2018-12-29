@@ -62,7 +62,7 @@ export class HomeSelector {
                     id: item.id,
                     label: item.name,
                     category: currentCategory,
-                    imageUrl: `/images/${currentCategory}/${item.id}.jpg`
+                    imageUrl: item.imageUrl,
                 }
             }),
         }

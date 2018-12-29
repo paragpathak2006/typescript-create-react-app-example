@@ -53,6 +53,7 @@ export default class FilmModel extends BaseModel {
     public category: CategoryEnum = CategoryEnum.Films;
     public name: string = ''; // All other Swapi models have a "name" property. Added to help create display objects.
     public people: string[] = []; // Created to be consistent with other models and the categories.
+    public imageUrl: string = '';
 
     constructor(data: Partial<FilmModel>) {
         super();
@@ -66,6 +67,7 @@ export default class FilmModel extends BaseModel {
         this.id = SwapiUtility.getIdFromUrl(this.url);
         this.name = this.title;
         this.people = this.characters;
+        this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
     }
     
 }

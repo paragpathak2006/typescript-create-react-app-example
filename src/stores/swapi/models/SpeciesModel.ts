@@ -47,6 +47,7 @@ export default class SpeciesModel extends BaseModel {
      */
     public id: string = '';
     public category: CategoryEnum = CategoryEnum.Species;
+    public imageUrl: string = '';
 
     constructor(data: Partial<SpeciesModel>) {
         super();
@@ -58,6 +59,7 @@ export default class SpeciesModel extends BaseModel {
         super.update(data);
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
+        this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
     }
     
 }

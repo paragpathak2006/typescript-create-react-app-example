@@ -53,6 +53,7 @@ export default class PersonModel extends BaseModel {
      */
     public id: string = '';
     public category: CategoryEnum = CategoryEnum.People;
+    public imageUrl: string = '';
 
     constructor(data: Partial<PersonModel>) {
         super();
@@ -64,6 +65,7 @@ export default class PersonModel extends BaseModel {
         super.update(data);
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
+        this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
     }
     
 }

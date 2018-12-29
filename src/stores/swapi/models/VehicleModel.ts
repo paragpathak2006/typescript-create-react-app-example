@@ -48,6 +48,7 @@ export default class VehicleModel extends BaseModel {
     public id: string = '';
     public category: CategoryEnum = CategoryEnum.Vehicles;
     public people: string[] = []; // Created to be consistent with other models and the categories.
+    public imageUrl: string = '';
 
     constructor(data: Partial<VehicleModel>) {
         super();
@@ -60,6 +61,7 @@ export default class VehicleModel extends BaseModel {
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
         this.people = this.pilots;
+        this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
     }
     
 }
