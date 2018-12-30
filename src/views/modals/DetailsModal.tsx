@@ -18,21 +18,22 @@ interface IState {}
 interface IStateToProps {
     readonly model: SwapiModelUnion;
     readonly categoryItemsGroup: ICategoryItemsGroup[];
+    readonly isLoadingDetails: boolean;
 }
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     model: state.swapiReducer[ownProps.category].entity.entities[ownProps.itemId],
     categoryItemsGroup: getRelatedItemsForDetails(state, ownProps.itemId, ownProps.category),
+    isLoadingDetails: state.swapiReducer.isLoadingDetails,
 
 });
 
 class DetailsModal extends React.PureComponent<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public render(): JSX.Element {
-        const {model, categoryItemsGroup} = this.props;
+        const {model, categoryItemsGroup, isLoadingDetails} = this.props;
         const detailsComponent: JSX.Element = CategoryItemFactory.create(model);
 
-        console.log(`s`, categoryItemsGroup);
         return (
             <BaseModal isRequired={false}>
                 <section className="modal-content">
@@ -40,7 +41,26 @@ class DetailsModal extends React.PureComponent<IProps & IStateToProps & Dispatch
                         {model.name}
                     </div>
                     <div className="modal-body">
-                        {detailsComponent}
+                        <div>{detailsComponent}</div>
+                        {isLoadingDetails && (
+                            <div>Loading...</div>
+                        )}
+                        {!isLoadingDetails && (
+                            <ul>
+                                {categoryItemsGroup.map((categoryGroup: ICategoryItemsGroup) =>
+                                    <li key={categoryGroup.category}>
+                                        <div>{categoryGroup.label}</div>
+                                        <ul>
+                                            {categoryGroup.items.map((item: SwapiModelUnion) =>
+                                                <li key={item.name}>
+                                                    {item.name}
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </li>
+                                )}
+                            </ul>
+                        )}
                     </div>
                     <div className="modal-footer">
                         <button onClick={this._onClose}>Close</button>
