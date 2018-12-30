@@ -37,6 +37,18 @@ export default class SwapiUtility {
         return map[category];
     }
 
+    public static getIdsForCategories(model: SwapiModelUnion, categories: typeof CategoryEnum): INeededCategoryIds {
+        return Object
+            .values(categories)
+            .reduce((map: INeededCategoryIds, category: string) => {
+                if (model.hasOwnProperty(category)) {
+                    map[category] = model[category].map((apiUrl: string) => SwapiUtility.getIdFromUrl(apiUrl))
+                }
+
+                return map;
+            }, {})
+    }
+
     /**
      * Returns a category map of ids needed to be fetched by the api.
      *

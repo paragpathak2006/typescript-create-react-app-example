@@ -1,6 +1,7 @@
 import {BaseModel} from 'sjs-base-model';
 import SwapiUtility from '../../../utilities/SwapiUtility';
 import CategoryEnum from '../../../constants/CategoryEnum';
+import INeededCategoryIds from './INeededCategoryIds';
 
 /*
     // Returned Api Data Sample
@@ -54,6 +55,7 @@ export default class PersonModel extends BaseModel {
     public id: string = '';
     public category: CategoryEnum = CategoryEnum.People;
     public imageUrl: string = '';
+    public neededCategoryIds: INeededCategoryIds = null;
 
     constructor(data: Partial<PersonModel>) {
         super();
@@ -66,6 +68,7 @@ export default class PersonModel extends BaseModel {
 
         this.id = SwapiUtility.getIdFromUrl(this.url);
         this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
+        this.neededCategoryIds = SwapiUtility.getIdsForCategories(this, CategoryEnum);
     }
     
 }

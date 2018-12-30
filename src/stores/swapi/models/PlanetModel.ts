@@ -1,6 +1,7 @@
 import {BaseModel} from 'sjs-base-model';
 import SwapiUtility from '../../../utilities/SwapiUtility';
 import CategoryEnum from '../../../constants/CategoryEnum';
+import INeededCategoryIds from './INeededCategoryIds';
 
 /*
     // Returned Api Data Sample
@@ -47,6 +48,7 @@ export default class PlanetModel extends BaseModel {
     public category: CategoryEnum = CategoryEnum.Planets;
     public people: string[] = []; // Created to be consistent with other models and the categories.
     public imageUrl: string = '';
+    public neededCategoryIds: INeededCategoryIds = null;
 
     constructor(data: Partial<PlanetModel>) {
         super();
@@ -60,6 +62,7 @@ export default class PlanetModel extends BaseModel {
         this.id = SwapiUtility.getIdFromUrl(this.url);
         this.people = this.residents;
         this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
+        this.neededCategoryIds = SwapiUtility.getIdsForCategories(this, CategoryEnum);
     }
     
 }

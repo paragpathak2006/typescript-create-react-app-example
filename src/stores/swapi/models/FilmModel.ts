@@ -1,6 +1,7 @@
 import {BaseModel} from 'sjs-base-model';
 import SwapiUtility from '../../../utilities/SwapiUtility';
 import CategoryEnum from '../../../constants/CategoryEnum';
+import INeededCategoryIds from './INeededCategoryIds';
 
 /*
     // Returned Api Data Sample
@@ -54,6 +55,7 @@ export default class FilmModel extends BaseModel {
     public name: string = ''; // All other Swapi models have a "name" property. Added to help create display objects.
     public people: string[] = []; // Created to be consistent with other models and the categories.
     public imageUrl: string = '';
+    public neededCategoryIds: INeededCategoryIds = null;
 
     constructor(data: Partial<FilmModel>) {
         super();
@@ -68,6 +70,7 @@ export default class FilmModel extends BaseModel {
         this.name = this.title;
         this.people = this.characters;
         this.imageUrl = `/images/${this.category}/${this.id}.jpg`;
+        this.neededCategoryIds = SwapiUtility.getIdsForCategories(this, CategoryEnum);
     }
-    
+
 }
