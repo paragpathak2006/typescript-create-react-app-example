@@ -77,7 +77,7 @@ export const getCategoryMenu: ParametricSelector<IStore, CategoryEnum, ICategory
     (state: IStore, cacheKey: CategoryEnum) => cacheKey || ''
 );
 
-export const getCategoryDisplayList = createCachedSelector(
+export const getCategoryDisplayList: ParametricSelector<IStore, CategoryEnum, ICategoryViewData> = createCachedSelector(
     (state: IStore, category: CategoryEnum) => category,
     (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.Films],
     (state: IStore, category: CategoryEnum) => state.swapiReducer[CategoryEnum.People],

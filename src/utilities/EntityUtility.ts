@@ -2,12 +2,19 @@ import IEntityState from '../models/IEntityState';
 
 export default class EntityUtility {
 
+    private static _defaultEntityState: IEntityState<any> = {
+        ids: [],
+        entities: {},
+        length: 0,
+    };
+
     public static add<T>(list: T[], propertyName: string, existingEntity: IEntityState<T> = null): IEntityState<T> {
-        const blankEntity: IEntityState<T> = {
-            ids: [],
-            entities: {},
-            length: 0,
-            ...existingEntity,
+        let entityState: IEntityState<T> = existingEntity || EntityUtility._defaultEntityState;
+
+        entityState = {
+            ids: [...entityState.ids],
+            entities: {...entityState.entities},
+            length: entityState.length,
         };
 
         return list.reduce((entity: IEntityState<T>, currentItem: T) => {
@@ -18,7 +25,7 @@ export default class EntityUtility {
             entity.length = entity.ids.length;
 
             return entity;
-        }, blankEntity);
+        }, entityState);
     }
 
 }

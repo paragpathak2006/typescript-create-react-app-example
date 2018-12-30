@@ -7,6 +7,8 @@ import ModalAction from '../../stores/modal/ModalAction';
 import CategoryEnum from '../../constants/CategoryEnum';
 import {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
 import CategoryItemFactory from '../../utilities/CategoryItemFactory';
+import {getRelatedItemsForDetails} from '../../selectors/details/DetailsSelector';
+import ICategoryItemsGroup from '../../selectors/details/models/ICategoryItemsGroup';
 
 export interface IProps {
     readonly itemId: string;
@@ -15,18 +17,22 @@ export interface IProps {
 interface IState {}
 interface IStateToProps {
     readonly model: SwapiModelUnion;
+    readonly categoryItemsGroup: ICategoryItemsGroup[];
 }
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
     model: state.swapiReducer[ownProps.category].entity.entities[ownProps.itemId],
+    categoryItemsGroup: getRelatedItemsForDetails(state, ownProps.itemId, ownProps.category),
+
 });
 
 class DetailsModal extends React.PureComponent<IProps & IStateToProps & DispatchProp<IAction<any>>, IState> {
 
     public render(): JSX.Element {
-        const {model} = this.props;
+        const {model, categoryItemsGroup} = this.props;
         const detailsComponent: JSX.Element = CategoryItemFactory.create(model);
 
+        console.log(`s`, categoryItemsGroup);
         return (
             <BaseModal isRequired={false}>
                 <section className="modal-content">
