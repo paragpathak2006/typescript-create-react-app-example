@@ -1,14 +1,17 @@
+import styles from './DetailsModal.module.scss';
+
 import React from 'react';
-import BaseModal from './BaseModal';
+import BaseModal from '../BaseModal';
 import {connect, DispatchProp} from 'react-redux';
-import IAction from '../../stores/IAction';
-import IStore from '../../stores/IStore';
-import ModalAction from '../../stores/modal/ModalAction';
-import CategoryEnum from '../../constants/CategoryEnum';
-import {SwapiModelUnion} from '../../stores/swapi/models/CategoryResponseModel';
-import CategoryItemFactory from '../../utilities/CategoryItemFactory';
-import {getRelatedItemsForDetails} from '../../selectors/details/DetailsSelector';
-import ICategoryItemsGroup from '../../selectors/details/models/ICategoryItemsGroup';
+import IAction from '../../../stores/IAction';
+import IStore from '../../../stores/IStore';
+import ModalAction from '../../../stores/modal/ModalAction';
+import CategoryEnum from '../../../constants/CategoryEnum';
+import {SwapiModelUnion} from '../../../stores/swapi/models/CategoryResponseModel';
+import CategoryItemFactory from '../../../utilities/CategoryItemFactory';
+import {getRelatedItemsForDetails} from '../../../selectors/details/DetailsSelector';
+import ICategoryItemsGroup from '../../../selectors/details/models/ICategoryItemsGroup';
+import CategoryItemGroup from '../../components/details/categoryitemgroup/CategoryItemGroup';
 
 export interface IProps {
     readonly itemId: string;
@@ -46,17 +49,10 @@ class DetailsModal extends React.PureComponent<IProps & IStateToProps & Dispatch
                             <div>Loading...</div>
                         )}
                         {!isLoadingDetails && (
-                            <ul>
+                            <ul className={styles.categories}>
                                 {categoryItemsGroup.map((categoryGroup: ICategoryItemsGroup) =>
                                     <li key={categoryGroup.category}>
-                                        <div>{categoryGroup.label}</div>
-                                        <ul>
-                                            {categoryGroup.items.map((item: SwapiModelUnion) =>
-                                                <li key={item.name}>
-                                                    {item.name}
-                                                </li>
-                                            )}
-                                        </ul>
+                                        <CategoryItemGroup categoryGroup={categoryGroup} />
                                     </li>
                                 )}
                             </ul>

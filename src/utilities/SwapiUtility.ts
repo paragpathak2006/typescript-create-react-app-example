@@ -41,7 +41,7 @@ export default class SwapiUtility {
         return Object
             .values(categories)
             .reduce((map: INeededCategoryIds, category: string) => {
-                if (model.hasOwnProperty(category)) {
+                if (model.hasOwnProperty(category) && model[category].length) {
                     map[category] = model[category].map((apiUrl: string) => SwapiUtility.getIdFromUrl(apiUrl))
                 }
 

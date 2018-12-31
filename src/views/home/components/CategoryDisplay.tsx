@@ -11,7 +11,7 @@ import SwapiAction from '../../../stores/swapi/SwapiAction';
 import ICategoryViewData from '../../../selectors/home/models/ICategoryViewData';
 import CategoryItem from './CategoryItem';
 import ModalAction from '../../../stores/modal/ModalAction';
-import DetailsModal from '../../modals/DetailsModal';
+import DetailsModal from '../../modals/displaymodal/DetailsModal';
 
 interface IState {}
 interface IProps {}
