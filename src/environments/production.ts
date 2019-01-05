@@ -5,7 +5,7 @@ export default {
         duration: 7,
         unit: CacheService.DAYS,
     },
-    endpointUrl: {
+    api: {
         categories: 'https://swapi.co/api/',
         people: 'https://swapi.co/api/people/',
         planets: 'https://swapi.co/api/planets/',

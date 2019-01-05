@@ -1,6 +1,6 @@
 import {BaseModel} from 'sjs-base-model';
 import PersonModel from './PersonModel';
-import {IConstructor} from '../../../models/IConstructor';
+import IConstructor from '../../../models/IConstructor';
 import FilmModel from './FilmModel';
 import PlanetModel from './PlanetModel';
 import SpeciesModel from './SpeciesModel';

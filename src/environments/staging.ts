@@ -6,8 +6,8 @@ export default {
         duration: 8,
         unit: CacheService.HOURS,
     },
-    endpointUrl: {
-        ...environment.endpointUrl,
+    api: {
+        ...environment.api,
         // override any endpoints
     },
     isProduction: false,

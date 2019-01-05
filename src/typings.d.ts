@@ -6,8 +6,14 @@ declare module 'environment' {
             duration: number;
             unit: 'seconds' | 'minutes' | 'hours' | 'days';
         }
-        endpointUrl: {
+        api: {
             categories: string;
+            people: string;
+            planets: string;
+            films: string;
+            species: string;
+            vehicles: string;
+            starships: string;
             topics: string;
         }
     };

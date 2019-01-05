@@ -35,8 +35,6 @@ export default class HttpUtility {
         if (hasTimestampExpired) {
             const response: AxiosResponse = await this.get(endpoint);
 
-            await this._cacheService.remove(cacheKey);
-
             await this._cacheService.set(cacheKey, {
                 data: response.data,
                 status: response.status,

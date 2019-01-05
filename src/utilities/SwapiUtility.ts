@@ -1,6 +1,6 @@
 import CategoryEnum from '../constants/CategoryEnum';
 import {SwapiModelUnion} from '../stores/swapi/models/CategoryResponseModel';
-import {IConstructor} from '../models/IConstructor';
+import IConstructor from '../models/IConstructor';
 import PersonModel from '../stores/swapi/models/PersonModel';
 import PlanetModel from '../stores/swapi/models/PlanetModel';
 import StarshipModel from '../stores/swapi/models/StarshipModel';
@@ -60,13 +60,13 @@ export default class SwapiUtility {
     public static getCategoryIdsForDetails(model: SwapiModelUnion, swapiReducer: ISwapiReducerState): INeededCategoryIds {
         return Object
             .values(CategoryEnum)
-            .reduce((list: INeededCategoryIds, category: CategoryEnum) => {
-                const categoryEndpoints: string[] = model[category];
+            .reduce((list: INeededCategoryIds, categoryPropertyName: CategoryEnum) => {
+                const categoryEndpoints: string[] = model[categoryPropertyName];
 
                 if (categoryEndpoints && categoryEndpoints.length) {
-                    const currentCategoryIds: string[] = get(swapiReducer[category], 'entity.ids', []);
+                    const currentCategoryIds: string[] = get(swapiReducer[categoryPropertyName], 'entity.ids', []);
 
-                    list[category] = categoryEndpoints
+                    list[categoryPropertyName] = categoryEndpoints
                         .map((endpoint: string) =>  SwapiUtility.getIdFromUrl(endpoint))
                         .filter((id: string) => currentCategoryIds.includes(id) === false);
                 }

@@ -25,14 +25,14 @@ class Header extends React.PureComponent<IProps & IStateToProps & DispatchProp<I
                         <li><Link to={RouteEnum.Home}>Home</Link></li>
                         <li><Link to={RouteEnum.Topics}>Topics</Link></li>
                     </ul>
-                    <button className="btn" onClick={this._addModal}>Show Modal</button>
+                    <button className="btn" onClick={this._onClickAddModal}>Show Modal</button>
                 </div>
                 <hr />
             </>
         );
     }
 
-    private _addModal = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    private _onClickAddModal = (event: React.MouseEvent<HTMLButtonElement>): void => {
         const modal: JSX.Element = (
             <GenericModal
                 isRequired={true}
