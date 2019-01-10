@@ -21,6 +21,7 @@
     "uuid": "3.3.2"
   },
   "scripts": {
+    "generate": "node ./tools/generate.js",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "clean": "rimraf 'build/**/*'",
@@ -53,6 +54,7 @@
     "@types/webpack": "4.4.22",
     "@types/webpack-env": "1.13.6",
     "cross-env": "5.2.0",
+    "generate-template-files": "0.2.0",
     "node-sass": "4.11.0",
     "react-app-rewired": "1.6.2",
     "react-scripts": "2.1.1",
