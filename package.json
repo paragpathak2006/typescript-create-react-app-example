@@ -22,10 +22,10 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "clean": "rimraf 'build/**/*'",
-    "start": "npm run clean && cross-env NODE_ENV=staging react-app-rewired start",
-    "staging": "npm run clean && cross-env NODE_ENV=staging react-app-rewired build",
-    "production": "npm run clean && cross-env NODE_ENV=production react-app-rewired build",
-    "test": "npm run clean && cross-env NODE_ENV=staging react-app-rewired test",
+    "start": "npm run clean && cross-env CLIENT_ENV=staging react-app-rewired start",
+    "staging": "npm run clean && cross-env CLIENT_ENV=staging react-app-rewired build",
+    "production": "npm run clean && cross-env CLIENT_ENV=production react-app-rewired build",
+    "test": "npm run clean && cross-env CLIENT_ENV=staging react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -52,7 +52,7 @@
     "@types/webpack-env": "1.13.6",
     "cross-env": "5.2.0",
     "node-sass": "4.11.0",
-    "react-app-rewired": "1.6.2",
+    "react-app-rewired": "2.0.2",
     "react-scripts": "2.1.1",
     "rimraf": "2.6.2",
     "typescript": "3.2.2"
