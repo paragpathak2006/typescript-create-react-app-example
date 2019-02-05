@@ -24,6 +24,10 @@ export default class SwapiService {
 
         const Model: IConstructor<SwapiModelUnion> = SwapiUtility.getModelForCreation(category);
 
+        const ddd: CategoryResponseModel<any> = new CategoryResponseModel(response.data, Model, category);
+
+        console.log(`ddd`, ddd.request());
+
         return new CategoryResponseModel(response.data, Model, category);
     }
 

@@ -39,9 +39,48 @@ export default class CategoryResponseModel<T> extends BaseModel {
     
         this.update(data);
     }
-    
+
+    @log
     public update(data: Partial<(CategoryResponseModel<T>)>): void {
         super.update(data);
     }
+
+    @asdf
+    public request(): any {
+
+    }
     
 }
+
+function asdf(target: Object, methodName: string, descriptor: TypedPropertyDescriptor<any>) {
+    // let originalMethod = descriptor.value;
+// console.log(`originalMethod`, originalMethod);
+    descriptor.value = function(...args: any[]) {
+        // console.log(`${methodName}(before)`);
+        //
+        // const returnValue = originalMethod.apply(this, args);
+        //
+        // console.log(`args`, returnValue);
+        //
+        // console.log(`${methodName}(after)`);
+
+        return this;
+    }
+}
+
+function log(target: Object, methodName: string, descriptor: TypedPropertyDescriptor<any>) {
+    let originalMethod = descriptor.value;
+    console.log(`originalMethod`, originalMethod);
+    descriptor.value = function(...args: any[]) {
+        console.log(`${methodName}(before)`);
+
+        const returnValue = originalMethod.apply(this, args);
+
+        console.log(`args`, args);
+
+        console.log(`${methodName}(after)`);
+
+        return returnValue;
+    }
+}
+
