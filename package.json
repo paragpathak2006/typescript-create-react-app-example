@@ -2,6 +2,7 @@
   "name": "typescript-create-react-app",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://my-app-4321.herokuapp.com/",
   "dependencies": {
     "axios": "0.18.0",
     "connected-react-router": "6.2.1",
